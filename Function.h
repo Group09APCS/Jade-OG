@@ -11,11 +11,13 @@ struct Student {
 	Student *next;
 };
 
-//Ex01
 void load(const char pathToStudentFile[], Student *&head);
 
-//Ex02
 void save(const char pathToSaveFile[], Student *head);
+
+void studentMenu();
+void acastaffMenu();
+void lecturerMenu();
 
 #endif // !FUNCTION_H_
 
