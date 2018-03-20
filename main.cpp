@@ -5,13 +5,10 @@
 
 
 int main() {
-	Student *head = NULL;
-	//Ex01
-	load("D:\\Students.csv", head);
-	//Ex02
-	save("D:\\PA01_test.txt", head);
 
-	cin.get(); //dong nay de man hinh console dung lai cho minh xem ket qua, nhan Enter 2 lan la man hinh console bien mat 
-	cin.get();
+	Student *head = NULL;
+	system("color 0A");
+	acastaffMenu();
+	system("pause");
 	return 0;
 }
