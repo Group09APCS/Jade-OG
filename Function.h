@@ -6,6 +6,16 @@ using namespace std;
 #include<string>
 using namespace std;
 
+struct User {         //if user is a student, username is student ID
+	string userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
+	string fullName;
+	string email;
+	string mobilePhone;
+	int type; //0-student, 1-academic staff, 2-lecturer
+	string password;
+	string className; //eg: 16CLC1, 16CLC2, 16CTT
+};
+
 struct Student {
 	string no, ID, name;
 	Student *next;
