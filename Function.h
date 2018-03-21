@@ -24,7 +24,7 @@ struct Student {
 void load(const char pathToStudentFile[], Student *&head);
 
 void save(const char pathToSaveFile[], Student *head);
-
+void Login();
 void studentMenu();
 void acastaffMenu();
 void lecturerMenu();

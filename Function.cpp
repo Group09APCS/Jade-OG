@@ -62,6 +62,76 @@ void studentMenu()
 	cout << "\n\n 7: Exit ";
 
 }
+void Login()
+{
+	char user[1000],pass[1000];
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 7);
+	cout<<"	********************************************************************************************"<<endl;
+	SetConsoleTextAttribute(hConsole, 6);
+	cout<<"						FINAL PROJECT"<<endl;
+	SetConsoleTextAttribute(hConsole, 7);
+	cout<<"	********************************************************************************************"<<endl;
+	SetConsoleTextAttribute(hConsole, 12);
+	cout<<"	          @@HH00                      00                            MM@@HH      @@HH00"<<endl;
+	cout<<"	            @@                        HH                          WW      HH  WW"<<endl;
+	cout<<"	            MM      WWOOMM            @@    WWOOMM                00      @@  00"<<endl;
+	cout<<"	            OO            MM    00WWOOMM  HH      MM              HH      MM  HH        "<<endl;
+	cout<<"	            WW      HH00WWOO  @@      OO  @@HH00WWOO    HH00WW    @@      OO  @@    WWOO"<<endl;
+	cout<<"	    OO      00    MM      WW  MM      WW  MM                      MM      WW  MM      WW"<<endl;
+	cout<<"	      OOMM@@        MM@@HH00    MM@@HH00    MM@@HH                  MM@@HH      MM@@HH"<<endl;
+	SetConsoleTextAttribute(hConsole, 7);
+	cout<<"	********************************************************************************************"<<endl;
+	SetConsoleTextAttribute(hConsole, 6);
+	cout<<"					STUDENT MANAGEMENT SYSTEM"<<endl;
+	SetConsoleTextAttribute(hConsole, 7);
+	cout<<"	********************************************************************************************"<<endl;
+	cout<<"						<<LOGIN>>"<<endl;
+	cout<<"					Enter UserName: "<<endl;//khi co code cua Giang thi xoa cai endl
+	//cin>>user;
+	cout<<"					Enter Password: "<<endl;
+	//cin>>pass;
+	//them code kiem tra vao,sai bat nhap lai
+	system("pause");
+	system("cls");
+	cout<<"______________________________________________________WELCOME___________________________________________________________"<<endl;
+	int choice;
+	do
+	{
+		cout << endl
+		<< " 1 - Show the menu.\n"
+		<< " 2 - View info.\n"
+		<< " 4 - Change password.\n"
+		<< " 5 - Exit.\n"
+		<< " What do you want to do: ";
+		cin >> choice;
+		switch (choice)
+		{
+			case 1:
+			//code 
+			break;
+			case 2:
+			//code 
+			break;
+			case 3:
+			//code
+			break;
+			case 4:
+			//code
+			break;
+			case 5:
+			cout << "End of Program.\n";
+			break;
+			default:
+			cout << "Not a Valid Choice. \n"
+			<< "Choose again.\n";
+			break;
+		}	
+
+	}
+	while (choice <1&&choice>5);
+}
+
 void acastaffMenu()
 {
 	int choice;
