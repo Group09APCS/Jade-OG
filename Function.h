@@ -1,5 +1,5 @@
 #ifndef FUNCTION_H_
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include<string>
@@ -11,8 +11,8 @@
 using namespace std;
 
 struct User {         //if user is a student, username is student ID
-	char userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
-	char fullName;
+	char userName[1000];  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
+	char fullName[1000];
 	char id;
 	char email;
 	char mobilePhone;
@@ -21,7 +21,6 @@ struct User {         //if user is a student, username is student ID
 	char className; //eg: 16CLC1, 16CLC2, 16CTT
 	User *next;
 };
-
 struct Student {
 	string no, ID, name;
 	Student *next;
