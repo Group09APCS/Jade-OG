@@ -4,17 +4,21 @@
 #include <fstream>
 #include<string>
 #include <Windows.h>
+#include<math.h>
+#include<cstring>
+#include<cstdlib>
+#include<ctime>
 using namespace std;
 
 struct User {         //if user is a student, username is student ID
-	string userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
-	string fullName;
-	string id;
-	string email;
-	string mobilePhone;
+	char userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
+	char fullName;
+	char id;
+	char email;
+	char mobilePhone;
 	int type; //0-student, 1-academic staff, 2-lecturer
-	string password;
-	string className; //eg: 16CLC1, 16CLC2, 16CTT
+	char password[100];
+	char className; //eg: 16CLC1, 16CLC2, 16CTT
 	User *next;
 };
 
@@ -30,5 +34,7 @@ void Login();
 void studentMenu();
 void acastaffMenu();
 void lecturerMenu();
+void generateid(char name[1000], char Username[]);
+int pass();
 
 #endif // !FUNCTION_H_
