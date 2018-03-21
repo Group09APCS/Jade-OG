@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <fstream>
-using namespace std;
 #include<string>
+#include <Windows.h>
 using namespace std;
 
 struct User {         //if user is a student, username is student ID
@@ -32,4 +32,3 @@ void acastaffMenu();
 void lecturerMenu();
 
 #endif // !FUNCTION_H_
-
