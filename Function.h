@@ -21,6 +21,19 @@ struct User {         //if user is a student, username is student ID
 	char className; //eg: 16CLC1, 16CLC2, 16CTT
 	User *next;
 };
+struct Course{
+	char c_code[100];
+	int year;
+	int semester;
+	char c_name[1000];
+	char lecname[1000];
+	char sdate[1000];
+	char edate[1000];
+	char wdate[1000];
+	char ftime[100];
+	char ttime[100];
+	Course * next;
+}
 struct Student {
 	string no, ID, name;
 	Student *next;
