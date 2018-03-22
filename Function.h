@@ -33,12 +33,33 @@ struct Course{
 	char ftime[100];
 	char ttime[100];
 	Course * next;
-}
+};
+struct Presence{
+char c_code[100];
+int year;
+int semester;
+int studentID;
+int week;
+};
+struct Score{
+char c_code[100];
+int year;
+int semester;
+int studentID;
+float midscore;
+float labscore;
+float finscore;
+};
 struct Student {
-	string no, ID, name;
+	int no, ID;
+	char name[1000];
 	Student *next;
 };
-
+struct Class{
+	char name[1000];
+	Student a;
+	Class * next;
+};
 void load(const char pathToStudentFile[], Student *&head);
 
 void save(const char pathToSaveFile[], Student *head);
