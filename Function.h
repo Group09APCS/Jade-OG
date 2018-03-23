@@ -10,7 +10,9 @@
 #include<ctime>
 using namespace std;
 
-struct User {         //if user is a student, username is student ID
+struct User {
+	int no;
+	                       //if user is a student, username is student ID
 	char userName[1000];  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
 	char fullName[1000];
 	char id;
@@ -22,33 +24,33 @@ struct User {         //if user is a student, username is student ID
 	User *next;
 };
 struct Course{
-	char c_code[100];
-	int year;
+	char c_code[100];    //courseCode?   Eg:CTT008, CS161
+	int year;            //academicYear   Eg: 2017-2018
 	int semester;
-	char c_name[1000];
-	char lecname[1000];
-	char sdate[1000];
-	char edate[1000];
-	char wdate[1000];
-	char ftime[100];
-	char ttime[100];
+	char c_name[1000];   //courseName?
+	char lecname[1000];  //lecturerUserName
+	char sdate[1000];    //startDate
+	char edate[1000];    //endDate
+	char wdate[1000];    //dayOfWeek    Eg: Monday, Tuesday,...
+	char ftime[100];     //timeStart    Eg: 7h30?
+	char ttime[100];     //timeEnd      Eg: 11h30...
 	Course * next;
 };
 struct Presence{
-char c_code[100];
-int year;
-int semester;
+char c_code[100];   //courseCode
+int year;           //academicYear   Eg: 2017-2018
+int semester;       //Eg: 1, 2, 3
 int studentID;
 int week;
 };
 struct Score{
-char c_code[100];
-int year;
-int semester;
+char c_code[100];   //courseCode
+int year;           //academicYear   Eg: 2017-2018     
+int semester;       //Eg: 1, 2, 3
 int studentID;
-float midscore;
-float labscore;
-float finscore;
+float midscore;     //midtermScore
+float labscore;     //labScore
+float finscore;     //finalScore
 };
 struct Student {
 	int no, ID;
