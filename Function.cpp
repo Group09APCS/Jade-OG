@@ -298,3 +298,231 @@ int pass()
 	int a = rand();
 	return a;
 }
+
+void cinData(const char pathToDataFile[], User *head) {
+	ifstream fin;
+	fin.open(pathToDataFile);
+	if (!fin.is_open()) {
+		return;
+	}
+	char comma;
+	User *cur = NULL;
+	fin.get(comma);
+	while (comma != '\n') {
+		fin.get(comma);
+	}
+	while (!fin.eof()) {
+	
+		if (head == NULL) {
+			head = new User;
+			//no
+			fin >> head->no;
+			cout << "head->no is: " << head->no << endl;
+			//userName
+			fin.get(comma);
+			while (comma == ',') {
+				fin >> comma;
+			}
+			int i = 0;
+			while (comma != ',') {
+				head->userName[i] = comma;
+				++i;
+				fin >> comma;
+
+			}
+			cout << "userName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->userName[j];
+			}
+			//fullName
+			while (comma == ',') {
+				fin.get(comma);   //(fin >> comma) skipping whitespace
+			}
+			i = 0;
+			while (comma != ',') {
+				head->fullName[i] = comma;
+				fin.get(comma);  //(fin >> comma) skipping whitespace
+				++i;
+			}
+			cout << "\nfullName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->fullName[j];
+			}
+			//id
+			while (comma == ',') {
+				fin.get(comma);   //(fin >> comma) skipping whitespace
+			}
+			i = 0;
+			while (comma != ',') {
+				head->id[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nid: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->id[j];
+			}
+			//email
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				head->email[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nemail: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->email[j];
+			}
+			//phoneNumber
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				head->phoneNumber[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nphoneNumber: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->phoneNumber[j];
+			}
+			//type
+			fin >> head->type;
+			cout << "\ntype: " << head->type;
+			//password: load when login
+			//className
+			fin.get(comma);
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				head->className[i] = comma;
+				fin.get(comma);
+				++i;
+				if (comma == '\n') {
+					break;
+				}
+
+			}
+			cout << "\nclassName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->className[j];
+			}
+			cout << endl;
+			head->next = NULL;
+			cur = head;
+		}
+		else {
+
+			cur->next = new User;
+			cur = cur->next;
+			//no
+			fin >> cur->no;
+			cout << "\nno: " << cur->no << endl;
+			//userName
+			fin.get(comma);
+			while (comma == ',') {
+				fin >> comma;
+			}
+			int i = 0;
+			while (comma != ',') {
+				cur->userName[i] = comma;
+				++i;
+				fin >> comma;
+
+			}
+			cout << "userName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->userName[j];
+			}
+			//fullName
+			while (comma == ',') {
+				fin.get(comma);   //(fin >> comma) skipping whitespace
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->fullName[i] = comma;
+				fin.get(comma);  //(fin >> comma) skipping whitespace
+				++i;
+			}
+			cout << "\nfullName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->fullName[j];
+			}
+			//id
+			while (comma == ',') {
+				fin.get(comma);   //(fin >> comma) skipping whitespace
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->id[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nid: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->id[j];
+			}
+			//email
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->email[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nemail: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->email[j];
+			}
+			//phoneNumber
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->phoneNumber[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\nphoneNumber: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->phoneNumber[j];
+			}
+			//type
+			fin >> cur->type;
+			cout << "\ntype: " << cur->type;
+			//password: load when login
+			//className
+			fin.get(comma);
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->className[i] = comma;
+				fin.get(comma);
+				++i;
+				if (comma == '\n') {
+					break;
+				}
+
+			}
+			cout << "\nclassName: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->className[j];
+			}
+			cout << endl;
+
+			cur->next = NULL;
+
+		}
+	}
+}
