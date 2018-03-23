@@ -8,19 +8,20 @@
 #include<cstring>
 #include<cstdlib>
 #include<ctime>
+#include<iomanip>
 using namespace std;
 
 struct User {
 	int no;
-	                       //if user is a student, username is student ID
-	char userName[1000];  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
-	char fullName[1000];
-	char id;
-	char email;
-	char mobilePhone;
+	//if user is a student, username is student ID
+	char userName[50];  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
+	char fullName[50];
+	char id[50];
+	char email[100];
+	char phoneNumber[20];
 	int type; //0-student, 1-academic staff, 2-lecturer
-	char password[100];
-	char className; //eg: 16CLC1, 16CLC2, 16CTT
+	char password[50];
+	char className[20]; //eg: 16CLC1, 16CLC2, 16CTT
 	User *next;
 };
 struct Course{
@@ -70,6 +71,7 @@ void studentMenu();
 void acastaffMenu();
 void lecturerMenu();
 void generateid(char name[1000], char Username[]);
+void cinData(const char pathToDataFile[], User *head);
 int pass();
 
 #endif // !FUNCTION_H_
