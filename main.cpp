@@ -5,13 +5,10 @@
 
 
 int main() {
-
-	//Student *head = NULL; 
 	User *head = NULL;
-	cinData("user.csv", head);    
 	system("color 0A");
-	Login();
-	acastaffMenu();
+	Import(head);
+	Login(head);
 	system("pause");
 	return 0;
 }
