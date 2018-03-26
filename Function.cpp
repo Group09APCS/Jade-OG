@@ -304,99 +304,7 @@ void showMenu(User *&head, User *&cur)
 		break;
 	}
 }
-void acastaffMenu()
-{
-	int choice;
-	cout << "\n\n  _________________________ACADEMIC STAFF DATABASE_________________________";
-	cout << "\n\n 1: Student Management ";
-	cout << "\n\n 2: Classes Management ";
-	cout << "\n\n 3: Courses ";
-	cout << "\n\n 4: Courses Schedule ";
-	cout << "\n\n 5: Search for available course ";
-	cout << "\n\n 6: Scoreboard ";
-	cout << "\n\n 7: Your info ";
-	cout << "\n\n 8: Change password ";
-	cout << "\n\n 9: Log out ";
-	cout << "\n\n 10: Exit ";
-	cin >> choice;
-	int newchoice;
-	switch (choice)
-	{
-	case 1:
-	{
-		cout << "\n\n 1: Import Students Of A Class From A CSV File ";
-		cout << "\n\n 2: Add New Student ";
-		cout << "\n\n 3: Edit Student ";
-		cout << "\n\n 4: Remove Student ";
-		cin >> newchoice;
-		if (newchoice == 1)
-		{
-			Student *head = NULL;
-			importstudentfromfile(head);
-		}
-		else
-		break;
-	}
-	case 2:
-	{
-		cout << "\n\n 1: Import A Class ";
-		cout << "\n\n 2: Create New Class ";
-		cout << "\n\n 3: View List Classes ";
-		cout << "\n\n 4: View List of Student in Class ";
-		break;
-	}
-	case 3:
-	{
-		cout << "\n\n 1: Import A Course ";
-		cout << "\n\n 2: Add New Course ";
-		cout << "\n\n 3: View List Courses ";
-		cout << "\n\n 4: Edit Courses ";
-		cout << "\n\n 5: Remove Courses ";
-		break;
-	}
-	case 4:
-	{
-		cout << "\n\n 1: Import Courses' Schedules ";
-		cout << "\n\n 2: Add New Courses' Schedule ";
-		cout << "\n\n 3: View List Courses' Schedules ";
-		cout << "\n\n 4: Edit Courses' Schedules ";
-		cout << "\n\n 5: Remove Courses' Schedules ";
-		break;
-	}
-	case 5:
-	{
-		cout << "\n\n 1: Search & View Attendance List ";
-		cout << "\n\n 2: Export Attendance List";
-		break;
-	}
-	case 6:
-	{
-		cout << "\n\n 1: Search & View Scoreboard ";
-		cout << "\n\n 2: Export Scoreboard";
-		break;
-	}
-	case 7:
-	{
-		cout << "\n\n Nothing here ";
-		break;
-	}
-	case 8:
-	{
-		cout << "\n\n Nothing here ";
-		break;
-	}
-	case 9:
-	{
-		cout << "\n\n Nothing here ";
-		break;
-	}
-	case 10:
-	{
-		cout << "\n\n Nothing here ";
-		break;
-	}
-	}
-}
+
 void lecturerMenu()
 {
 	cout << "\n\n  _________________________LECTURER DATABASE_________________________";
@@ -447,8 +355,115 @@ void viewinfo()
 	
 }
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
-void importstudentfromfile(Student *&head) {
-	ifstream fin("17CTT1.csv");
+void acastaffMenu()
+{
+	system("cls");
+	int choice;
+	cout << "\n\n  _________________________ACADEMIC STAFF DATABASE_________________________";
+	cout << "\n\n 1: Student Management ";
+	cout << "\n\n 2: Classes Management ";
+	cout << "\n\n 3: Courses ";
+	cout << "\n\n 4: Courses Schedule ";
+	cout << "\n\n 5: Search for available course ";
+	cout << "\n\n 6: Scoreboard ";
+	cout << "\n\n 7: Your info ";
+	cout << "\n\n 8: Change password ";
+	cout << "\n\n 9: Log out ";
+	cout << "\n\n 10: Exit ";
+	cout << "\n\n What do you want to do: ";
+	cin >> choice;
+	int newchoice;
+	switch (choice)
+	{
+	case 1:
+	{
+		system("cls");
+		cout << "\n\n 1: Import Students Of A Class From A CSV File ";
+		cout << "\n\n 2: Add New Student ";
+		cout << "\n\n 3: Edit Student ";
+		cout << "\n\n 4: Remove Student ";
+		cout << "\n\n What do you want to do: ";
+		cin >> newchoice;
+		if (newchoice == 1)
+		{
+			string cl;
+			cout << "\n\n What class you want to import? \n";
+			cout << "\n\n 1: 17CTT1 ";
+			cout << "\n\n 2: 17CTT2 ";
+			getline(cin, cl);
+			while (cl != "1" && cl != "2")
+				getline(cin, cl);
+			Student *head = NULL;
+			if (cl == "1") cl = "17CTT1.csv";
+			else cl = "17CTT2.csv";
+			importstudentfromfile(head,cl);
+		}
+		else
+			break;
+		break;
+	}
+	case 2:
+	{	system("cls");
+		cout << "\n\n 1: Import A Class ";
+		cout << "\n\n 2: Create New Class ";
+		cout << "\n\n 3: View List Classes ";
+		cout << "\n\n 4: View List of Student in Class ";
+		break;
+	}
+	case 3:
+	{	system("cls");
+		cout << "\n\n 1: Import A Course ";
+		cout << "\n\n 2: Add New Course ";
+		cout << "\n\n 3: View List Courses ";
+		cout << "\n\n 4: Edit Courses ";
+		cout << "\n\n 5: Remove Courses ";
+		break;
+	}
+	case 4:
+	{	system("cls");
+		cout << "\n\n 1: Import Courses' Schedules ";
+		cout << "\n\n 2: Add New Courses' Schedule ";
+		cout << "\n\n 3: View List Courses' Schedules ";
+		cout << "\n\n 4: Edit Courses' Schedules ";
+		cout << "\n\n 5: Remove Courses' Schedules ";
+		break;
+	}
+	case 5:
+	{	system("cls");
+		cout << "\n\n 1: Search & View Attendance List ";
+		cout << "\n\n 2: Export Attendance List";
+		break;
+	}
+	case 6:
+	{	system("cls");
+		cout << "\n\n 1: Search & View Scoreboard ";
+		cout << "\n\n 2: Export Scoreboard";
+		break;
+	}
+	case 7:
+	{
+		cout << "\n\n Nothing here ";
+		break;
+	}
+	case 8:
+	{
+		cout << "\n\n Nothing here ";
+		break;
+	}
+	case 9:
+	{
+		cout << "\n\n Nothing here ";
+		break;
+	}
+	case 10:
+	{
+		cout << "\n\n Nothing here ";
+		break;
+	}
+	}
+}
+void importstudentfromfile(Student *&head, string cl) {
+	ifstream fin(cl);
 	if (!fin.is_open()) {
 		return;
 	}
