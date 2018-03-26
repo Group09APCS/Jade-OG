@@ -1,7 +1,7 @@
 #include "Function.h"
 //Ex01
-void load(const char pathToStudentFile[], Student *&head) {
-	ifstream fin(pathToStudentFile);
+void load(Student *&head) {
+	ifstream fin("student.csv");
 	if (!fin.is_open()) {
 		return;
 	}
@@ -12,9 +12,10 @@ void load(const char pathToStudentFile[], Student *&head) {
 			head = new Student;
 			getline(fin, head->no, ',');
 			getline(fin, head->ID, ',');
-			//getline(fin, head->name, ','); 
-			head->name = "";  //Dong dau tien: "Class 17APCS1" nen head->no = Class, head->ID = 17APCS1, head->name = ""
-			cout << head->no << "  " << head->ID << "  ";   //cai nay de minh xem ket qua ma khong can mo file 
+			getline(fin, head->fullName, ',');
+			getline(fin, head->email, ',');
+			getline(fin, head->sclass, ',');
+			cout << head->no << "  " << head->ID << "  "; 
 			head->next = NULL;
 			cur = head;
 		}
@@ -23,8 +24,9 @@ void load(const char pathToStudentFile[], Student *&head) {
 			cur = cur->next;
 			getline(fin, cur->no, ',');
 			getline(fin, cur->ID, ',');
-			getline(fin, cur->name, ' ');// vi trong file .csv sau ten khong co dau phay
-			cout << cur->no << "  " << cur->ID << "  " << cur->name;
+			getline(fin, cur->fullName, ' ');
+			getline(fin, cur->email, ' ');
+			getline(fin, cur->sclass, ' ');
 			cur->next = NULL;
 		}
 	}
@@ -32,6 +34,7 @@ void load(const char pathToStudentFile[], Student *&head) {
 }
 
 //Ex02
+/*
 void save(const char pathToSaveFile[], Student *head) {
 	ofstream fout(pathToSaveFile);
 	if (!fout.is_open()) {
@@ -48,7 +51,7 @@ void save(const char pathToSaveFile[], Student *head) {
 
 	fout.close();
 }
-
+*/
 void studentMenu()
 {
 	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
@@ -61,10 +64,47 @@ void studentMenu()
 	cout << "\n\n 7: Exit ";
 
 }
-void Login()
+void Import(User *&head)
 {
+	// Import the users from csv file
+	ifstream fin;
+	fin.open("user.csv");
+	if (!fin.is_open()) {
+		return;
+	}
+	User * cur = NULL;
+	head = new User;
+		getline(fin, head->userName, ',');
+		getline(fin, head->fullName, ',');
+		getline(fin, head->ID, ',');
+		getline(fin, head->email, ',');
+		getline(fin, head->mobilePhone, ',');
+		getline(fin, head->type, ',');
+		getline(fin, head->password, ',');
+		getline(fin, head->className, ' ');
+		head->next = NULL;
+		cur = head;
+	while (fin.good())
+	{
+		cur->next = new User;
+		cur = cur->next;
+		getline(fin, cur->userName, ',');
+		getline(fin, cur->fullName, ',');
+		getline(fin, cur->ID, ',');
+		getline(fin, cur->email, ',');
+		getline(fin, cur->mobilePhone, ',');
+		getline(fin, cur->type, ',');
+		getline(fin, cur->password, ',');
+		getline(fin, cur->className);
+	}
+	cur->next = NULL;
+	fin.close();
+}
+void Login(User *&head)
+{
+	
 	int choice;
-	char name[1000], Username[10], password[1000];
+	string name, Username, password;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
@@ -87,54 +127,91 @@ void Login()
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
 	cout << "						<<LOGIN>>" << endl;
-	cout << "					Enter UserName: " << endl;//khi co code cua Giang thi xoa cai endl
-														  //cin>>user;
-	cout << "					Enter Password: " << endl;
-	//cin>>pass;
-	//them code kiem tra vao,sai bat nhap lai
-	cout << "                   New to Jade-OG? Get an account here (3)";
-	cin >> choice;
-	switch (choice)
+	cout << "					Enter UserName: ";
+	bool check = false;
+	int t = 0;
+	User * cur = head->next;
+	for (int i = 0; i < 3; i++)
 	{
-	case 1:
-	{
-		cout << "Nothing here \n";
-	}
-	case 2:
-	{
-		cout << "Nothing here \n";
-	}
-	case 3:
-	{
-		cout << "Please input your fullname: ";
-		cin.ignore(1000, '\n');
-		cin.get(name, 1000, '\n');
-		User* cur = new User;
-		strcpy(cur->fullName, name);
-		generateid(name, Username);
-		strcpy(cur->userName,Username);
-		int a = pass();
-		int x = log(a) / log(10) + 1;
-		for (int i = x; i > 0; i--)
+		cur = head->next;
+		getline(cin, Username);
+
+		while (cur)
 		{
-			cur->password[i] = a / pow(10, i - 1) + 48;
+			if (Username == cur->userName)
+			{
+				check = true;
+				break;
+			}
+			cur = cur->next;
 		}
-		cout << "Your username: " << cur->userName << endl;
-		cout << "Your password: " << cur->password << endl;
-			cout << "Please set a new password: ";
-			cin.ignore(1000, '\n');
-			cin.get(cur->password, 1000, '\n');
-			
-			cout << "Your username: " << cur->userName << endl;
-			cout << "Your password: " << cur->password << endl;
+		if (check == true)
+			break;
+		else
+		cout << "					Mismatched! " << 3 - i << " time(s) remain:";
+
 	}
+	if (check == false)
+	{
+		cout << "					Do u want to create a new account? \n";
+		cout << "					1.YES \n";
+		cout << "					2.NO \n";
+		cin >> t;
+		/*switch (t)
+		{
+		case 1:
+		{
+
+			cout << "					Please input your fullname: ";
+			getline(cin, name);
+			while (cur->next)
+				cur = cur->next;
+			cur->next = new User;
+			cur = cur->next;
+			cur->fullName = name;
+
+			generateid(name, Username);
+			cur->userName = Username;
+			int a = pass();
+			int x = log(a) / log(10) + 1;
+			for (int i = x; i > 0; i--)
+			{
+				cur->password[i] = a / pow(10, i - 1) + 48;
+			}
+			cout << "					Your username: " << cur->userName << endl;
+			cout << "					Your password: " << cur->password << endl;
+			cout << "					Please set a new password: ";
+			getline(cin, password);
+			cout << "					Your username: " << cur->userName << endl;
+			cout << "					Your password: " << cur->password << endl;
+			break;
+		}
+		case 2:
+		{
+			cout << "					See you next time \n";
+			return;
+		}
+		}*/
 	}
+	cout << "					Enter Password: " << endl;
+	check = false;
+	t = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		getline(cin, password);
+		if (password == cur->password)
+		{
+			check = true;
+			break;
+		}
+		else cout << "					" << 3 - i << "time(s) to try";
+	}
+	if (check == false)
+		return;
 	system("pause");
 	system("cls");
 	cout << "______________________________________________________WELCOME___________________________________________________________" << endl;
 
-	do
-	{
 		cout << endl
 			<< " 1 - Show the menu.\n"
 			<< " 2 - View info.\n"
@@ -145,8 +222,14 @@ void Login()
 		switch (choice)
 		{
 		case 1:
-			//code 
+		{	if (cur->type == "1")
+			acastaffMenu();
+		if (cur->type == "0")
+			studentMenu();
+		if (cur->type == "2")
+			lecturerMenu;
 			break;
+		}
 		case 2:
 			//code 
 			break;
@@ -164,10 +247,7 @@ void Login()
 				<< "Choose again.\n";
 			break;
 		}
-
-	} while (choice <1 && choice>5);
-}
-
+	}
 void acastaffMenu()
 {
 	int choice;
@@ -264,17 +344,17 @@ void lecturerMenu()
 	cout << "\n\n 6: Exit ";
 }
 
-void generateid(char name[1000], char Username[])
+/*void generateid(string name, string Username)
 {
 	int i1 = 1, a;
 	Username[0] = tolower(name[0]);
-	for (int i = 0; i < strlen(name); ++i)
+	for ( unsigned int i = 0; i < name.length; ++i)
 	{
 		if (name[i] == ' ')
 			a = i;
 	}
 
-	for (int i = 0; i < (strlen(name)); ++i)
+	for (unsigned int i = 0; i < (name.length); ++i)
 	{
 		if (name[i] == ' ')
 		{
@@ -285,277 +365,16 @@ void generateid(char name[1000], char Username[])
 
 	i1--;
 
-	while (a < strlen(name))
+	while (a < name.length)
 	{
 		Username[i1] = tolower(name[a + 1]);
 		i1++; a++;
 	}
 }
-
+*/
 int pass()
 {
 	srand(time(NULL));
 	int a = rand();
 	return a;
 }
-
-void cinData(const char pathToDataFile[], User *head) {
-	ifstream fin;
-	fin.open(pathToDataFile);
-	if (!fin.is_open()) {
-		return;
-	}
-	char comma;
-	User *cur = NULL;
-	fin.get(comma);
-	while (comma != '\n') {
-		fin.get(comma);
-	}
-	while (!fin.eof()) {  
-		
-		if (head == NULL) {
-			head = new User;
-			//no
-			fin >> head->no;
-			cout << "head->no is: " << head->no << endl;
-			//userName
-			fin.get(comma);
-			while (comma == ',') {
-				fin >> comma;
-			}
-			int i = 0;
-			while (comma != ',') {
-				head->userName[i] = comma;
-				++i;
-				fin >> comma;
-
-			}
-			cout << "userName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->userName[j];
-			}
-			//fullName
-			while (comma == ',') {
-				fin.get(comma);   //(fin >> comma) skipping whitespace
-			}
-			i = 0;
-			while (comma != ',') {
-				head->fullName[i] = comma;
-				fin.get(comma);  //(fin >> comma) skipping whitespace
-				++i;
-			}
-			cout << "\nfullName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->fullName[j];
-			}
-			//id
-			while (comma == ',') {
-				fin.get(comma);   //(fin >> comma) skipping whitespace
-			}
-			i = 0;
-			while (comma != ',') {
-				head->id[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nid: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->id[j];
-			}
-			//email
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				head->email[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nemail: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->email[j];
-			}
-			//phoneNumber
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				head->phoneNumber[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nphoneNumber: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->phoneNumber[j];
-			}
-			//type
-			fin >> head->type;
-			cout << "\ntype: " << head->type;
-			//password: 
-			fin.get(comma);
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				head->password[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\npassword: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->password[j];
-			}
-			//className
-			
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				head->className[i] = comma;
-				fin.get(comma);
-				++i;
-				if (comma == '\n') {
-					break;
-				}
-
-			}
-			cout << "\nclassName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << head->className[j];
-			}
-			cout << endl;
-			head->next = NULL;
-			cur = head;
-		}
-		else {
-
-			cur->next = new User;
-			cur = cur->next;
-			//no
-			fin >> cur->no;
-			if (!(1 <= cur->no && cur->no <= 120)) { //------------
-				break;
-			}
-			cout << "\nno: " << cur->no << endl;
-			//userName
-			fin.get(comma);
-			while (comma == ',') {
-				fin >> comma;
-			}
-			int i = 0;
-			while (comma != ',') {
-				cur->userName[i] = comma;
-				++i;
-				fin >> comma;
-
-			}
-			cout << "userName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->userName[j];
-			}
-			//fullName
-			while (comma == ',') {
-				fin.get(comma);   //(fin >> comma) skipping whitespace
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->fullName[i] = comma;
-				fin.get(comma);  //(fin >> comma) skipping whitespace
-				++i;
-			}
-			cout << "\nfullName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->fullName[j];
-			}
-			//id
-			while (comma == ',') {
-				fin.get(comma);   //(fin >> comma) skipping whitespace
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->id[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nid: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->id[j];
-			}
-			//email
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->email[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nemail: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->email[j];
-			}
-			//phoneNumber
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->phoneNumber[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\nphoneNumber: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->phoneNumber[j];
-			}
-			//type
-			fin >> cur->type;
-			cout << "\ntype: " << cur->type;
-			//password
-			fin.get(comma);
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->password[i] = comma;
-				fin.get(comma);
-				++i;
-			}
-			cout << "\npassword: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->password[j];
-			}
-			//className
-			while (comma == ',') {
-				fin.get(comma);
-			}
-			i = 0;
-			while (comma != ',') {
-				cur->className[i] = comma;
-				fin.get(comma);
-				++i;
-				if (comma == '\n') {
-					break;
-				}
-
-			}
-			cout << "\nclassName: ";
-			for (int j = 0; j < i; ++j) {
-				cout << cur->className[j];
-			}
-			cout << endl;
-
-			cur->next = NULL;
-
-		}
-	}
-	fin.close();
-}
-
-
