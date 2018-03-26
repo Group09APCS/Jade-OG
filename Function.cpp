@@ -311,8 +311,8 @@ void cinData(const char pathToDataFile[], User *head) {
 	while (comma != '\n') {
 		fin.get(comma);
 	}
-	while (!fin.eof()) {
-	
+	while (!fin.eof()) {  
+		
 		if (head == NULL) {
 			head = new User;
 			//no
@@ -393,9 +393,23 @@ void cinData(const char pathToDataFile[], User *head) {
 			//type
 			fin >> head->type;
 			cout << "\ntype: " << head->type;
-			//password: load when login
-			//className
+			//password: 
 			fin.get(comma);
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				head->password[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\npassword: ";
+			for (int j = 0; j < i; ++j) {
+				cout << head->password[j];
+			}
+			//className
+			
 			while (comma == ',') {
 				fin.get(comma);
 			}
@@ -423,6 +437,9 @@ void cinData(const char pathToDataFile[], User *head) {
 			cur = cur->next;
 			//no
 			fin >> cur->no;
+			if (!(1 <= cur->no && cur->no <= 120)) { //------------
+				break;
+			}
 			cout << "\nno: " << cur->no << endl;
 			//userName
 			fin.get(comma);
@@ -499,9 +516,22 @@ void cinData(const char pathToDataFile[], User *head) {
 			//type
 			fin >> cur->type;
 			cout << "\ntype: " << cur->type;
-			//password: load when login
-			//className
+			//password
 			fin.get(comma);
+			while (comma == ',') {
+				fin.get(comma);
+			}
+			i = 0;
+			while (comma != ',') {
+				cur->password[i] = comma;
+				fin.get(comma);
+				++i;
+			}
+			cout << "\npassword: ";
+			for (int j = 0; j < i; ++j) {
+				cout << cur->password[j];
+			}
+			//className
 			while (comma == ',') {
 				fin.get(comma);
 			}
@@ -525,4 +555,7 @@ void cinData(const char pathToDataFile[], User *head) {
 
 		}
 	}
+	fin.close();
 }
+
+
