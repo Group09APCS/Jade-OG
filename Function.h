@@ -26,22 +26,43 @@ struct Student {
 	Student *next;
 };
 
-
-
-/*void save(const char pathToSaveFile[], Student *head);*/
+//THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
+//******************USER MENU*********************
 void Import(User *&head);
 void Login(User *&head);
 void showMenu(User *&head, User *&cur);
-void studentMenu();
-void acastaffMenu();
-void lecturerMenu();
+
+
+
+
+
+//SOME STUFF HERER
 //void generateid(string name, string Username);
 int pass();
+/*void save(const char pathToSaveFile[], Student *head);*/
+
+
 
 
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
-
 //*****ACADEMIC STAFF*****
-void importstudentfromfile(Student *&head);
+void importstudentfromfile(Student *&head, string cl);
+void acastaffMenu();
+
+
+
+
+//THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
+//*****STUDENT*****
+void studentMenu();
+
+
+
+
+//THIS AREA IS USED FOR LECTURER, AUTHORIZED PERSONNEL ONLY!!!
+//*****LECTURER*****
+void lecturerMenu();
+
+
 
 #endif // !FUNCTION_H_
