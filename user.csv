@@ -1,121 +1,121 @@
-No,User Name,Full Name,ID,Email,Phone Number,Type,Password,Class Name
-1,1751047,Ha Binh An,1751047,hban@apcs.vn,1,0,0,17CTT1
-2,1751048,Khuu Kien An,1751048,kkan@apcs.vn,2,0,0,17CTT1
-3,1751049,Dang Le Tuan Anh,1751049,dltanh@apcs.vn,3,0,0,17CTT1
-4,1751050,Dinh Ho Gia Bao ,1751050,dhgbao@apcs.vn,4,0,0,17CTT1
-5,1751051,Le Thanh Binh,1751051,ltbinh@apcs.vn,5,0,0,17CTT1
-6,1751052,Nguyen Quoc Binh,1751052,nqbinh@apcs.vn,6,0,0,17CTT1
-7,1751053,Nguyen Thanh Binh,1751053,ntbinh@apcs.vn,7,0,0,17CTT1
-8,1751054,Long Vu Quynh Chau,1751054,lvqchau@apcs.vn,8,0,0,17CTT1
-9,1751055,Le Anh Bach Chien,1751055,labchien@apcs.vn,9,0,0,17CTT1
-10,1751125,Truong Cong Cuong,1751125,tccuong@apcs.vn,10,0,0,17CTT1
-11,1751057,Huynh Tan Dat,1751057,htdat@apcs.vn,11,0,0,17CTT1
-12,1751058,Le Hoang Dat,1751058,lhdat@apcs.vn,12,0,0,17CTT1
-13,1751029,Trinh Huu Duc,1751029,thduc@apcs.vn,13,0,0,17CTT1
-14,1751059,Tran Trung Duc,1751059,ttduc@apcs.vn,14,0,0,17CTT1
-15,1751002,Le Doan Thai Duong,1751002,ldtduong@apcs.vn,15,0,0,17CTT1
-16,1751001,Nguyen Hien Tuan Duy,1751001,nhtduy@apcs.vn,16,0,0,17CTT1
-17,1751060,Ho Cong Duy,1751060,hcduy@apcs.vn,17,0,0,17CTT1
-18,1751061,Le Dinh Anh Duy,1751061,ldaduy@apcs.vn,18,0,0,17CTT1
-19,1751062,Le Quoc Anh Duy,1751062,lqaduy@apcs.vn,19,0,0,17CTT1
-20,1751063,Pham Bao Duy,1751063,pbduy@apcs.vn,20,0,0,17CTT1
-21,1751064,Nguyen Hoang Thanh Gia,1751064,nhtgia@apcs.vn,21,0,0,17CTT1
-22,1751065,Nguyen Truong Giang,1751065,ntgiang@apcs.vn,22,0,0,17CTT1
-23,1751004,Tran Nguyen Hien,1751004,tnhien@apcs.vn,23,0,0,17CTT1
-24,1751045,Doan Thanh Hien,1751045,dthien@apcs.vn,24,0,0,17CTT1
-25,1751005,Dao Hieu,1751005,dhieu@apcs.vn,25,0,0,17CTT1
-26,1751066,Le Minh Hieu,1751066,lmhieu@apcs.vn,26,0,0,17CTT1
-27,1751067,Nguyen Minh Hieu,1751067,nmhieu@apcs.vn,27,0,0,17CTT1
-28,1751068,Pham Nguyen Huy Hoang,1751068,pnhhoang@apcs.vn,28,0,0,17CTT1
-29,1751069,Nguyen Dinh Huan,1751069,ndhuan@apcs.vn,29,0,0,17CTT1
-30,1751070,Tran Gia Huan,1751070,tghuan@apcs.vn,30,0,0,17CTT1
-31,1751008,Do Nhat Huy,1751008,dnhuy@apcs.vn,31,0,0,17CTT1
-32,1751030,Nguyen Ngoc Minh Huy,1751030,nnmhuy@apcs.vn,32,0,0,17CTT1
-33,1751071,Doan Nhat Huy,1751071,doannhuy@apcs.vn,33,0,0,17CTT1
-34,1751072,Le Quoc Huy,1751072,lqhuy@apcs.vn,34,0,0,17CTT1
-35,1751074,Nguyen Phuc Khang,1751074,npkhang@apcs.vn,35,0,0,17CTT1
-36,1751076,Doan Ngoc Anh Khoa,1751076,dnakhoa@apcs.vn,36,0,0,17CTT1
-37,1751077,Nguyen Dang Khoa,1751077,ndkhoa@apcs.vn,37,0,0,17CTT1
-38,1751124,Phan Dang Khoa,1751124,pdkhoa@apcs.vn,38,0,0,17CTT1
-39,1751039,Vo Kien,1751039,vkien@apcs.vn,39,0,0,17CTT1
-40,1751031,Dinh Nguyen Hoang Kim,1751031,dnhkim@apcs.vn,40,0,0,17CTT1
-41,1751078,Nguyen Vo Duc Loc,1751078,nvdloc@apcs.vn,41,0,0,17CTT1
-42,1751080,Truong Tuc Luan,1751080,ttluan@apcs.vn,42,0,0,17CTT1
-43,1751041,Tran Huu Thien Luong,1751041,thtluong@apcs.vn,43,0,0,17CTT1
-44,1751011,Nguyen Hoang Minh,1751011,nhminh@apcs.vn,44,0,0,17CTT1
-45,1751081,Nguyen Phuc Minh,1751081,npminh@apcs.vn,45,0,0,17CTT1
-46,1751082,Vu Hoang Minh,1751082,vhminh@apcs.vn,46,0,0,17CTT1
-47,1751012,Nguyen Chan Nam,1751012,ncnam@apcs.vn,47,0,0,17CTT1
-48,1751043,Vo Hoang Ngan,1751043,vhngan@apcs.vn,48,0,0,17CTT1
-49,1751013,Nguyen Ho Huu Nghia,1751013,nhhnghia@apcs.vn,49,0,0,17CTT1
-50,1751083,Huynh Hieu Nghia,1751083,hhnghia@apcs.vn,50,0,0,17CTT1
-51,1751084,Vu Dang Nghia,1751084,vdnghia@apcs.vn,51,0,0,17CTT1
-52,1751085,Nguyen Mac Bao Ngoc,1751085,nmbngoc@apcs.vn,52,0,0,17CTT1
-53,1751016,Nguyen Le Nguyen,1751016,nlnguyen@apcs.vn,53,0,0,17CTT2
-54,1751033,Doan Dac Nguyen,1751033,ddnguyen@apcs.vn,54,0,0,17CTT2
-55,1751086,Huynh Cong Nguyen,1751086,hcnguyen@apcs.vn,55,0,0,17CTT2
-56,1751087,Do Tri Nhan,1751087,dtnhan@apcs.vn,56,0,0,17CTT2
-57,1751089,Huynh Minh Quoc Nhat,1751089,hmqnhat@apcs.vn,57,0,0,17CTT2
-58,1751090,Nguyen Minh Nhat,1751090,nmnhat@apcs.vn,58,0,0,17CTT2
-59,1751091,Huynh Hai Ninh,1751091,hhninh@apcs.vn,59,0,0,17CTT2
-60,1751092,Ly Kien Phi,1751092,lkphi@apcs.vn,60,0,0,17CTT2
-61,1751093,Nguyen Ngoc Phong,1751093,nnphong@apcs.vn,61,0,0,17CTT2
-62,1751094,Tran Bao Phuc,1751094,tbphuc@apcs.vn,62,0,0,17CTT2
-63,1751046,Dinh Lam Kieu Phuong,1751046,dlkphuong@apcs.vn,63,0,0,17CTT2
-64,1751096,Nguyen Thi Kim Phuong,1751096,ntkphuong@apcs.vn,64,0,0,17CTT2
-65,1751097,Nguyen Minh Quan,1751097,nmquan@apcs.vn,65,0,0,17CTT2
-66,1751035,Nguyen Diep Xuan Quang,1751035,ndxquang@apcs.vn,66,0,0,17CTT2
-67,1751098,Nguyen Minh Quang,1751098,nmquang@apcs.vn,67,0,0,17CTT2
-68,1751099,Dinh Vu Quynh,1751099,dvquynh@apcs.vn,68,0,0,17CTT2
-69,1751100,Nguyen Hai Son,1751100,nhson@apcs.vn,69,0,0,17CTT2
-70,1751018,Le Tan Dang Tam,1751018,ltdtam@apcs.vn,70,0,0,17CTT2
-71,1751101,Ngo Hoang Bao Thach,1751101,nhbthach@apcs.vn,71,0,0,17CTT2
-72,1751021,Nguyen Duc Thang ,1751021,ndthang@apcs.vn,72,0,0,17CTT2
-73,1751102,Nguyen Duc Toan Thang,1751102,ndtthang@apcs.vn,73,0,0,17CTT2
-74,1751019,Vo Trung Thanh,1751019,vtthanh@apcs.vn,74,0,0,17CTT2
-75,1751103,Thai Thuan Thanh,1751103,ttthanh@apcs.vn ,75,0,0,17CTT2
-76,1751020,Tran Trieu Thanh,1751020,ttthanh@apcs.vn ,76,0,0,17CTT2
-77,1751040,Nguyen Nguyen Hoang Thi,1751040,nnhthi@apcs.vn,77,0,0,17CTT2
-78,1751104,Nguyen Ngoc Thien,1751104,nnthien@apcs.vn,78,0,0,17CTT2
-79,1751022,Tu Duc Thinh,1751022,tdthinh@apcs.vn,79,0,0,17CTT2
-80,1751105,Do Vuong Quoc Thinh,1751105,dvqthinh@apcs.vn,80,0,0,17CTT2
-81,1751023,Nguyen Anh Thu,1751023,nathu@apcs.vn,81,0,0,17CTT2
-82,1751036,Tran Thi Anh Thu,1751036,ttathu@apcs.vn,82,0,0,17CTT2
-83,1751037,Nguyen Quang Thuc,1751037,nqthuc@apcs.vn,83,0,0,17CTT2
-84,1751042,Nguyen Truong Vinh Thuyen,1751042,ntvthuyen@apcs.vn,84,0,0,17CTT2
-85,1751106,Nguyen Van Quang Tien,1751106,nvqtien@apcs.vn,85,0,0,17CTT2
-86,1751107,Nguyen Huynh Tin,1751107,nhtin@apcs.vn,86,0,0,17CTT2
-87,1751024,Nguyen Ngoc Phuong Trang,1751024,nnptrang@apcs.vn,87,0,0,17CTT2
-88,1751108,Ho Minh Tri ,1751108,hmtri@apcs.vn,88,0,0,17CTT2
-89,1751109,Nguyen Minh Tri,1751109,nmtri@apcs.vn,89,0,0,17CTT2
-90,1751044,Ngo Le Phuong Trinh,1751044,nlptrinh@apcs.vn,90,0,0,17CTT2
-91,1751111,Trang Cong Hoang Trong,1751111,tchtrong@apcs.vn,91,0,0,17CTT2
-92,1751112,Nguyen Thi Thanh Truc,1751112,ntttruc@apcs.vn,92,0,0,17CTT2
-93,1751113,Goi Chi Trung,1751113,gctrung@apcs.vn,93,0,0,17CTT2
-94,1751026,Thai Hoang Tuan,1751026,thtuan@apcs.vn,94,0,0,17CTT2
-95,1751114,Bui Duong Tuan,1751114,bdtuan@apcs.vn,95,0,0,17CTT2
-96,1751115,Nguyen Hoang Thanh Tuan,1751115,nhttuan@apcs.vn,96,0,0,17CTT2
-97,1751116,Pham Minh Tuan,1751116,pmtuan@apcs.vn,97,0,0,17CTT2
-98,1751119,Nguyen Thanh Tung,1751119,nttung@apcs.vn,98,0,0,17CTT2
-99,1751120,Nguyen Trong Tung,1751120,nttung@apcs.vn,99,0,0,17CTT2
-100,1751121,Doan Le Cat Uyen,1751121,dlcuyen@apcs.vn,100,0,0,17CTT2
-101,1751122,Luong The Van,1751122,ltvan@apcs.vn,101,0,0,17CTT2
-102,1751027,Huynh Thanh Vy,1751027,htvy@apcs.vn,102,0,0,17CTT2
-103,1751028,Le Pham Ngoc Yen,1751028,lpnyen@apcs.vn,103,0,0,17CTT2
-104,1751123,Truong Tran Hai Yen,1751123,tthaiyen@apcs.vn,104,0,0,17CTT2
-105,dbtien,Dinh Ba Tien,0,dbtien@fit.hcmus.edu.vn,105,2,0,0
-106,dnkha,Do Nguyen Kha,0,dnkha@fit.hcmus.edu.vn,106,2,0,0
-107,tploc,Truong Phuoc Loc,0,tploc@fit.hcmus.edu.vn,107,2,0,0
-108,htthanh,Ho Tuan Thanh,0,htthanh@fit.hcmus.edu.vn,108,2,0,0
-109,nhanh,Nguyen Huu Anh,0,huuanh@gmail.com,109,2,0,0
-110,nhtnhat,Nguyen Huu Tri Nhat,0,nhtnhat@hcmus.edu.vn,110,2,0,0
-111,nttvan,Nguyen Thi Thu Van,0,nttvan@hcmus.edu.vn,111,2,0,0
-112,vththu,Vu Thi Hanh Thu,0,vththu@hcmus.edu.vn,112,2,0,0
-113,nnkngan,Nguyen Nhat Kim Ngan,0,nnkngan@hcmus.edu.vn,113,2,0,0
-114,dnvu,Duong Nguyen Vu,0,dnvu@hcmus.edu.vn,114,2,0,0
-115,nhnha,Nguyen Huu Nha,0,huunha@gmail.com,115,2,0,0
-116,ndhminh,Nguyen Duy Hoang Minh,0,ndhminh@hcmus.edu.vn,116,2,0,0
-117,nnthu,Nguyen Ngoc Thu,0,nnthu@hcmus.edu.vn,117,2,0,0
-118,nvhung,Nguyen Van Hung,0,nvhung@hcmus.edu.vn,118,2,0,0
-119,ltathao,Le Thi Anh Thao,0,ltathao@hcmus.edu.vn,119,1,0,0
-120,hmlan,Hoang Moc Lan,0,hmlan@hcmus.edu.vn,120,1,0,0
+User Name,Full Name,ID,Email,Phone Number,Type,Password,Class Name
+1751047,Ha Binh An,1751047,hban@apcs.vn,1,0,0,17CTT1
+1751048,Khuu Kien An,1751048,kkan@apcs.vn,2,0,0,17CTT1
+1751049,Dang Le Tuan Anh,1751049,dltanh@apcs.vn,3,0,0,17CTT1
+1751050,Dinh Ho Gia Bao ,1751050,dhgbao@apcs.vn,4,0,0,17CTT1
+1751051,Le Thanh Binh,1751051,ltbinh@apcs.vn,5,0,0,17CTT1
+1751052,Nguyen Quoc Binh,1751052,nqbinh@apcs.vn,6,0,0,17CTT1
+1751053,Nguyen Thanh Binh,1751053,ntbinh@apcs.vn,7,0,0,17CTT1
+1751054,Long Vu Quynh Chau,1751054,lvqchau@apcs.vn,8,0,0,17CTT1
+1751055,Le Anh Bach Chien,1751055,labchien@apcs.vn,9,0,0,17CTT1
+1751125,Truong Cong Cuong,1751125,tccuong@apcs.vn,10,0,0,17CTT1
+1751057,Huynh Tan Dat,1751057,htdat@apcs.vn,11,0,0,17CTT1
+1751058,Le Hoang Dat,1751058,lhdat@apcs.vn,12,0,0,17CTT1
+1751029,Trinh Huu Duc,1751029,thduc@apcs.vn,13,0,0,17CTT1
+1751059,Tran Trung Duc,1751059,ttduc@apcs.vn,14,0,0,17CTT1
+1751002,Le Doan Thai Duong,1751002,ldtduong@apcs.vn,15,0,0,17CTT1
+1751001,Nguyen Hien Tuan Duy,1751001,nhtduy@apcs.vn,16,0,0,17CTT1
+1751060,Ho Cong Duy,1751060,hcduy@apcs.vn,17,0,0,17CTT1
+1751061,Le Dinh Anh Duy,1751061,ldaduy@apcs.vn,18,0,0,17CTT1
+1751062,Le Quoc Anh Duy,1751062,lqaduy@apcs.vn,19,0,0,17CTT1
+1751063,Pham Bao Duy,1751063,pbduy@apcs.vn,20,0,0,17CTT1
+1751064,Nguyen Hoang Thanh Gia,1751064,nhtgia@apcs.vn,21,0,0,17CTT1
+1751065,Nguyen Truong Giang,1751065,ntgiang@apcs.vn,22,0,0,17CTT1
+1751004,Tran Nguyen Hien,1751004,tnhien@apcs.vn,23,0,0,17CTT1
+1751045,Doan Thanh Hien,1751045,dthien@apcs.vn,24,0,0,17CTT1
+1751005,Dao Hieu,1751005,dhieu@apcs.vn,25,0,0,17CTT1
+1751066,Le Minh Hieu,1751066,lmhieu@apcs.vn,26,0,0,17CTT1
+1751067,Nguyen Minh Hieu,1751067,nmhieu@apcs.vn,27,0,0,17CTT1
+1751068,Pham Nguyen Huy Hoang,1751068,pnhhoang@apcs.vn,28,0,0,17CTT1
+1751069,Nguyen Dinh Huan,1751069,ndhuan@apcs.vn,29,0,0,17CTT1
+1751070,Tran Gia Huan,1751070,tghuan@apcs.vn,30,0,0,17CTT1
+1751008,Do Nhat Huy,1751008,dnhuy@apcs.vn,31,0,0,17CTT1
+1751030,Nguyen Ngoc Minh Huy,1751030,nnmhuy@apcs.vn,32,0,0,17CTT1
+1751071,Doan Nhat Huy,1751071,doannhuy@apcs.vn,33,0,0,17CTT1
+1751072,Le Quoc Huy,1751072,lqhuy@apcs.vn,34,0,0,17CTT1
+1751074,Nguyen Phuc Khang,1751074,npkhang@apcs.vn,35,0,0,17CTT1
+1751076,Doan Ngoc Anh Khoa,1751076,dnakhoa@apcs.vn,36,0,0,17CTT1
+1751077,Nguyen Dang Khoa,1751077,ndkhoa@apcs.vn,37,0,0,17CTT1
+1751124,Phan Dang Khoa,1751124,pdkhoa@apcs.vn,38,0,0,17CTT1
+1751039,Vo Kien,1751039,vkien@apcs.vn,39,0,0,17CTT1
+1751031,Dinh Nguyen Hoang Kim,1751031,dnhkim@apcs.vn,40,0,0,17CTT1
+1751078,Nguyen Vo Duc Loc,1751078,nvdloc@apcs.vn,41,0,0,17CTT1
+1751080,Truong Tuc Luan,1751080,ttluan@apcs.vn,42,0,0,17CTT1
+1751041,Tran Huu Thien Luong,1751041,thtluong@apcs.vn,43,0,0,17CTT1
+1751011,Nguyen Hoang Minh,1751011,nhminh@apcs.vn,44,0,0,17CTT1
+1751081,Nguyen Phuc Minh,1751081,npminh@apcs.vn,45,0,0,17CTT1
+1751082,Vu Hoang Minh,1751082,vhminh@apcs.vn,46,0,0,17CTT1
+1751012,Nguyen Chan Nam,1751012,ncnam@apcs.vn,47,0,0,17CTT1
+1751043,Vo Hoang Ngan,1751043,vhngan@apcs.vn,48,0,0,17CTT1
+1751013,Nguyen Ho Huu Nghia,1751013,nhhnghia@apcs.vn,49,0,0,17CTT1
+1751083,Huynh Hieu Nghia,1751083,hhnghia@apcs.vn,50,0,0,17CTT1
+1751084,Vu Dang Nghia,1751084,vdnghia@apcs.vn,51,0,0,17CTT1
+1751085,Nguyen Mac Bao Ngoc,1751085,nmbngoc@apcs.vn,52,0,0,17CTT1
+1751016,Nguyen Le Nguyen,1751016,nlnguyen@apcs.vn,53,0,0,17CTT2
+1751033,Doan Dac Nguyen,1751033,ddnguyen@apcs.vn,54,0,0,17CTT2
+1751086,Huynh Cong Nguyen,1751086,hcnguyen@apcs.vn,55,0,0,17CTT2
+1751087,Do Tri Nhan,1751087,dtnhan@apcs.vn,56,0,0,17CTT2
+1751089,Huynh Minh Quoc Nhat,1751089,hmqnhat@apcs.vn,57,0,0,17CTT2
+1751090,Nguyen Minh Nhat,1751090,nmnhat@apcs.vn,58,0,0,17CTT2
+1751091,Huynh Hai Ninh,1751091,hhninh@apcs.vn,59,0,0,17CTT2
+1751092,Ly Kien Phi,1751092,lkphi@apcs.vn,60,0,0,17CTT2
+1751093,Nguyen Ngoc Phong,1751093,nnphong@apcs.vn,61,0,0,17CTT2
+1751094,Tran Bao Phuc,1751094,tbphuc@apcs.vn,62,0,0,17CTT2
+1751046,Dinh Lam Kieu Phuong,1751046,dlkphuong@apcs.vn,63,0,0,17CTT2
+1751096,Nguyen Thi Kim Phuong,1751096,ntkphuong@apcs.vn,64,0,0,17CTT2
+1751097,Nguyen Minh Quan,1751097,nmquan@apcs.vn,65,0,0,17CTT2
+1751035,Nguyen Diep Xuan Quang,1751035,ndxquang@apcs.vn,66,0,0,17CTT2
+1751098,Nguyen Minh Quang,1751098,nmquang@apcs.vn,67,0,0,17CTT2
+1751099,Dinh Vu Quynh,1751099,dvquynh@apcs.vn,68,0,0,17CTT2
+1751100,Nguyen Hai Son,1751100,nhson@apcs.vn,69,0,0,17CTT2
+1751018,Le Tan Dang Tam,1751018,ltdtam@apcs.vn,70,0,0,17CTT2
+1751101,Ngo Hoang Bao Thach,1751101,nhbthach@apcs.vn,71,0,0,17CTT2
+1751021,Nguyen Duc Thang ,1751021,ndthang@apcs.vn,72,0,0,17CTT2
+1751102,Nguyen Duc Toan Thang,1751102,ndtthang@apcs.vn,73,0,0,17CTT2
+1751019,Vo Trung Thanh,1751019,vtthanh@apcs.vn,74,0,0,17CTT2
+1751103,Thai Thuan Thanh,1751103,ttthanh@apcs.vn ,75,0,0,17CTT2
+1751020,Tran Trieu Thanh,1751020,ttthanh@apcs.vn ,76,0,0,17CTT2
+1751040,Nguyen Nguyen Hoang Thi,1751040,nnhthi@apcs.vn,77,0,0,17CTT2
+1751104,Nguyen Ngoc Thien,1751104,nnthien@apcs.vn,78,0,0,17CTT2
+1751022,Tu Duc Thinh,1751022,tdthinh@apcs.vn,79,0,0,17CTT2
+1751105,Do Vuong Quoc Thinh,1751105,dvqthinh@apcs.vn,80,0,0,17CTT2
+1751023,Nguyen Anh Thu,1751023,nathu@apcs.vn,81,0,0,17CTT2
+1751036,Tran Thi Anh Thu,1751036,ttathu@apcs.vn,82,0,0,17CTT2
+1751037,Nguyen Quang Thuc,1751037,nqthuc@apcs.vn,83,0,0,17CTT2
+1751042,Nguyen Truong Vinh Thuyen,1751042,ntvthuyen@apcs.vn,84,0,0,17CTT2
+1751106,Nguyen Van Quang Tien,1751106,nvqtien@apcs.vn,85,0,0,17CTT2
+1751107,Nguyen Huynh Tin,1751107,nhtin@apcs.vn,86,0,0,17CTT2
+1751024,Nguyen Ngoc Phuong Trang,1751024,nnptrang@apcs.vn,87,0,0,17CTT2
+1751108,Ho Minh Tri ,1751108,hmtri@apcs.vn,88,0,0,17CTT2
+1751109,Nguyen Minh Tri,1751109,nmtri@apcs.vn,89,0,0,17CTT2
+1751044,Ngo Le Phuong Trinh,1751044,nlptrinh@apcs.vn,90,0,0,17CTT2
+1751111,Trang Cong Hoang Trong,1751111,tchtrong@apcs.vn,91,0,0,17CTT2
+1751112,Nguyen Thi Thanh Truc,1751112,ntttruc@apcs.vn,92,0,0,17CTT2
+1751113,Goi Chi Trung,1751113,gctrung@apcs.vn,93,0,0,17CTT2
+1751026,Thai Hoang Tuan,1751026,thtuan@apcs.vn,94,0,0,17CTT2
+1751114,Bui Duong Tuan,1751114,bdtuan@apcs.vn,95,0,0,17CTT2
+1751115,Nguyen Hoang Thanh Tuan,1751115,nhttuan@apcs.vn,96,0,0,17CTT2
+1751116,Pham Minh Tuan,1751116,pmtuan@apcs.vn,97,0,0,17CTT2
+1751119,Nguyen Thanh Tung,1751119,nttung@apcs.vn,98,0,0,17CTT2
+1751120,Nguyen Trong Tung,1751120,nttung@apcs.vn,99,0,0,17CTT2
+1751121,Doan Le Cat Uyen,1751121,dlcuyen@apcs.vn,100,0,0,17CTT2
+1751122,Luong The Van,1751122,ltvan@apcs.vn,101,0,0,17CTT2
+1751027,Huynh Thanh Vy,1751027,htvy@apcs.vn,102,0,0,17CTT2
+1751028,Le Pham Ngoc Yen,1751028,lpnyen@apcs.vn,103,0,0,17CTT2
+1751123,Truong Tran Hai Yen,1751123,tthaiyen@apcs.vn,104,0,0,17CTT2
+dbtien,Dinh Ba Tien,0,dbtien@fit.hcmus.edu.vn,105,2,0,0
+dnkha,Do Nguyen Kha,0,dnkha@fit.hcmus.edu.vn,106,2,0,0
+tploc,Truong Phuoc Loc,0,tploc@fit.hcmus.edu.vn,107,2,0,0
+htthanh,Ho Tuan Thanh,0,htthanh@fit.hcmus.edu.vn,108,2,0,0
+nhanh,Nguyen Huu Anh,0,huuanh@gmail.com,109,2,0,0
+nhtnhat,Nguyen Huu Tri Nhat,0,nhtnhat@hcmus.edu.vn,110,2,0,0
+nttvan,Nguyen Thi Thu Van,0,nttvan@hcmus.edu.vn,111,2,0,0
+vththu,Vu Thi Hanh Thu,0,vththu@hcmus.edu.vn,112,2,0,0
+nnkngan,Nguyen Nhat Kim Ngan,0,nnkngan@hcmus.edu.vn,113,2,0,0
+dnvu,Duong Nguyen Vu,0,dnvu@hcmus.edu.vn,114,2,0,0
+nhnha,Nguyen Huu Nha,0,huunha@gmail.com,115,2,0,0
+ndhminh,Nguyen Duy Hoang Minh,0,ndhminh@hcmus.edu.vn,116,2,0,0
+nnthu,Nguyen Ngoc Thu,0,nnthu@hcmus.edu.vn,117,2,0,0
+nvhung,Nguyen Van Hung,0,nvhung@hcmus.edu.vn,118,2,0,0
+ltathao,Le Thi Anh Thao,0,ltathao@hcmus.edu.vn,119,1,0,0
+hmlan,Hoang Moc Lan,0,hmlan@hcmus.edu.vn,120,1,0,0
