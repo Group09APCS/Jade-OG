@@ -8,7 +8,7 @@ int main() {
 
 	//Student *head = NULL; 
 	User *head = NULL;
-	cinData("D:\\user.csv", head);       //thay "D:\\user.csv" bang duong dan den file user.csv tren laptop cua cac ong
+	cinData("user.csv", head);    
 	system("color 0A");
 	Login();
 	acastaffMenu();
