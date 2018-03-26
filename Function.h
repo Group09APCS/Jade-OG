@@ -28,12 +28,13 @@ struct Student {
 
 void load(Student *&head);
 
-void save(const char pathToSaveFile[], Student *head);
-void Login();
+/*void save(const char pathToSaveFile[], Student *head);*/
+void Import(User *&head);
+void Login(User *&head);
 void studentMenu();
 void acastaffMenu();
 void lecturerMenu();
-void generateid(char name[1000], char Username[]);
+//void generateid(string name, string Username);
 int pass();
 
 #endif // !FUNCTION_H_
