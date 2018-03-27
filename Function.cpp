@@ -415,7 +415,7 @@ void acastaffMenu(User *&head, User*&cur)
 			Student * head1 = NULL;
 			Student *head2 = NULL;
 			importstudentfromfile(head1, "17CTT1.csv");
-			importstudentfromfile(head2, "17CTT1.csv");
+			importstudentfromfile(head2, "17CTT2.csv");
 			changeclass(head1, head2);
 			break;
 		}
@@ -572,9 +572,11 @@ void changeclass(Student  *&head1, Student *&head2)
 		}
 
 	}
+	printout(head1, "1.csv");
+	printout(head2, "2.csv");
 	system("pause");
 }
-void printout(Student *&head, string &file)
+void printout(Student *&head, const string file)
 {
 	ofstream fout;
 	fout.open(file);
@@ -582,6 +584,7 @@ void printout(Student *&head, string &file)
 	while (cur)
 	{
 		fout << cur->ID << "," << cur->fullName << "," << cur->email << "," << cur->sclass << endl;
+		cur = cur->next;
 	}
 
 }
