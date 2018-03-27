@@ -38,7 +38,7 @@ void showMenu(User *&head, User *&cur);
 
 
 //SOME STUFF HERER
-void generateid(string name, string Username);
+void generateid(string&name, string&Username);
 int pass();
 /*void save(const char pathToSaveFile[], Student *head);*/
 
