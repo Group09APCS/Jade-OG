@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include<string>
+#include <string.h>
 #include <Windows.h>
 #include<math.h>
 #include<cstring>
@@ -37,7 +38,7 @@ void showMenu(User *&head, User *&cur);
 
 
 //SOME STUFF HERER
-//void generateid(string name, string Username);
+void generateid(string name, string Username);
 int pass();
 /*void save(const char pathToSaveFile[], Student *head);*/
 
@@ -46,10 +47,10 @@ int pass();
 
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
 //*****ACADEMIC STAFF*****
-void newclass();
-void changeclass(Student *&head,Student*&head2);
 void importstudentfromfile(Student *&head, string cl);
-void acastaffMenu();
+void acastaffMenu(User *&head, User*&cur);
+void newclass();
+void changeclass(Student  *&head1, Student *&head2);
 
 
 
