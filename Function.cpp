@@ -67,7 +67,7 @@ void Import(User *&head)
 }
 void Login(User *&head)
 {
-	
+	system("cls");
 	int choice;
 	string name, Username, password;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -100,7 +100,6 @@ void Login(User *&head)
 	{
 		cur = head->next;
 		getline(cin, Username);
-
 		while (cur)
 		{
 			if (Username == cur->userName)
@@ -113,16 +112,19 @@ void Login(User *&head)
 		if (check == true)
 			break;
 		else
-		cout << "					Mismatched! " << 3 - i << " time(s) remain:";
+			cout << "					Mismatched! " << 3 - i << " time(s) remain:";
 
 	}
 	if (check == false)
 	{
+		system("cls");
+		cur = head;
 		cout << "					Do u want to create a new account? \n";
 		cout << "					1.YES \n";
 		cout << "					2.NO \n";
+		cout << "					What do you want to do: ";
 		cin >> t;
-		/*switch (t)
+		switch (t)
 		{
 		case 1:
 		{
@@ -154,9 +156,9 @@ void Login(User *&head)
 		case 2:
 		{
 			cout << "					See you next time \n";
-			return;
+			exit(0);
 		}
-		}*/
+		}
 	}
 	cout << "					Enter Password: ";
 	check = false;
@@ -172,7 +174,7 @@ void Login(User *&head)
 		else cout << "					" << 3 - i << "time(s) to try";
 	}
 	if (check == false)
-		return;
+		exit(0);
 	showMenu(head, cur);
 }
 void showMenu(User *&head, User *&cur)
@@ -194,7 +196,7 @@ void showMenu(User *&head, User *&cur)
 	{
 	case 1:
 	{	if (cur->type == "1")
-		acastaffMenu();
+		acastaffMenu(head,cur);
 	if (cur->type == "0")
 		studentMenu();
 	if (cur->type == "2")
@@ -237,7 +239,8 @@ void showMenu(User *&head, User *&cur)
 	case 3:
 	{
 		cout << " Pls enter your old password: \n";
-		cin >> password;
+		cin.ignore();
+		getline(cin, password);
 		check = false;
 		for (int i = 0; i < 3; i++)
 		{
@@ -250,19 +253,20 @@ void showMenu(User *&head, User *&cur)
 			{
 				cout << " Mismatched! " << 3 - i << " time(s) remain: \n";
 				check = false;
-				cin >> password;
+				getline(cin, password);
 			}
 
 		}
 		if (check == true)
 		{
 			cout << " Pls enter your new password: \n";
-			cin >> password;
+			getline(cin, password);
 			cur->password = password;
 			cout << " Pls enter your new password again: \n";
-			cin >> password;
+			getline(cin, password);
 			while (password != cur->password)
-				cin >> password;
+				getline(cin, password);
+			cur->password = password;
 			cout << " Complete! Your password has been changed! \n";
 			cout << " 1 - Return to the menu.\n";
 			cout << " 2 - Exit. \n";
@@ -289,7 +293,9 @@ void showMenu(User *&head, User *&cur)
 
 		}
 
-		else exit(0);
+		else {
+			Login(head);
+			}
 		break;
 	}
 	case 4:
@@ -316,117 +322,55 @@ void lecturerMenu()
 	cout << "\n\n 6: Exit ";
 }
 
-/*void generateid(string name, string Username)
+void generateid(string name, string Username)
 {
-	int i1 = 1, a;
-	Username[0] = tolower(name[0]);
-	for ( unsigned int i = 0; i < name.length; ++i)
+	int i = name.length()-1;
+	int p = 0, k = 1;
+	string add = NULL;
+	int n = i;
+	for (int j = 0; j < n; j++)
+		name[j] = tolower(name[j]);
+	Username[0] = name[0];
+	while (name[i] != ' ')
 	{
-		if (name[i] == ' ')
-			a = i;
+		i--;
 	}
-
-	for (unsigned int i = 0; i < (name.length); ++i)
+	i++;
+	for (int j=i; j < n; j++)
 	{
-		if (name[i] == ' ')
+		add[p] = name[j];
+		p++;
+	}
+	for (int t = 0; t < i; t++)
+	{
+		if (name[t] == ' ')
 		{
-			Username[i1] = tolower(name[i + 1]);
-			++i1;
+			Username[k] = name[t + 1];
+			k++;
 		}
 	}
-
-	i1--;
-
-	while (a < name.length)
-	{
-		Username[i1] = tolower(name[a + 1]);
-		i1++; a++;
-	}
 }
-*/
+
 int pass()
 {
 	srand(time(NULL));
 	int a = rand();
 	return a;
 }
-void viewinfo()
-{
-	
-}
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
-void newclass()
-{
-	string classname;
-	ofstream fout;
-	cout<<"Please input the name of the new class:";
-	getline(std::cin, classname);
-	classname.append(".csv");
-	fout.open(classname);
-	fout.close();
-}
-
-void changeclass(Student  *&head1,Student *&head2)
-{
-	string studentID;
-	cout<<"Please input ID of the student that you want to change class:";
-	getline(std::cin,studentID);
-	Student*cur=head1;
-	while(studentID.compare(cur->ID)!=0&&cur!=NULL)
-	{
-		cur=cur->next;
-	}
-	if(cur==NULL)
-	{
-		cout<<"That student is not in this class";
-	}
-	else
-	{
-		if(studentID.compare(cur->ID)==0)
-		{
-			Student *temp=new Student;
-			temp=cur;
-			cur=cur->next;
-			Student *a =new Student;
-			a=temp;
-			delete temp;
-			Student*cur2=head2;
-			while(studentID.compare(cur2->ID)<0&&cur2->next!=NULL)
-				cur2=cur2->next;
-			if(cur2->next==NULL)
-			{
-				cur2->next=a;
-				cur2=cur2->next;
-				cout<<"Added student in the end of the class";
-			}
-			else
-			{
-				Student *temp2;
-				temp2=cur2->next;
-				a->next=temp2;
-				cur2->next=a;
-				cur2=cur2->next;
-				cout<<"Done!";
-			}
-		}
-	}
-
-}
-void acastaffMenu()
+void acastaffMenu(User *&head, User*&cur)
 {
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________ACADEMIC STAFF DATABASE_________________________";
 	cout << "\n\n 1: Student Management ";
-	cout << "\n\n 2: Classes Management ";
-	cout << "\n\n 3: Courses ";
-	cout << "\n\n 4: Courses Schedule ";
-	cout << "\n\n 5: Search for available course ";
-	cout << "\n\n 6: Scoreboard ";
-	cout << "\n\n 7: Your info ";
-	cout << "\n\n 8: Change password ";
-	cout << "\n\n 9: Log out ";
-	cout << "\n\n 10: Exit ";
+	cout << "\n\n 2: Courses ";
+	cout << "\n\n 3: Courses Schedule ";
+	cout << "\n\n 4: Search for available course ";
+	cout << "\n\n 5: Scoreboard ";
+	cout << "\n\n 6: Return ";
+	cout << "\n\n 7: Log out ";
+	cout << "\n\n 8: Exit ";
 	cout << "\n\n What do you want to do: ";
 	cin >> choice;
 	int newchoice;
@@ -437,11 +381,16 @@ void acastaffMenu()
 		system("cls");
 		cout << "\n\n 1: Import Students Of A Class From A CSV File ";
 		cout << "\n\n 2: Add New Student ";
-		cout << "\n\n 3: Edit Student ";
-		cout << "\n\n 4: Remove Student ";
+		cout << "\n\n 3: Edit An Existing Student ";
+		cout << "\n\n 4: Remove A Student ";
+		cout << "\n\n 5: Change Students From Class A to Class B ";
+		cout << "\n\n 6: Add A New Empty Class ";
+		cout << "\n\n 7: Create New Class ";
+		cout << "\n\n 8: View List of Student in Class ";
 		cout << "\n\n What do you want to do: ";
 		cin >> newchoice;
-		if (newchoice == 1)
+		switch (newchoice) {
+		case 1:
 		{
 			string cl;
 			cout << "\n\n What class you want to import? \n";
@@ -453,21 +402,32 @@ void acastaffMenu()
 			Student *head = NULL;
 			if (cl == "1") cl = "17CTT1.csv";
 			else cl = "17CTT2.csv";
-			importstudentfromfile(head,cl);
-		}
-		else
+			importstudentfromfile(head, cl);
 			break;
+		}
+		case 2:
+		{
+			cout << "Nothing here \n";
+			break;
+		}
+		case 5:
+		{
+			Student * head1 = NULL;
+			Student *head2 = NULL;
+			importstudentfromfile(head1, "17CTT1.csv");
+			importstudentfromfile(head2, "17CTT1.csv");
+			changeclass(head1, head2);
+			break;
+		}
+		case 7:
+		{
+			newclass();
+			break;
+		}
 		break;
+		}
 	}
 	case 2:
-	{	system("cls");
-		cout << "\n\n 1: Import A Class ";
-		cout << "\n\n 2: Create New Class ";
-		cout << "\n\n 3: View List Classes ";
-		cout << "\n\n 4: View List of Student in Class ";
-		break;
-	}
-	case 3:
 	{	system("cls");
 		cout << "\n\n 1: Import A Course ";
 		cout << "\n\n 2: Add New Course ";
@@ -476,7 +436,7 @@ void acastaffMenu()
 		cout << "\n\n 5: Remove Courses ";
 		break;
 	}
-	case 4:
+	case 3:
 	{	system("cls");
 		cout << "\n\n 1: Import Courses' Schedules ";
 		cout << "\n\n 2: Add New Courses' Schedule ";
@@ -485,36 +445,38 @@ void acastaffMenu()
 		cout << "\n\n 5: Remove Courses' Schedules ";
 		break;
 	}
-	case 5:
+	case 4:
 	{	system("cls");
 		cout << "\n\n 1: Search & View Attendance List ";
 		cout << "\n\n 2: Export Attendance List";
 		break;
 	}
-	case 6:
+	case 5:
 	{	system("cls");
 		cout << "\n\n 1: Search & View Scoreboard ";
 		cout << "\n\n 2: Export Scoreboard";
 		break;
 	}
+	case 6:
+	{
+		showMenu(head, cur);
+		break;
+	}
 	case 7:
 	{
-		cout << "\n\n Nothing here ";
+		cin.ignore();
+		Login(head);
 		break;
 	}
 	case 8:
 	{
-		cout << "\n\n Nothing here ";
+		exit(0);
 		break;
 	}
-	case 9:
+	default:
 	{
-		cout << "\n\n Nothing here ";
-		break;
-	}
-	case 10:
-	{
-		cout << "\n\n Nothing here ";
+		cout << "Not a Valid Choice. \n"
+			<< "Choose again.\n";
 		break;
 	}
 	}
@@ -549,4 +511,62 @@ void importstudentfromfile(Student *&head, string cl) {
 		}
 	}
 	fin.close();
+}
+void newclass()
+{
+	string classname;
+	ofstream fout;
+	cout << "Please input the name of the new class:";
+	getline(cin, classname);
+	classname.append(".csv");
+	fout.open(classname);
+	fout.close();
+}
+
+void changeclass(Student  *&head1, Student *&head2)
+{
+	string studentID;
+	cout << "Please input ID of the student that you want to change class:";
+	cin.ignore();
+	getline(std::cin, studentID);
+	Student*cur = head1;
+	while (studentID.compare(cur->ID) != 0 && cur != NULL)
+	{
+		cur = cur->next;
+	}
+	if (cur == NULL)
+	{
+		cout << "That student is not in this class";
+	}
+	else
+	{
+		if (studentID.compare(cur->ID) == 0)
+		{
+			Student *temp = new Student;
+			temp = cur;
+			cur = cur->next;
+			Student *a = new Student;
+			a = temp;
+			delete temp;
+			Student*cur2 = head2;
+			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
+				cur2 = cur2->next;
+			if (cur2->next == NULL)
+			{
+				cur2->next = a;
+				cur2 = cur2->next;
+				cout << "Added student in the end of the class";
+			}
+			else
+			{
+				Student *temp2;
+				temp2 = cur2->next;
+				a->next = temp2;
+				cur2->next = a;
+				cur2 = cur2->next;
+				cout << "Done!";
+			}
+		}
+	}
+
 }
