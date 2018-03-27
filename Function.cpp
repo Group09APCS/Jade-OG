@@ -1,20 +1,20 @@
 #include "Function.h"
 /*
 void save(const char pathToSaveFile[], Student *head) {
-	ofstream fout(pathToSaveFile);
-	if (!fout.is_open()) {
-		return;
-	}
-	Student *cur = head;
-	while (cur->next != NULL) {
-		fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
-		cur = cur->next;
-	}
-	if (cur->next == NULL) {
-		fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
-	}
+ofstream fout(pathToSaveFile);
+if (!fout.is_open()) {
+return;
+}
+Student *cur = head;
+while (cur->next != NULL) {
+fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
+cur = cur->next;
+}
+if (cur->next == NULL) {
+fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
+}
 
-	fout.close();
+fout.close();
 }
 */
 void studentMenu()
@@ -39,16 +39,16 @@ void Import(User *&head)
 	}
 	User * cur = NULL;
 	head = new User;
-		getline(fin, head->userName, ',');
-		getline(fin, head->fullName, ',');
-		getline(fin, head->ID, ',');
-		getline(fin, head->email, ',');
-		getline(fin, head->mobilePhone, ',');
-		getline(fin, head->type, ',');
-		getline(fin, head->password, ',');
-		getline(fin, head->className, ' ');
-		head->next = NULL;
-		cur = head;
+	getline(fin, head->userName, ',');
+	getline(fin, head->fullName, ',');
+	getline(fin, head->ID, ',');
+	getline(fin, head->email, ',');
+	getline(fin, head->mobilePhone, ',');
+	getline(fin, head->type, ',');
+	getline(fin, head->password, ',');
+	getline(fin, head->className, ' ');
+	head->next = NULL;
+	cur = head;
 	while (fin.good())
 	{
 		cur->next = new User;
@@ -130,6 +130,7 @@ void Login(User *&head)
 		{
 
 			cout << "					Please input your fullname: ";
+			cin.ignore();
 			getline(cin, name);
 			while (cur->next)
 				cur = cur->next;
@@ -139,18 +140,17 @@ void Login(User *&head)
 
 			generateid(name, Username);
 			cur->userName = Username;
-			int a = pass();
-			int x = log(a) / log(10) + 1;
-			for (int i = x; i > 0; i--)
-			{
-				cur->password[i] = a / pow(10, i - 1) + 48;
-			}
-			cout << "					Your username: " << cur->userName << endl;
-			cout << "					Your password: " << cur->password << endl;
-			cout << "					Please set a new password: ";
+			cout << "					Choose your password: ";
+			password.clear();
 			getline(cin, password);
+			cur->password = password;
 			cout << "					Your username: " << cur->userName << endl;
 			cout << "					Your password: " << cur->password << endl;
+			/*cout << "					Please set a new password: ";
+			getline(cin, password);
+			
+			cout << "					Your username: " << cur->userName << endl;
+			cout << "					Your password: " << cur->password << endl;*/
 			break;
 		}
 		case 2:
@@ -196,7 +196,7 @@ void showMenu(User *&head, User *&cur)
 	{
 	case 1:
 	{	if (cur->type == "1")
-		acastaffMenu(head,cur);
+		acastaffMenu(head, cur);
 	if (cur->type == "0")
 		studentMenu();
 	if (cur->type == "2")
@@ -295,7 +295,7 @@ void showMenu(User *&head, User *&cur)
 
 		else {
 			Login(head);
-			}
+		}
 		break;
 	}
 	case 4:
@@ -322,33 +322,33 @@ void lecturerMenu()
 	cout << "\n\n 6: Exit ";
 }
 
-void generateid(string name, string Username)
+void generateid(string&name, string&Username)
 {
-	int i = name.length()-1;
+	int i = name.length() - 1;
 	int p = 0, k = 1;
-	string add = NULL;
+	string add;
+	Username.clear();
 	int n = i;
 	for (int j = 0; j < n; j++)
 		name[j] = tolower(name[j]);
-	Username[0] = name[0];
+	Username = name[0];
 	while (name[i] != ' ')
 	{
 		i--;
 	}
 	i++;
-	for (int j=i; j < n; j++)
+	for (int j = i; j <= n; j++)
 	{
-		add[p] = name[j];
-		p++;
+		add += name[j];
 	}
-	for (int t = 0; t < i; t++)
+	for (int t = 0; t < i-1; t++)
 	{
 		if (name[t] == ' ')
 		{
-			Username[k] = name[t + 1];
-			k++;
+			Username += name[t + 1];
 		}
 	}
+	Username += add;
 }
 
 int pass()
@@ -429,33 +429,33 @@ void acastaffMenu(User *&head, User*&cur)
 	}
 	case 2:
 	{	system("cls");
-		cout << "\n\n 1: Import A Course ";
-		cout << "\n\n 2: Add New Course ";
-		cout << "\n\n 3: View List Courses ";
-		cout << "\n\n 4: Edit Courses ";
-		cout << "\n\n 5: Remove Courses ";
-		break;
+	cout << "\n\n 1: Import A Course ";
+	cout << "\n\n 2: Add New Course ";
+	cout << "\n\n 3: View List Courses ";
+	cout << "\n\n 4: Edit Courses ";
+	cout << "\n\n 5: Remove Courses ";
+	break;
 	}
 	case 3:
 	{	system("cls");
-		cout << "\n\n 1: Import Courses' Schedules ";
-		cout << "\n\n 2: Add New Courses' Schedule ";
-		cout << "\n\n 3: View List Courses' Schedules ";
-		cout << "\n\n 4: Edit Courses' Schedules ";
-		cout << "\n\n 5: Remove Courses' Schedules ";
-		break;
+	cout << "\n\n 1: Import Courses' Schedules ";
+	cout << "\n\n 2: Add New Courses' Schedule ";
+	cout << "\n\n 3: View List Courses' Schedules ";
+	cout << "\n\n 4: Edit Courses' Schedules ";
+	cout << "\n\n 5: Remove Courses' Schedules ";
+	break;
 	}
 	case 4:
 	{	system("cls");
-		cout << "\n\n 1: Search & View Attendance List ";
-		cout << "\n\n 2: Export Attendance List";
-		break;
+	cout << "\n\n 1: Search & View Attendance List ";
+	cout << "\n\n 2: Export Attendance List";
+	break;
 	}
 	case 5:
 	{	system("cls");
-		cout << "\n\n 1: Search & View Scoreboard ";
-		cout << "\n\n 2: Export Scoreboard";
-		break;
+	cout << "\n\n 1: Search & View Scoreboard ";
+	cout << "\n\n 2: Export Scoreboard";
+	break;
 	}
 	case 6:
 	{
@@ -487,14 +487,13 @@ void importstudentfromfile(Student *&head, string cl) {
 		return;
 	}
 	Student *cur = NULL;
-
 	while (fin.good()) {
 		if (head == NULL) {
 			head = new Student;
 			getline(fin, head->ID, ',');
 			getline(fin, head->fullName, ',');
 			getline(fin, head->email, ',');
-			getline(fin, head->sclass, ' ');
+			getline(fin, head->sclass);
 			head->next = NULL;
 			cur = head;
 		}
@@ -550,27 +549,39 @@ void changeclass(Student  *&head1, Student *&head2)
 			{
 				cur2->next = new Student;
 				cur2 = cur2->next;
-				cur2->ID=temp->ID;
-				cur2->fullName=temp->fullName;
-				cur2->email=temp->email;
-				cur2->sclass=temp->sclass;
-				cur2->next=NULL;
+				cur2->ID = temp->ID;
+				cur2->fullName = temp->fullName;
+				cur2->email = temp->email;
+				cur2->sclass = temp->sclass;
+				cur2->next = NULL;
 				cout << "Added student in the end of the class";
 			}
 			else
 			{
-				Student *temp2=new Student;
-				temp2->ID=temp->ID;
-				temp2->fullName=temp->fullName;
-				temp2->email=temp->email;
-				temp2->sclass=temp->sclass;
-				temp2->next=cur->next;
+				Student *temp2 = new Student;
+				temp2->ID = temp->ID;
+				temp2->fullName = temp->fullName;
+				temp2->email = temp->email;
+				temp2->sclass = temp->sclass;
+				temp2->next = cur->next;
 				cur2->next = temp2;
 				cur2 = cur2->next;
 				cout << "Done!";
 			}
 			delete temp;
 		}
+
 	}
 	system("pause");
+}
+void printout(Student *&head, string &file)
+{
+	ofstream fout;
+	fout.open(file);
+	Student * cur = head;
+	while (cur)
+	{
+		fout << cur->ID << "," << cur->fullName << "," << cur->email << "," << cur->sclass << endl;
+	}
+
 }
