@@ -46,6 +46,8 @@ int pass();
 
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
 //*****ACADEMIC STAFF*****
+void newclass();
+void changeclass(Student *&head,Student*&head2);
 void importstudentfromfile(Student *&head, string cl);
 void acastaffMenu();
 

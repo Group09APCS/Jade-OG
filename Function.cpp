@@ -355,6 +355,63 @@ void viewinfo()
 	
 }
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
+void newclass()
+{
+	string classname;
+	ofstream fout;
+	cout<<"Please input the name of the new class:";
+	getline(std::cin, classname);
+	classname.append(".csv");
+	fout.open(classname);
+	fout.close();
+}
+
+void changeclass(Student  *&head1,Student *&head2)
+{
+	string studentID;
+	cout<<"Please input ID of the student that you want to change class:";
+	getline(std::cin,studentID);
+	Student*cur=head1;
+	while(studentID.compare(cur->ID)!=0&&cur!=NULL)
+	{
+		cur=cur->next;
+	}
+	if(cur==NULL)
+	{
+		cout<<"That student is not in this class";
+	}
+	else
+	{
+		if(studentID.compare(cur->ID)==0)
+		{
+			Student *temp=new Student;
+			temp=cur;
+			cur=cur->next;
+			Student *a =new Student;
+			a=temp;
+			delete temp;
+			Student*cur2=head2;
+			while(studentID.compare(cur2->ID)<0&&cur2->next!=NULL)
+				cur2=cur2->next;
+			if(cur2->next==NULL)
+			{
+				cur2->next=a;
+				cur2=cur2->next;
+				cout<<"Added student in the end of the class";
+			}
+			else
+			{
+				Student *temp2;
+				temp2=cur2->next;
+				a->next=temp2;
+				cur2->next=a;
+				cur2=cur2->next;
+				cout<<"Done!";
+			}
+		}
+	}
+
+}
 void acastaffMenu()
 {
 	system("cls");
