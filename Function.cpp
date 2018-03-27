@@ -491,7 +491,6 @@ void importstudentfromfile(Student *&head, string cl) {
 	while (fin.good()) {
 		if (head == NULL) {
 			head = new Student;
-			getline(fin, head->no, ',');
 			getline(fin, head->ID, ',');
 			getline(fin, head->fullName, ',');
 			getline(fin, head->email, ',');
@@ -502,7 +501,6 @@ void importstudentfromfile(Student *&head, string cl) {
 		else {
 			cur->next = new Student;
 			cur = cur->next;
-			getline(fin, cur->no, ',');
 			getline(fin, cur->ID, ',');
 			getline(fin, cur->fullName, ',');
 			getline(fin, cur->email, ',');
@@ -540,33 +538,39 @@ void changeclass(Student  *&head1, Student *&head2)
 	}
 	else
 	{
-		if (studentID.compare(cur->ID) == 0)
 		{
 			Student *temp = new Student;
 			temp = cur;
 			cur = cur->next;
-			Student *a = new Student;
-			a = temp;
-			delete temp;
+
 			Student*cur2 = head2;
 			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
 				cur2 = cur2->next;
 			if (cur2->next == NULL)
 			{
-				cur2->next = a;
+				cur2->next = new Student;
 				cur2 = cur2->next;
+				cur2->ID=temp->ID;
+				cur2->fullName=temp->fullName;
+				cur2->email=temp->email;
+				cur2->sclass=temp->sclass;
+				cur2->next=NULL;
 				cout << "Added student in the end of the class";
 			}
 			else
 			{
-				Student *temp2;
-				temp2 = cur2->next;
-				a->next = temp2;
-				cur2->next = a;
+				Student *temp2=new Student;
+				temp2->ID=temp->ID;
+				temp2->fullName=temp->fullName;
+				temp2->email=temp->email;
+				temp2->sclass=temp->sclass;
+				temp2->next=cur->next;
+				cur2->next = temp2;
 				cur2 = cur2->next;
 				cout << "Done!";
 			}
+			delete temp;
 		}
 	}
-
+	system("pause");
 }

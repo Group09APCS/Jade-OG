@@ -23,7 +23,7 @@ struct User {         //if user is a student, username is student ID
 	User *next;
 };
 struct Student {
-	string no, ID, fullName, email, sclass;
+	string  ID, fullName, email, sclass;
 	Student *next;
 };
 
