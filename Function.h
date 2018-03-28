@@ -41,6 +41,15 @@ struct Course{
 	Course *next;
 };
 
+struct Score{
+	string courseCode;
+	string academicYear;  //eg: 2017-2018
+	int semester;
+	string id;            //student id
+	float midtermScore;
+	float labScore;
+};
+
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
 void Import(User *&head);
