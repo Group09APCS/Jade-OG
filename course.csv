@@ -1,0 +1,11 @@
+No,Course Code,Academic Year,Semester,Course Name,Lecturer Name ,Start Date,End Date,Schedule (day of week)
+1,CS487,2017 - 2018,1,Software Engineering Capstone I,Lam Quang Vu,05-09-2017,18-11-2017,"Tue, Thu"
+2,CS429,2017 - 2018,1,Introduction to Big Data Analytics,Le Thi Nhan,05-09-2017,18-11-2017,"Mon, Thu"
+3,CS161,2017 - 2018,1,Introduction to Computer Science I,Dinh Ba Tien,05-09-2017,18-11-2017,"Wed, Fri"
+4,CS162,2017 - 2018,2,Introduction to Computer Science II,Dinh Ba Tien,08-01-2018,04-07-2018,"Mon, Wed"
+5,MTH251,2017 - 2018,1,Calculus I,Nguyen Thi Thu Van,05-09-2017,18-11-2017,"Wed, Sat"
+6,MTH252,2017 - 2018,2,Calculus II,Nguyen Huu Anh,08-01-2018,04-07-2018,"Tue, Fri"
+7,PH211,2017 - 2018,1,General Physics I,Vu Thi Hanh Thu,05-09-2017,18-11-2017,"Mon, Thu"
+8,PH212,2017 - 2018,2,General Physics II,Nguyen Huu Nha,08-01-2018,04-07-2018,"Mon, Thu"
+9,CM101,2017 - 2018,1,Communication Management,Duong Nguyen Vu,05-09-2017,18-11-2017,"Tue, Fri"
+10,TCH001,2017 - 2018,2,Maxism and Leninxism,Nguyen Ngoc Thu,08-01-2018,04-07-2018,"Wed, Sat"
