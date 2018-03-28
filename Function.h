@@ -27,6 +27,20 @@ struct Student {
 	Student *next;
 };
 
+struct Course{
+	string courseCode;
+	string academicYear;
+	int semester;
+	string courseName;
+	string lecturerName;
+	string startDate;
+	string endDate;
+	string dayOfWeek;
+	string startHour;
+	string endHour;
+	Course *next;
+}
+
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
 void Import(User *&head);
