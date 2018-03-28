@@ -75,6 +75,8 @@ void acastaffMenu(User *&head, User*&cur);
 void newclass();
 void changeclass(Student  *&head1, Student *&head2);
 void printout(Student *&head, const string file);
+void removestudent(Student*head, string name);
+void findstudent(Student* cur, Student* head, string name);
 
 
 
