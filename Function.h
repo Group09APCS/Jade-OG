@@ -29,15 +29,15 @@ struct Student {
 
 struct Course{
 	string courseCode;
-	string academicYear;
+	string academicYear; //eg: 2017 - 2018
 	int semester;
 	string courseName;
 	string lecturerName;
 	string startDate;
 	string endDate;
-	string dayOfWeek;
-	string startHour;
-	string endHour;
+	string dayOfWeek;    //schedule: Monday, Tuesday,...
+	string startHour;    //eg: 7h30
+	string endHour;      //eg: 11h30
 	Course *next;
 }
 
