@@ -39,7 +39,7 @@ struct Course{
 	string startHour;    //eg: 7h30
 	string endHour;      //eg: 11h30
 	Course *next;
-}
+};
 
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
