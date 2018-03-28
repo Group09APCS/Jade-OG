@@ -410,6 +410,114 @@ void acastaffMenu(User *&head, User*&cur)
 			cout << "Nothing here \n";
 			break;
 		}
+		case 3:
+		{
+			int Choice2;
+			Student* cur = NULL;
+			cout << "In which class do you want to edit a student?";
+			cout << "1: 17CTT1\n";
+			cout << "2: 17CTT2\n";
+			cin >> Choice2;
+			string name;
+			cout << "\n Which student you want edit?\n";
+			getline(cin, name, '\n');
+			switch (Choice2)
+			{
+			case 1:
+			{
+				cout << "\n What do you want to edit?\n";
+				cout << "1: student ID\n";
+				cout << "2: student name\n";
+				cout << "3: class\n";
+				int Choice1;
+				cin >> Choice1;
+				string str;
+				getline(cin, str, '\n');
+				findstudent(cur, head1, name);
+				switch (Choice1)
+				{
+				case 1:
+				{
+					cur->ID = str;
+					break;
+				}
+				case 2:
+				{
+					cur->fullName = str;
+					break;
+				}
+				case 3:
+				{
+					changeclass(head1, head2);
+					break;
+				}
+				default:
+				{
+					cout << "Error!\n";
+					break;
+				}
+				}
+			}
+			case 2:
+			{
+				cout << "\n What do you want to edit?\n";
+				cout << "1: student ID\n";
+				cout << "2: student name\n";
+				cout << "3: class\n";
+				int Choice1;
+				cin >> Choice1;
+				string str;
+				getline(cin, str, '\n');
+				findstudent(cur, head2, name);
+				switch (Choice1)
+				{
+				case 1:
+				{
+					cur->ID = str;
+					break;
+				}
+				case 2:
+				{
+					cur->fullName = str;
+					break;
+				}
+				case 3:
+				{
+					changeclass(head1, head2);
+					break;
+				}
+				default:
+				{
+					cout << "Error!\n";
+					break;
+				}
+				}
+			}
+			}
+		}
+		case 4:
+		{
+			int Choice;
+			cout << "In which class do you want to remove a student?";
+			cout << "1: 17CTT1\n";
+			cout << "2: 17CTT2\n";
+			cin >> Choice;
+			string name;
+			cout << "\n Which student you want to remove?\n";
+			getline(cin, name, '\n');
+			switch (Choice) {
+				case 1:
+				{
+					removestudent(head1, name);
+					break;
+				}
+				case 2:
+				{
+					removestudent(head2, name);
+					break;
+				}
+			}
+		}
 		case 5:
 		{
 			Student * head1 = NULL;
