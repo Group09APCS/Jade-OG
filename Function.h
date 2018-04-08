@@ -85,7 +85,7 @@ bool duplicateCheck(int numberOfClass, string classes[], string curClass);
 void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1");
 
 //17. Remove a course
-void removeCourse(Course *head, string courseToRemove);
+void removeCourse(Course *head, string courseToRemove);   //use courseCode for courseToRemove
 
 
 
