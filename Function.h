@@ -84,6 +84,9 @@ bool duplicateCheck(int numberOfClass, string classes[], string curClass);
 //13. View list of students in a class
 void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1");
 
+//17. Remove a course
+void removeCourse(Course *head, string courseToRemove);
+
 
 
 
