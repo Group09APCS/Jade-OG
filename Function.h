@@ -78,8 +78,11 @@ void printout(Student *&head, const string file);
 void removestudent(Student*head, string name);
 void findstudent(Student* cur, Student* head, string name);
 //12. View list of classes
-void listOfClass(User *head);
+void listOfClass(User *head);  
 bool duplicateCheck(int numberOfClass, string classes[], string curClass);
+
+//13. View list of students in a class
+void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1");
 
 
 
