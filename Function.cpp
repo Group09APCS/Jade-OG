@@ -729,3 +729,18 @@ bool duplicateCheck(int numberOfClass, string classes[], string curClass) {
 	}
 	return false;
 }
+
+//13. View list of students in a class
+void listOfStudent(User *head, string curClass) {
+	cout << "List of students in the class " << curClass << " :" << endl;
+	User *cur = head->next;
+	while (cur->next != NULL) {
+		if (cur->className == curClass) {
+			cout << cur->fullName << endl;
+			cur = cur->next;
+		}
+		if (cur->next == NULL) {
+			cout << cur->fullName << endl;
+		}
+	}
+}
