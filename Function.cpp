@@ -696,3 +696,36 @@ void printout(Student *&head, const string file)
 	}
 
 }
+
+
+//12. View list of classes
+void listOfClass(User *head) {
+	User *cur = head->next;
+	string classes[50];
+	int numberOfClass = 0;
+	cout << "List of Classes:\n";
+	while (cur->next != NULL) {
+		if (!duplicateCheck(numberOfClass, classes, cur->className)) {
+			classes[numberOfClass++] = cur->className;
+		}
+		cur = cur->next;
+	}
+	/*if (cur->next == NULL && (!duplicateCheck(numberOfClass, classes, cur->className))) {
+		classes[numberOfClass++] = cur->className;
+	}*/
+	for (int i = 0; i < numberOfClass - 1; ++i) {
+		cout << classes[i] << endl;
+	}
+}
+
+bool duplicateCheck(int numberOfClass, string classes[], string curClass) {
+	if (numberOfClass == 0) {
+		return false;
+	}
+	for (int i = 0; i < numberOfClass; ++i) {
+		if (classes[i] == curClass) {
+			return true;
+		}
+	}
+	return false;
+}
