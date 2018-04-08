@@ -744,3 +744,19 @@ void listOfStudent(User *head, string curClass) {
 		}
 	}
 }
+
+
+//17. Remove a course
+void removeCourse(Course *head, string courseToRemove) {  //use courseCode for courseToRemove
+	Course *cur = head;
+	while (cur->next->next != NULL) {
+		if (cur->next->courseCode == courseToRemove) {
+			cout << cur->next->courseCode;
+			cur->next = cur->next->next;
+		}
+	}
+	if (cur->next->next == NULL
+		&& cur->next->courseCode == courseToRemove) {
+		cur->next = NULL;
+	}
+}
