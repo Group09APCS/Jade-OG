@@ -86,8 +86,7 @@ void listOfStudent(User *head, string curClass); // call example: listOfStudent(
 
 //17. Remove a course
 void removeCourse(Course *head, string courseToRemove);   //use courseCode for courseToRemove
-
-
+void importcoursefromfile(Course* &chead, string filename);
 
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
