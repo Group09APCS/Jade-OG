@@ -148,7 +148,7 @@ void Login(User *&head)
 			cout << "					Your password: " << cur->password << endl;
 			/*cout << "					Please set a new password: ";
 			getline(cin, password);
-			
+
 			cout << "					Your username: " << cur->userName << endl;
 			cout << "					Your password: " << cur->password << endl;*/
 			break;
@@ -341,7 +341,7 @@ void generateid(string&name, string&Username)
 	{
 		add += name[j];
 	}
-	for (int t = 0; t < i-1; t++)
+	for (int t = 0; t < i - 1; t++)
 	{
 		if (name[t] == ' ')
 		{
@@ -388,22 +388,27 @@ void acastaffMenu(User *&head, User*&cur)
 		cout << "\n\n 7: Create New Class ";
 		cout << "\n\n 8: View List of Student in Class ";
 		cout << "\n\n What do you want to do: ";
+		Student * head1 = NULL;
+		Student *head2 = NULL;
+		importstudentfromfile(head1, "17CTT1.csv");
+		importstudentfromfile(head2, "17CTT2.csv");
 		cin >> newchoice;
 		switch (newchoice) {
 		case 1:
 		{
 			string cl;
-			cout << "\n\n What class you want to import? \n";
+			cout << "\n\n Which class you want to import? \n";
 			cout << "\n\n 1: 17CTT1 ";
 			cout << "\n\n 2: 17CTT2 ";
 			getline(cin, cl);
 			while (cl != "1" && cl != "2")
 				getline(cin, cl);
-			Student *head = NULL;
+			Student *top = NULL;
 			if (cl == "1") cl = "17CTT1.csv";
 			else cl = "17CTT2.csv";
-			importstudentfromfile(head, cl);
-			break;
+			importstudentfromfile(top, cl);
+			cout << "Successful! Return to menu... \n";
+			showMenu(head, cur);
 		}
 		case 2:
 		{
@@ -413,91 +418,148 @@ void acastaffMenu(User *&head, User*&cur)
 		case 3:
 		{
 			int Choice2;
-			Student* cur = NULL;
 			cout << "In which class do you want to edit a student?";
 			cout << "1: 17CTT1\n";
 			cout << "2: 17CTT2\n";
 			cin >> Choice2;
-			string name;
-			cout << "\n Which student you want edit?\n";
-			getline(cin, name, '\n');
+			string nme;
+			Student * temp1 = head1;
+			Student * temp2 = head2;
 			switch (Choice2)
 			{
 			case 1:
 			{
-				cout << "\n What do you want to edit?\n";
-				cout << "1: student ID\n";
-				cout << "2: student name\n";
-				cout << "3: class\n";
-				int Choice1;
-				cin >> Choice1;
-				string str;
-				getline(cin, str, '\n');
-				findstudent(cur, head1, name);
-				switch (Choice1)
+				cout << "\n Which student you want edit?\n";
+				cin.ignore();
+				getline(cin, nme, '\n');
+				bool ch = false;
+				while (temp1->fullName != nme)
 				{
-				case 1:
-				{
-					cur->ID = str;
-					break;
+					temp1 = temp1->next;
+					if (temp1->fullName == nme)
+					{
+						ch = true;
+						break;
+					}
 				}
-				case 2:
-				{
-					cur->fullName = str;
-					break;
+				if (ch == false) {
+					cout << "No matched found! \n";
+					acastaffMenu(head,cur);
 				}
-				case 3:
+				if (ch == true)
 				{
-					changeclass(head1, head2);
-					break;
-				}
-				default:
-				{
-					cout << "Error!\n";
-					break;
-				}
+					cout << "\n What do you want to edit?\n";
+					cout << "1: student ID\n";
+					cout << "2: student name\n";
+					cout << "3: class\n";
+					int Choice1;
+					cin >> Choice1;
+					string str;
+					switch (Choice1)
+					{
+					case 1:
+					{
+						cout << "Pls enter studentID: \n";
+						cin.ignore();
+						getline(cin, str, '\n');
+						temp1->ID = str;
+						cout << "Complete! \n";
+						break;
+					}
+					case 2:
+					{
+						cout << "Pls enter fullName: \n";
+						cin.ignore();
+						getline(cin, str, '\n');
+						temp1->fullName = str;
+						cout << temp1->ID << " Full Name: " << temp1->fullName << endl;
+						break;
+					}
+					case 3:
+					{
+						cout << "Pls enter Class: \n";
+						cin.ignore();
+						getline(cin, str, '\n');
+						temp1->sclass = str;
+						cout << temp1->ID << " class: " << temp1->sclass << endl;
+						break;
+					}
+					default:
+					{
+						cout << "Error!\n";
+						break;
+					}
+					}
+					acastaffMenu(head, cur);
 				}
 			}
 			case 2:
 			{
-				cout << "\n What do you want to edit?\n";
-				cout << "1: student ID\n";
-				cout << "2: student name\n";
-				cout << "3: class\n";
-				int Choice1;
-				cin >> Choice1;
-				string str;
-				getline(cin, str, '\n');
-				findstudent(cur, head2, name);
-				switch (Choice1)
+				cout << "\n Which student you want edit?\n";
+				getline(cin, nme, '\n');
+				bool ch = false;
+				while (temp2->fullName != nme)
 				{
-				case 1:
-				{
-					cur->ID = str;
-					break;
+					temp2 = temp2->next;
+					if (temp2->fullName == nme)
+					{
+						ch = true;
+						break;
+					}
 				}
-				case 2:
-				{
-					cur->fullName = str;
-					break;
+				if (ch == false) {
+					cout << "No matched found! \n";
+					acastaffMenu(head, cur);
 				}
-				case 3:
+				if (ch == true)
 				{
-					changeclass(head1, head2);
-					break;
-				}
-				default:
-				{
-					cout << "Error!\n";
-					break;
-				}
+					cout << "\n What do you want to edit?\n";
+					cout << "1: student ID\n";
+					cout << "2: student name\n";
+					cout << "3: class\n";
+					int Choice1;
+					cin >> Choice1;
+					string str;
+					switch (Choice1)
+					{
+					case 1:
+					{
+						cout << "Pls enter studentID: \n";
+						getline(cin, str, '\n');
+						temp2->ID = str;
+						cout << temp2->fullName << " ID: " << temp2->ID << endl;
+						break;
+					}
+					case 2:
+					{
+						cout << "Pls enter fullName: \n";
+						getline(cin, str, '\n');
+						temp2->fullName = str;
+						cout << temp2->ID << " Full Name: " << temp2->fullName << endl;
+						break;
+					}
+					case 3:
+					{
+						cout << "Pls enter Class: \n";
+						getline(cin, str, '\n');
+						temp2->sclass = str;
+						cout << temp2->ID << " class: " << temp2->sclass << endl;
+						break;
+					}
+					default:
+					{
+						cout << "Error!\n";
+						break;
+					}
+					}
+					acastaffMenu(head, cur);
 				}
 			}
 			}
 		}
 		case 4:
 		{
-			int Choice;
+			/*int Choice;
 			cout << "In which class do you want to remove a student?";
 			cout << "1: 17CTT1\n";
 			cout << "2: 17CTT2\n";
@@ -506,17 +568,17 @@ void acastaffMenu(User *&head, User*&cur)
 			cout << "\n Which student you want to remove?\n";
 			getline(cin, name, '\n');
 			switch (Choice) {
-				case 1:
-				{
-					removestudent(head1, name);
-					break;
-				}
-				case 2:
-				{
-					removestudent(head2, name);
-					break;
-				}
+			case 1:
+			{
+				removestudent(head1, name);
+				break;
 			}
+			case 2:
+			{
+				removestudent(head2, name);
+				break;
+			}
+			}*/
 		}
 		case 5:
 		{
@@ -711,7 +773,7 @@ void listOfClass(User *head) {
 		cur = cur->next;
 	}
 	/*if (cur->next == NULL && (!duplicateCheck(numberOfClass, classes, cur->className))) {
-		classes[numberOfClass++] = cur->className;
+	classes[numberOfClass++] = cur->className;
 	}*/
 	for (int i = 0; i < numberOfClass - 1; ++i) {
 		cout << classes[i] << endl;
@@ -745,6 +807,10 @@ void listOfStudent(User *head, string curClass) {
 	}
 }
 
+void importCoursefromfile(Course *head, string address)
+{
+
+}
 
 //17. Remove a course
 void removeCourse(Course *head, string courseToRemove) {  //use courseCode for courseToRemove
