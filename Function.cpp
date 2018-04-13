@@ -17,18 +17,8 @@ fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
 fout.close();
 }
 */
-void studentMenu()
-{
-	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
-	cout << "\n\n 1: Check - in ";
-	cout << "\n\n 2: View score for a course ";
-	cout << "\n\n 3: Schedule ";
-	cout << "\n\n 4: View your info ";
-	cout << "\n\n 5: Change password ";
-	cout << "\n\n 6: Log out ";
-	cout << "\n\n 7: Exit ";
 
-}
+//IMPORT USER
 void Import(User *&head)
 {
 	// Import the users from csv file
@@ -65,6 +55,7 @@ void Import(User *&head)
 	cur->next = NULL;
 	fin.close();
 }
+//LOGIN
 void Login(User *&head)
 {
 	system("cls");
@@ -177,6 +168,7 @@ void Login(User *&head)
 		exit(0);
 	showMenu(head, cur);
 }
+//SHOW MENU
 void showMenu(User *&head, User *&cur)
 {
 	bool check = false;
@@ -310,7 +302,20 @@ void showMenu(User *&head, User *&cur)
 		break;
 	}
 }
+//STUDENT MENU
+void studentMenu()
+{
+	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
+	cout << "\n\n 1: Check - in ";
+	cout << "\n\n 2: View score for a course ";
+	cout << "\n\n 3: Schedule ";
+	cout << "\n\n 4: View your info ";
+	cout << "\n\n 5: Change password ";
+	cout << "\n\n 6: Log out ";
+	cout << "\n\n 7: Exit ";
 
+}
+//LECTURER MENU
 void lecturerMenu()
 {
 	cout << "\n\n  _________________________LECTURER DATABASE_________________________";
@@ -321,7 +326,7 @@ void lecturerMenu()
 	cout << "\n\n 5: Log out ";
 	cout << "\n\n 6: Exit ";
 }
-
+//GENERATEID (NOT YET COMPLETED)
 void generateid(string&name, string&Username)
 {
 	int i = name.length() - 1;
@@ -350,7 +355,7 @@ void generateid(string&name, string&Username)
 	}
 	Username += add;
 }
-
+//PASS (NOT YET COMPLETED)
 int pass()
 {
 	srand(time(NULL));
@@ -358,6 +363,7 @@ int pass()
 	return a;
 }
 //THIS AREA IS USED FOR ACADEMIC STAFF, AUTHORIZED PERSONNEL ONLY!!!
+//ACADEMIC STAFF MENU
 void acastaffMenu(User *&head, User*&cur)
 {
 	system("cls");
@@ -385,8 +391,8 @@ void acastaffMenu(User *&head, User*&cur)
 		cout << "\n\n 4: Remove A Student ";
 		cout << "\n\n 5: Change Students From Class A to Class B ";
 		cout << "\n\n 6: Add A New Empty Class ";
-		cout << "\n\n 7: Create New Class ";
-		cout << "\n\n 8: View List of Student in Class ";
+		cout << "\n\n 7: View list of classes ";
+		cout << "\n\n 8: View list of student in a class ";
 		cout << "\n\n What do you want to do: ";
 		Student * head1 = NULL;
 		Student *head2 = NULL;
@@ -394,8 +400,10 @@ void acastaffMenu(User *&head, User*&cur)
 		importstudentfromfile(head2, "17CTT2.csv");
 		cin >> newchoice;
 		switch (newchoice) {
+//6. Import students of a class from a csv file
 		case 1:
 		{
+			system("cls");
 			string cl;
 			cout << "\n\n Which class you want to import? \n";
 			cout << "\n\n 1: 17CTT1 ";
@@ -403,383 +411,189 @@ void acastaffMenu(User *&head, User*&cur)
 			getline(cin, cl);
 			while (cl != "1" && cl != "2")
 				getline(cin, cl);
-			Student *top = NULL;
-			if (cl == "1") cl = "17CTT1.csv";
-			else cl = "17CTT2.csv";
-			importstudentfromfile(top, cl);
 			cout << "Successful! Return to menu... \n";
 			showMenu(head, cur);
 		}
+//7. Add a new student to a class
 		case 2:
 		{
-			cout << "Nothing here \n";
+			system("cls");
+			cout << "\n\n In which class do you want to add new student? ";
+			cout << "\n\n 1: 17CTT1 ";
+			cout << "\n\n 2: 17CTT2 ";
+			int cls;
+			cin >> cls;
+			string css;
+			if (cls == 1)
+			{
+				css = "17CTT1";
+				addnewstudent(head1, css);
+				printout(head1, "17CTT1.csv");
+			}
+			if (cls == 2)
+			{
+				css = "17CTT2";
+				addnewstudent(head2, css);
+				printout(head2, "17CTT1.csv");
+			}
+			acastaffMenu(head, cur);
 			break;
 		}
+//8. Edit an existing student
 		case 3:
 		{
+			system("cls");
 			int Choice2;
 			Student* cur1 = NULL;
-			cout << "In which class do you want to edit a student?" << endl;
-			cout << "1: 17CTT1\n";
-			cout << "2: 17CTT2\n";
+			cout << "\n\n In which class do you want to edit a student?" << endl;
+			cout << "\n\n 1: 17CTT1\n";
+			cout << "\n\n 2: 17CTT2\n";
 			cin >> Choice2;
-			string name;
-			cout << "Which student you want edit?\n";
-			cin.ignore();
-			getline(cin, name,'\n');
-			switch (Choice2)
+			if (Choice2 == 1)
 			{
-			case 1:
+				string scs = "17CTT1.csv";
+				string unscs = "17CTT2.csv";
+				editastudent(head1, head2, scs, unscs);
+			}
+			if (Choice2 == 2)
 			{
-				Student * head1 = NULL;
-				Student *head2 = NULL;
-				importstudentfromfile(head1, "17CTT1.csv");
-				importstudentfromfile(head2, "17CTT2.csv");
-				cout << "\n What do you want to edit?\n";
-				cout << "1: student ID\n";
-				cout << "2: student name\n";
-				cout << "3: class\n";
-				int Choice1;
-				cin >> Choice1;
-				string str;
-				findstudent(cur1, head1, name);
-				switch (Choice1)
-				{
-				case 1:
-				{
-					cout << "Please enter new student ID: ";
-					cin.ignore();
-					getline(cin, str, '\n');
-					cur1->ID = str;
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head,cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				case 2:
-				{
-					cout << "Please enter the new student name: ";
-					cin.ignore();
-					getline(cin, str, '\n');
-					cur1->fullName = str;
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head, cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				case 3:
-				{
-					cin.ignore();
-					getline(cin, str, '\n');
-					changeclass(head1, head2);
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head, cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				default:
-				{
-					cout << "Error!\n";
-					break;
-				}
-				}
+				string scs = "17CTT2.csv";
+				string unscs = "17CTT1.csv";
+				editastudent(head2, head1, scs, unscs);
 			}
-			case 2:
-			{
-				Student * head1 = NULL;
-				Student *head2 = NULL;
-				importstudentfromfile(head1, "17CTT1.csv");
-				importstudentfromfile(head2, "17CTT2.csv");
-				cout << "\n What do you want to edit?\n";
-				cout << "1: student ID\n";
-				cout << "2: student name\n";
-				cout << "3: class\n";
-				int Choice1;
-				cin >> Choice1;
-				string str;
-				findstudent(cur1, head2, name);
-				switch (Choice1)
-				{
-				case 1:
-				{
-					cout << "Please input the new student ID: ";
-					cin.ignore();
-					getline(cin, str, '\n');
-					cur1->ID = str;
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head, cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				case 2:
-				{
-					cout << "Please input the new student name: " << endl;
-					cin.ignore();
-					getline(cin, str, '\n');
-					cur1->fullName = str;
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head, cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				case 3:
-				{
-					cin.ignore();
-					getline(cin, str, '\n');
-					changeclass(head1, head2);
-					cout << "Done!" << endl;
-					cout << "1. Show menu\n";
-					cout << "2. Exit\n";
-					cin >> Choice1;
-					switch (Choice1) {
-					case 1:
-					{
-						showMenu(head, cur);
-						break;
-					}
-					case 2:
-					{
-						exit(0);
-						break;
-					}
-					}
-					break;
-				}
-				default:
-				{
-					cout << "Error!\n";
-					break;
-				}
-				}
-			}
-			}
+			acastaffMenu(head, cur);
+		}
+//9. Remove a student
 		case 4:
 		{
-			Student * head1 = NULL;
-			Student *head2 = NULL;
-			importstudentfromfile(head1, "17CTT1.csv");
-			importstudentfromfile(head2, "17CTT2.csv");
+			system("cls");
 			int Choicex;
-			cout << "In which class do you want to remove a student?" << endl;
-			cout << "1: 17CTT1\n";
-			cout << "2: 17CTT2\n";
+			cout << "\n\n In which class do you want to remove a student?" << endl;
+			cout << "\n\n 1: 17CTT1\n";
+			cout << "\n\n 2: 17CTT2\n";
 			cin >> Choicex;
 			string name;
-			cout << "\n Which student you want to remove?";
+			cout << "\n\n Which student you want to remove? ";
 			cin.ignore();
 			getline(cin, name, '\n');
 			switch (Choicex) {
 			case 1:
 			{
 				removestudent(head1, name);
+				printout(head1, "17CTT1.csv");
 				cout << "Done!" << endl;
-				cout << "1. Show menu\n";
-				cout << "2. Exit\n";
-				cin >> Choicex;
-				switch (Choicex) {
-				case 1:
-				{
-					showMenu(head, cur);
-					break;
-				}
-				case 2:
-				{
-					exit(0);
-					break;
-				}
-				}
 				break;
 			}
 			case 2:
 			{
 				removestudent(head2, name);
+				printout(head2, "17CTT2.csv");
 				cout << "Done!" << endl;
-				cout << "1. Show menu\n";
-				cout << "2. Exit\n";
-				cin >> Choicex;
-				switch (Choicex) {
-				case 1:
-				{
-					showMenu(head, cur);
-					break;
-				}
-				case 2:
-				{
-					exit(0);
-					break;
-				}
-				}
+				break;
+			}
+			default:
+			{
+				cout << "Error!\n";
 				break;
 			}
 			}
-			break;
+			acastaffMenu(head, cur);
 		}
+//10. Change Class (Binh sua lai nha)
 		case 5:
 		{
-			Student * head1 = NULL;
-			Student *head2 = NULL;
-			importstudentfromfile(head1, "17CTT1.csv");
-			importstudentfromfile(head2, "17CTT2.csv");
 			changeclass(head1, head2);
 			break;
 		}
+//11. Add a new empty class
+		case 6:
+		{
+			system("cls");
+			newclass();
+			acastaffMenu(head, cur);
+			break;
+		}
+//12. View list of classes (Phuong sua lai nha)
 		case 7:
 		{
-			newclass();
+			listOfClass(head);
+			acastaffMenu(head, cur);
 			break;
+		}
+//13. View list of students in a class
+		case 8:
+		{
+			system("cls");
+			cout << " Pls enter the name of the class: ";
+			string nme;
+			cin.ignore();
+			getline(cin, nme);
+			listOfStudent(head, nme);
 		}
 		break;
 		}
 	}
+//***************************   COURSE   ***************************
 	case 2:
-	{	system("cls");
-	cout << "\n\n 1: Import A Course ";
-	cout << "\n\n 2: Add New Course ";
-	cout << "\n\n 3: View List Courses ";
-	cout << "\n\n 4: Edit Courses ";
-	cout << "\n\n 5: Remove Courses ";
-	cin >> choice;
-	switch (choice)
 	{
+		system("cls");
+		cout << "\n\n 1: Import A Course ";
+		cout << "\n\n 2: Add New Course ";
+		cout << "\n\n 3: View List Courses ";
+		cout << "\n\n 4: Edit Courses ";
+		cout << "\n\n 5: Remove Courses ";
+		Course * chead = NULL;
+		importcoursefromfile(chead, "course.csv");
+		cin >> choice;
+		switch (choice)
+		{
+			//14. Import courses from a csv file
 		case 1:
 		{
+			system("cls");
+			Course * chead = NULL;
+			importcoursefromfile(chead, "course.csv");
+			acastaffMenu(head, cur);
 			break;
 		}
+		//15. Add a new course
 		case 2:
 		{
-			Course* chead = NULL;
-			importcoursefromfile(chead, "course.csv");
-			Course* cur1 = chead;
-			string str;
-			while (cur1->next != NULL)
-			{
-				cur1 = cur1->next;
-			}
-			cur1->next = new Course;
-			cur1 = cur1->next;
-			cout << "Pls input courseCode: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->courseCode = str;
-			cout << "Pls input academicYear: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->academicYear = str;
-			cout << "Pls input courseName: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->courseName = str;
-			cout << "Pls input lecturerName: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->lecturerName = str;
-			cout << "Pls input startDate: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->startDate = str;
-			cout << "Pls input endDate: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->endDate = str;
-			cout << "Pls input dayOfWeek: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->dayOfWeek = str;
-			cout << "Pls input startHour: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->startHour = str;
-			cout << "Pls input endHour: ";
-			cin.ignore();
-			getline(cin, str, '\n');
-			cur1->endHour = str;
-			cur->next = NULL;
-			cout << "Done!" << endl;
-			cout << "1. Show menu\n";
-			cout << "2. Exit\n";
-			cin >> choice;
-			switch (choice) {
-			case 1:
-			{
-				showMenu(head, cur);
-				break;
-			}
-			case 2:
-			{
-				exit(0);
-				break;
-			}
-			}
+			system("cls");
+			addanewcourse(chead, "course.csv");
+			acastaffMenu(head, cur);
 			break;
 		}
-	}
-	}
-	break;
+		//16. Edit an existing course
+		case 4:
+		{
+			system("cls");
+			editcourse(chead, "course.csv");
+			acastaffMenu(head, cur);
+			break;
+		}
+		//17. Remove a course
+		case 5:
+		{
+			system("cls");
+			cout << "Pls enter the course of code you want to remove: ";
+			string c;
+			cin.ignore();
+			getline(cin, c);
+			removeCourse(chead, c);
+			printcout(chead, "course.csv");
+			acastaffMenu(head, cur);
+			break;
+		}
+		//18. View list of courses
+		case 3:
+		{
+			system("cls");
+			viewcourse(chead, "course.csv");
+			acastaffMenu(head, cur);
+			break;
+		}
+		}
 	}
 	case 3:
 	{	system("cls");
@@ -826,6 +640,32 @@ void acastaffMenu(User *&head, User*&cur)
 	}
 	}
 }
+//PRINT OUT STUDENT
+void printout(Student *&head, const string file)
+{
+	ofstream fout;
+	fout.open(file);
+	Student * cur = head;
+	while (cur)
+	{
+		fout << cur->ID << "," << cur->fullName << "," << cur->email << "," << cur->sclass << endl;
+		cur = cur->next;
+	}
+	fout.close();
+}
+//FIND STUDENT
+void findstudent(Student * &cur, Student * head, string name)
+{
+	cur = head;
+	if (head->fullName == name)
+		return;
+	else
+	{
+		while (cur != NULL && cur->fullName != name)
+			cur = cur->next;
+	}
+}
+//6
 void importstudentfromfile(Student *&head, string cl) {
 	ifstream fin(cl);
 	if (!fin.is_open()) {
@@ -854,23 +694,135 @@ void importstudentfromfile(Student *&head, string cl) {
 	}
 	fin.close();
 }
-void newclass()
+//7
+void addnewstudent(Student *&head, string scs)
 {
-	string classname;
-	ofstream fout;
-	cout << "Please input the name of the new class:";
-	getline(cin, classname);
-	classname.append(".csv");
-	fout.open(classname);
-	fout.close();
+		Student * cu = head;
+		while (cu ->next != NULL)
+			cu = cu->next;
+		cu ->next = new Student;
+		cu = cu->next;
+		cout << "Pls enter student ID: ";
+		string id;
+		cin.ignore();
+		getline(cin, id);
+		cu->ID = id;
+		cout << "Pls enter student Full name";
+		string fullname;
+		getline(cin, fullname);
+		cu->fullName = fullname;
+		cout << "Pls enter student email";
+		string smail;
+		getline(cin, smail);
+		cu->email = smail;
+		cu->sclass = scs;
+		cu->next = NULL;
 }
+//8
+void editastudent(Student *&head1, Student *&head2, string scs, string unscs)
+{
 
+	Student* cur1 = NULL;
+	string name;
+	system("cls");
+	cout << "Which student you want edit?\n";
+	cin.ignore();
+	getline(cin, name);
+	cout << "\n What do you want to edit?\n";
+	cout << "1: Student ID\ n";
+	cout << "2: Student Name \n";
+	cout << "3: Email \n";
+	cout << "4: Class \n";
+	int Choice1;
+		cin >> Choice1;
+		string str;
+		findstudent(cur1, head1, name);
+		switch (Choice1)
+		{
+		case 1:
+		{
+			cout << "Please enter new student ID: ";
+			cin.ignore();
+			getline(cin, str, '\n');
+			cur1->ID = str;
+			cout << "Done!" << endl;
+			printout(head1, scs);
+			break;
+		}
+		case 2:
+		{
+			cout << "Please enter the new student name: ";
+			cin.ignore();
+			getline(cin, str, '\n');
+			cur1->fullName = str;
+			printout(head1, scs);
+			cout << "Done!" << endl;
+			break;
+		}
+		case 3:
+		{
+			cout << "Please enter the new student email: ";
+			cin.ignore();
+			getline(cin, str, '\n');
+			cur1->email = str;
+			printout(head1, scs);
+			cout << "Done!" << endl;
+			break;
+		}
+		case 4:
+		{
+			cin.ignore();
+			getline(cin, str, '\n');
+			changeclass(head1, head2);
+			printout(head1, scs);
+			printout(head2, unscs);
+			cout << "Done!" << endl;
+			break;
+		}
+		default:
+		{
+			cout << "Error!\n";
+			break;
+		}
+		}
+}
+//9
+void removestudent(Student *&head, string name)
+{
+	Student* cur = head;
+	if (cur->fullName == name)
+	{
+		head = head->next;
+		delete cur;
+		cur = NULL;
+	}
+	else
+	{
+		while (cur != NULL && cur->next != NULL && cur->next->fullName != name)
+		{
+			cur = cur->next;
+		}
+		if (cur == NULL)
+			return;
+		else
+		{
+			Student* cur2 = cur;
+			cur = cur->next;
+			if (cur == NULL)
+				cur2->next = NULL;
+			else cur2->next = cur->next;
+			delete cur;
+			cur = NULL;
+		}
+	}
+}
+//10
 void changeclass(Student  *&head1, Student *&head2)
 {
 	string studentID;
 	cout << "Please input ID of the student that you want to change class:";
 	cin.ignore();
-	getline(std::cin, studentID);
+	getline(cin, studentID);
 	Student*cur = head1;
 	while (studentID.compare(cur->ID) != 0 && cur != NULL)
 	{
@@ -879,6 +831,8 @@ void changeclass(Student  *&head1, Student *&head2)
 	if (cur == NULL)
 	{
 		cout << "That student is not in this class";
+		system("pause");
+		return;
 	}
 	else
 	{
@@ -888,7 +842,7 @@ void changeclass(Student  *&head1, Student *&head2)
 			cur = cur->next;
 
 			Student*cur2 = head2;
-			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
+			while (studentID.compare(cur2->ID) < 0 && cur2->next != NULL)
 				cur2 = cur2->next;
 			if (cur2->next == NULL)
 			{
@@ -917,24 +871,22 @@ void changeclass(Student  *&head1, Student *&head2)
 		}
 
 	}
-	printout(head1, "1.csv");
-	printout(head2, "2.csv");
-	system("pause");
+	printout(head1, "17CTT1.csv");
+	printout(head2, "17CTT2.csv");
 }
-void printout(Student *&head, const string file)
+//11
+void newclass()
 {
+	string classname;
 	ofstream fout;
-	fout.open(file);
-	Student * cur = head;
-	while (cur)
-	{
-		fout << cur->ID << "," << cur->fullName << "," << cur->email << "," << cur->sclass << endl;
-		cur = cur->next;
-	}
-
+	cout << "Please input the name of the new class:";
+	cin.ignore();
+	getline(cin, classname);
+	classname.append(".csv");
+	fout.open(classname);
+	fout.close();
+	cout << "Done!";
 }
-
-
 //12. View list of classes
 void listOfClass(User *head) {
 	User *cur = head->next;
@@ -981,7 +933,35 @@ void listOfStudent(User *head, string curClass) {
 		}
 	}
 }
-
+//PRINT OUT COURSE
+void printcout(Course *&chead, const string file)
+{
+	ofstream fout;
+	fout.open(file);
+	Course * cur = chead;
+	while (cur)
+	{
+		fout << cur->courseCode << "," << cur->academicYear << "," 
+			<< cur->semester << "," << cur->courseName << "," << cur->lecturerName << ","
+			<< cur->startDate << "," << cur->endDate <<  "," << cur->dayOfWeek << ","
+			<< cur->startHour << "," << cur->endHour << endl;
+		cur = cur->next;
+	}
+	fout.close();
+}
+//FIND COURSE
+void findcourse(Course *&cur, Course *&chead, string name)
+{
+	cur = chead;
+	if (chead->courseName == name)
+		return;
+	else
+	{
+		while (cur != NULL && cur->courseName != name)
+			cur = cur->next;
+	}
+}
+//14. Import courses from a csv file
 void importcoursefromfile(Course * &chead, string filename)
 {
 	ifstream fin(filename);
@@ -992,12 +972,11 @@ void importcoursefromfile(Course * &chead, string filename)
 	while (fin.good()) {
 		if (chead == NULL) {
 			chead = new Course;
-			fin >> chead->No;
 			getline(fin, chead->courseCode, ',');
 			getline(fin, chead->academicYear, ',');
-			fin >> chead->semester;
+			getline(fin, chead->semester, ',');
 			getline(fin, chead->courseName, ',');
-			getline(fin, chead->lecturerName,',');
+			getline(fin, chead->lecturerName, ',');
 			getline(fin, chead->startDate, ',');
 			getline(fin, chead->endDate, ',');
 			getline(fin, chead->dayOfWeek, ',');
@@ -1008,11 +987,10 @@ void importcoursefromfile(Course * &chead, string filename)
 		}
 		else {
 			cur->next = new Course;
-			fin >> cur->No;
 			cur = cur->next;
 			getline(fin, cur->courseCode, ',');
 			getline(fin, cur->academicYear, ',');
-			fin >> cur->semester;
+			getline(fin, cur->semester, ',');
 			getline(fin, cur->courseName, ',');
 			getline(fin, cur->lecturerName, ',');
 			getline(fin, cur->startDate, ',');
@@ -1025,37 +1003,184 @@ void importcoursefromfile(Course * &chead, string filename)
 	}
 	fin.close();
 }
-
-void removestudent(Student * head, string name)
+//15. Add a new course
+void addanewcourse(Course *&chead, string filename)
 {
-	Student* cur = head;
-	if (cur->fullName == name)
+	Course* cur1 = chead;
+	string str;
+	while (cur1->next != NULL)
 	{
-		head = head->next;
-		delete cur;
-		cur = NULL;
+		cur1 = cur1->next;
 	}
-	else
+	cur1->next = new Course;
+	cur1 = cur1->next;
+	cout << "Pls input courseCode: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->courseCode = str;
+	cout << "Pls input academicYear: ";
+	getline(cin, str, '\n');
+	cur1->academicYear = str;
+	cout << "Pls input courseSemester: ";
+	getline(cin, str, '\n');
+	cur1->semester = str;
+	cout << "Pls input courseName: ";
+	getline(cin, str, '\n');
+	cur1->courseName = str;
+	cout << "Pls input lecturerName: ";
+	getline(cin, str, '\n');
+	cur1->lecturerName = str;
+	cout << "Pls input startDate: ";
+	getline(cin, str, '\n');
+	cur1->startDate = str;
+	cout << "Pls input endDate: ";
+	getline(cin, str, '\n');
+	cur1->endDate = str;
+	cout << "Pls input dayOfWeek: ";
+	getline(cin, str, '\n');
+	cur1->dayOfWeek = str;
+	cout << "Pls input startHour: ";
+	getline(cin, str, '\n');
+	cur1->startHour = str;
+	cout << "Pls input endHour: ";
+	getline(cin, str, '\n');
+	cur1->endHour = str;
+	cur1->next = NULL;
+	printcout(chead, "course.csv");
+}
+//16. Edit an existing course
+void editcourse(Course *&chead, string filename)
+{
+	Course* cur = NULL;
+	string name;
+	system("cls");
+	cout << "Which course do you want edit?\n";
+	cin.ignore();
+	getline(cin, name);
+	cout << "\n What do you want to edit?\n";
+	cout << "1: Course Code \n";
+	cout << "2: Academic Year \n";
+	cout << "3: Semester \n";
+	cout << "4: Course Name \n";
+	cout << "5: Lecturer Name \n";
+	cout << "6: Start Date \n";
+	cout << "7: End Date \n";
+	cout << "8: Date Of Week \n";
+	cout << "9: Start Hour \n";
+	cout << "10: End Hour \n";
+	int Choice1;
+	cin >> Choice1;
+	string str;
+	findcourse(cur, chead, name);
+	switch (Choice1)
 	{
-		while (cur != NULL && cur->next != NULL && cur->next->fullName != name)
-		{
-			cur = cur->next;
-		}
-		if (cur == NULL)
-			return;
-		else
-		{
-			Student* cur2 = cur;
-			cur = cur->next;
-			if(cur==NULL)
-				cur2->next = NULL;
-			else cur2->next = cur->next;
-			delete cur;
-			cur = NULL;
-		}
+	case 1:
+	{
+		cout << "Please enter new Course Code: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->courseCode = str;
+		cout << "Done!" << endl;
+		printcout(chead, "course.csv");
+		break;
+	}
+	case 2:
+	{
+		cout << "Please enter the new Academic Year: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->academicYear = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 3:
+	{
+		cout << "Please enter the new Semester: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->semester = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 4:
+	{
+		cout << "Please enter the new Course Name: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->courseName = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 5:
+	{
+		cout << "Please enter the new :ecturer Name: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->lecturerName = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 6:
+	{
+		cout << "Please enter the new Start Date: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->startDate = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 7:
+	{
+		cout << "Please enter the new End Date: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->endDate = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 8:
+	{
+		cout << "Please enter the new Day of Week: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->dayOfWeek = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 9:
+	{
+		cout << "Please enter the new Start Hour: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->startHour = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	case 10:
+	{
+		cout << "Please enter the new End Hour: ";
+		cin.ignore();
+		getline(cin, str, '\n');
+		cur->endHour = str;
+		printcout(chead, "course.csv");
+		cout << "Done!" << endl;
+		break;
+	}
+	default:
+	{
+		cout << "Error!\n";
+		break;
+	}
 	}
 }
-
 //17. Remove a course
 void removeCourse(Course *head, string courseToRemove) {  //use courseCode for courseToRemove
 	Course *cur = head;
@@ -1070,15 +1195,21 @@ void removeCourse(Course *head, string courseToRemove) {  //use courseCode for c
 		cur->next = NULL;
 	}
 }
-
-void findstudent(Student * &cur, Student * head, string name)
+//18. View list of courses
+void viewcourse(Course*&chead, string f)
 {
-	cur = head;
-	if (head->fullName == name)
-		return;
-	else
+	int i = 0;
+	Course * cur = chead;
+	while (cur)
 	{
-		while (cur != NULL && cur->fullName != name)
-			cur = cur->next;
+		cout << "Course[" << i << "]: " << endl;
+		cout << "Course Code: ";
+		cout << cur->courseCode << endl;
+		cout << "Course Name: ";
+		cout << cur->courseName << endl;
+		cout << "Lecturer Name: ";
+		cout << cur->lecturerName << endl;
+		i++;
 	}
 }
+
