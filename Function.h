@@ -27,10 +27,10 @@ struct Student {
 	Student *next;
 };
 
-struct Course{
+struct Course {
 	string courseCode;
 	string academicYear; //eg: 2017 - 2018
-	int semester;
+	string semester;
 	string courseName;
 	string lecturerName;
 	string startDate;
@@ -41,7 +41,7 @@ struct Course{
 	Course *next;
 };
 
-struct Score{
+struct Score {
 	string courseCode;
 	string academicYear;  //eg: 2017-2018
 	int semester;
@@ -72,22 +72,31 @@ int pass();
 //*****ACADEMIC STAFF*****
 void importstudentfromfile(Student *&head, string cl);
 void acastaffMenu(User *&head, User*&cur);
+//7
+void addnewstudent(Student *&head, string scs);
+//8
+void editastudent(Student *&head1, Student *&head2, string scs, string unscs);
 void newclass();
 void changeclass(Student  *&head1, Student *&head2);
 void printout(Student *&head, const string file);
-void removestudent(Student*head, string name);
-void findstudent(Student* cur, Student* head, string name);
+void removestudent(Student*&head, string name);
+void findstudent(Student*&cur, Student* head, string name);
 //12. View list of classes
-void listOfClass(User *head);  
+void listOfClass(User *head);
 bool duplicateCheck(int numberOfClass, string classes[], string curClass);
-
+//PRINT OUT COURSE
+void printcout(Course *&chead, const string file);
 //13. View list of students in a class
-void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1");
-
+void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1")
+//15. Add a new course
+void addanewcourse(Course *&chead, string filename);
+//16. Edit an existing course
+void editcourse(Course *&chead, string filename);
 //17. Remove a course
 void removeCourse(Course *head, string courseToRemove);   //use courseCode for courseToRemove
 void importcoursefromfile(Course* &chead, string filename);
-
+//18. View list of courses
+void viewcourse(Course*&chead, string f);
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
