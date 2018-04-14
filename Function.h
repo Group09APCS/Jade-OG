@@ -48,7 +48,17 @@ struct Score {
 	string id;            //student id
 	float midtermScore;
 	float labScore;
+	Score *next;
 };
+
+struct Schedule{
+	string dayOfWeek;   //eg: Mon, Tue, Wed
+	string startDate;
+	string endDate;
+	string startHour;    //eg: 7h30
+	string endHour;      //eg: 11h30
+	Schedule *next;
+}
 
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
