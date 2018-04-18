@@ -190,13 +190,14 @@ void showMenu(User *&head, User *&cur)
 	{	if (cur->type == "1")
 		acastaffMenu(head, cur);
 	if (cur->type == "0")
-		studentMenu();
+		studentMenu(head,cur);
 	if (cur->type == "2")
 		lecturerMenu();
 	break;
 	}
 	case 2:
 	{
+		system("cls");
 		cout << " User Name: " << cur->userName << endl;
 		cout << " Full Name: " << cur->fullName << endl;
 		cout << " ID: " << cur->ID << endl;
@@ -230,6 +231,7 @@ void showMenu(User *&head, User *&cur)
 	}
 	case 3:
 	{
+		system("cls");
 		cout << " Pls enter your old password: \n";
 		cin.ignore();
 		getline(cin, password);
@@ -292,19 +294,23 @@ void showMenu(User *&head, User *&cur)
 	}
 	case 4:
 	{
+		system("cls");
 		cout << "SEEYA!.\n";
-		exit(0);
-		break;
+		return;
 	}
 	default:
+	{
 		cout << "Not a Valid Choice. \n"
 			<< "Choose again.\n";
 		break;
 	}
+	}
 }
 //STUDENT MENU
-void studentMenu()
+void studentMenu(User *&head, User *&cur)
 {
+	system("cls");
+	int choice;
 	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
 	cout << "\n\n 1: Check - in ";
 	cout << "\n\n 2: View score for a course ";
@@ -313,7 +319,129 @@ void studentMenu()
 	cout << "\n\n 5: Change password ";
 	cout << "\n\n 6: Log out ";
 	cout << "\n\n 7: Exit ";
+	cout << "\n\n What do you want to do: ";
+	cin.ignore();
+	cin >> choice;
+	int newchoice;
+	switch (choice)
+	{
+	case 4:
+	{
+		system("cls");
+		cout << " User Name: " << cur->userName << endl;
+		cout << " Full Name: " << cur->fullName << endl;
+		cout << " ID: " << cur->ID << endl;
+		cout << " Email: " << cur->email << endl;
+		cout << " Phone: " << cur->mobilePhone << endl;
+		cout << " Type: " << cur->type << endl;
+		cout << " Password: " << cur->password << endl;
+		cout << " Class: " << cur->className << endl;
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << " SEEYA!.\n";
+			exit(0);
+			break;
+		}
+		default:
+		{
+			cout << " Not a Valid Choice. \n"
+				<< " Choose again.\n";
+			break;
+		}
+		}
+	}
+	case 5:
+	{
+		system("cls");
+		cout << " Pls enter your old password: \n";
+		cin.ignore();
+		string password;
+		getline(cin, password);
+		bool check = false;
+		for (int i = 0; i < 3; i++)
+		{
+			if (password == cur->password)
+			{
+				check = true;
+				break;
+			}
+			if (password != cur->password)
+			{
+				cout << " Mismatched! " << 3 - i << " time(s) remain: \n";
+				check = false;
+				getline(cin, password);
+			}
 
+		}
+		if (check == true)
+		{
+			cout << " Pls enter your new password: \n";
+			getline(cin, password);
+			cur->password = password;
+			cout << " Pls enter your new password again: \n";
+			getline(cin, password);
+			while (password != cur->password)
+				getline(cin, password);
+			cur->password = password;
+			cout << " Complete! Your password has been changed! \n";
+			cout << " 1 - Return to the menu.\n";
+			cout << " 2 - Exit. \n";
+			cin >> choice;
+			switch (choice)
+			{
+			case 1:
+			{showMenu(head, cur);
+			break;
+			}
+			case 2:
+			{
+				cout << "SEEYA!.\n";
+				exit(0);
+				break;
+			}
+			default:
+			{
+				cout << "Not a Valid Choice. \n"
+					<< "Choose again.\n";
+				break;
+			}
+			}
+
+		}
+
+		else {
+			Login(head);
+		}
+		break;
+	}
+	case 6:
+	{
+		cin.ignore();
+		Login(head);
+		break;
+	}
+	case 7:
+	{
+		return;
+	}
+	default:
+	{
+		cout << "Not a Valid Choice. \n"
+			<< "Choose again.\n";
+		break;
+	}
+
+	}
+	studentMenu(head, cur);
 }
 //LECTURER MENU
 void lecturerMenu()
@@ -372,7 +500,7 @@ void acastaffMenu(User *&head, User*&cur)
 	cout << "\n\n 1: Student Management ";
 	cout << "\n\n 2: Courses ";
 	cout << "\n\n 3: Courses Schedule ";
-	cout << "\n\n 4: Search for available course ";
+	cout << "\n\n 4: Search for attendance list ";
 	cout << "\n\n 5: Scoreboard ";
 	cout << "\n\n 6: Return ";
 	cout << "\n\n 7: Log out ";
@@ -542,6 +670,7 @@ void acastaffMenu(User *&head, User*&cur)
 		cout << "\n\n 3: View List Courses ";
 		cout << "\n\n 4: Edit Courses ";
 		cout << "\n\n 5: Remove Courses ";
+		cout << "\n\n What do you want to do: ";
 		Course * chead = NULL;
 		importcoursefromfile(chead, "course.csv");
 		cin >> choice;
@@ -602,13 +731,30 @@ void acastaffMenu(User *&head, User*&cur)
 	cout << "\n\n 3: View List Courses' Schedules ";
 	cout << "\n\n 4: Edit Courses' Schedules ";
 	cout << "\n\n 5: Remove Courses' Schedules ";
-	break;
+	cout << "\n\n What do you want to do: ";
+	Course * chead = NULL;
+	importcoursefromfile(chead, "course.csv");
+	int richchoi;
+	cin >> richchoi;
+	switch (richchoi)
+	{
+	case 1:
+	{
+		cout << "Done!";
+		acastaffMenu(head, cur);
+	}
+	case 2:
+	{
+
+	}
+	}
 	}
 	case 4:
 	{	system("cls");
 	cout << "\n\n 1: Search & View Attendance List ";
 	cout << "\n\n 2: Export Attendance List";
 	break;
+
 	}
 	case 5:
 	{	system("cls");
@@ -1212,4 +1358,6 @@ void viewcourse(Course*&chead, string f)
 		i++;
 	}
 }
+//******************************ATTENDANCE LIST*******************************
+//IMPORT
 
