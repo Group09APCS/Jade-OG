@@ -1058,7 +1058,7 @@ bool duplicateCheck(int numberOfClass, string classes[], string curClass) {
 		return false;
 	}
 	for (int i = 0; i < numberOfClass; ++i) {
-		if (classes[i] == curClass) {
+		if (!strcmp(classes[i], curClass)) {
 			return true;
 		}
 	}
@@ -1070,7 +1070,7 @@ void listOfStudent(User *head, string curClass) {
 	cout << "List of students in the class " << curClass << " :" << endl;
 	User *cur = head->next;
 	while (cur->next != NULL) {
-		if (cur->className == curClass) {
+		if (!strcmp(cur->className, curClass)) {
 			cout << cur->fullName << endl;
 			cur = cur->next;
 		}
