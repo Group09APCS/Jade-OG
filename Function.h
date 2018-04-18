@@ -51,14 +51,14 @@ struct Score {
 	Score *next;
 };
 
-struct Schedule{
+struct Schedule {
 	string dayOfWeek;   //eg: Mon, Tue, Wed
 	string startDate;
 	string endDate;
 	string startHour;    //eg: 7h30
 	string endHour;      //eg: 11h30
 	Schedule *next;
-}
+};
 
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
@@ -110,7 +110,7 @@ void viewcourse(Course*&chead, string f);
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
-void studentMenu();
+void studentMenu(User *&head, User *&cur);
 
 
 
