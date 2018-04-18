@@ -52,6 +52,7 @@ struct Score {
 };
 
 struct Schedule {
+	string courseCode;
 	string dayOfWeek;   //eg: Mon, Tue, Wed
 	string startDate;
 	string endDate;
@@ -107,6 +108,15 @@ void removeCourse(Course *head, string courseToRemove);   //use courseCode for c
 void importcoursefromfile(Course* &chead, string filename);
 //18. View list of courses
 void viewcourse(Course*&chead, string f);
+//19. Import courses' schedules from a csv file
+void importschedulefromfile(Schedule* &shead, string filename);
+//20. Add a course schedule
+void addnewcourseschedule(Schedule* shead, string filename);
+//21.Edit a course schedule
+void editcourseschedule(Schedule* shead, string filename);
+//22. Remove a course schedule
+void removeacourseschedule(Schedule* shead, string filename);
+void findcourseschedule(Schedule* shead, string filename, string name, Schedule* &cur);
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
