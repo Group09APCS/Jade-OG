@@ -734,34 +734,46 @@ void acastaffMenu(User *&head, User*&cur)
 	cout << "\n\n 5: Remove Courses' Schedules ";
 	cout << "\n\n What do you want to do: ";
 	Course * chead = NULL;
-	importcoursefromfile(chead, "course.csv");
+	importschedulefromfile(shead, "course.csv");
 	int richchoi;
 	cin >> richchoi;
 	switch (richchoi)
 	{
-	case 1:
-	{
-		cout << "Done!";
-		acastaffMenu(head, cur);
-	}
-	case 2:
-	{
-
-	}
-	}
+		case 1:
+		{
+			shead = NULL;
+			importschedulefromfile(shead, "course.csv");
+			cout << "Done!";
+			acastaffMenu(head, cur);
+			break;
+		}
+		case 2:
+		{
+			addnewcourseschedule(shead, "course.csv");
+			cout << "Done!";
+			acastaffMenu(head, cur);
+			break;
+		}
+		case 3:
+		{
+				
+		}
+		case 4:
+		{	
+			editcourseschedule(shead, "course.csv");
+			break;
+		}
+		case 5:
+		{	
+			removeacourseschedule(shead, "course.csv");
+			break;
+		}
 	}
 	case 4:
-	{	system("cls");
-	cout << "\n\n 1: Search & View Attendance List ";
-	cout << "\n\n 2: Export Attendance List";
-	break;
-
+	{
 	}
 	case 5:
-	{	system("cls");
-	cout << "\n\n 1: Search & View Scoreboard ";
-	cout << "\n\n 2: Export Scoreboard";
-	break;
+	{
 	}
 	case 6:
 	{
@@ -1358,6 +1370,188 @@ void viewcourse(Course*&chead, string f)
 		cout << cur->lecturerName << endl;
 		i++;
 	}
+}
+
+//19. import courses' schedule from a csv file
+void importschedulefromfile(Schedule *& shead, string filename)
+{
+	ifstream fin(filename);
+	if (!fin.is_open()) {
+		return;
+	}
+	string str;
+	Schedule *cur = NULL;
+	while (fin.good()) {
+		if (shead == NULL) {
+			shead = new Schedule;
+			getline(fin, shead->courseCode, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, shead->startDate, ',');
+			getline(fin, shead->endDate, ',');
+			getline(fin, shead->dayOfWeek, ',');
+			getline(fin, shead->startHour, ',');
+			getline(fin, shead->endHour);
+			shead->next = NULL;
+			cur = shead;
+		}
+		else {
+			cur->next = new Schedule;
+			cur = cur->next;
+			getline(fin, cur->courseCode, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, str, ',');
+			getline(fin, cur->startDate, ',');
+			getline(fin, cur->endDate, ',');
+			getline(fin, cur->dayOfWeek, ',');
+			getline(fin, cur->startHour, ',');
+			getline(fin, cur->endHour);
+			cur->next = NULL;
+		}
+	}
+	fin.close();
+}
+
+//20. Add a course schedule
+void addnewcourseschedule(Schedule * shead, string filename)
+{
+	Schedule* cur1 = shead;
+	string str;
+	while (cur1->next != NULL)
+	{
+		cur1 = cur1->next;
+	}
+	cur1->next = new Schedule;
+	cur1 = cur1->next;
+	cout << "Pls input Course Code: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->courseCode = str;
+	cout << "Pls input Start Date: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->startDate = str;
+	cout << "Pls input End Date: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->endDate = str;
+	cout << "Pls input Day of week: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->dayOfWeek = str;
+	cout << "Pls input Start Hour: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->startHour = str;
+	cout << "Pls input End Hour: ";
+	cin.ignore();
+	getline(cin, str, '\n');
+	cur1->endHour = str;
+	cur1->next = NULL;
+}
+
+//21. Edit a course schedule
+void editcourseschedule(Schedule * shead, string filename)
+{
+	Schedule* cur1 = NULL;
+	string name, str;
+	cout << "Please input the Course Code you want to edit: ";
+	getline(cin, name, '\n');
+	cin.ignore(1000,'\n');
+	findcourseschedule(shead, filename, name, cur1);
+	cur1 = cur1->next;
+	cout << "What do you want to edit?\n";
+	cout << "1: Course code\n";
+	cout << "2: Start date\n";
+	cout << "3: End date\n";
+	cout << "4: Day of week\n";
+	cout << "5: Start hour\n";
+	cout << "6: End hour\n";
+	int choice;
+	cin >> choice;
+	switch (choice)
+	{
+		case 1:
+		{
+			cout << "Please inpute new course code: ";
+			getline(cin, str, '\n');
+			cin.ignore(1000, '\n');
+			cur1->courseCode = str;
+			break;
+		}
+		case 2:
+		{
+			cout << "Please input new start date: ";
+			getline(cin, str, '\n');
+			cin.ignore(1000, '\n');
+			cur1->startDate = str;
+			break;
+		}
+		case 3:
+		{
+			cout << "Please input new end date: ";
+			getline(cin, str, '\n');
+			cur1->endDate = str;
+			break;
+		}
+		case 4:
+		{
+			cout << "Please input new day of week: ";
+			getline(cin, str, '\n');
+			cin.ignore(1000, '\n');
+			cur1->dayOfWeek = str;
+			break;
+		}
+		case 5:
+		{
+			cout << "Please input new start hour: ";
+			getline(cin, str, '\n');
+			cin.ignore(1000, '\n');
+			cur1->startHour = str;
+			break;
+		}
+		case 6:
+		{
+			cout << "Please input new end hour: ";
+			getline(cin, str, '\n');
+			cin.ignore(1000, '\n');
+			cur1->endHour = str;
+			break;
+		}
+	}
+}
+
+void findcourseschedule(Schedule * shead, string filename, string name, Schedule* &cur)
+{
+	cur = shead;
+	if (cur->courseCode == name)
+		return;
+	else
+	{
+		while (cur->next != NULL && cur->next->courseCode != name)
+		{
+			cur = cur->next;
+		}
+	}
+}
+
+//22. Remove a course schedule
+void removeacourseschedule(Schedule * shead, string filename)
+{
+	Schedule* cur1 = NULL;
+	string name, str;
+	cout << "Please input the Course Code you want to remove: ";
+	getline(cin, name, '\n');
+	cin.ignore(1000, '\n');
+	findcourseschedule(shead, filename, name, cur1);
+	Schedule* cur2 = cur1;
+	cur2->next = cur1->next;
+	delete cur1;
+	cur1 = cur2;
 }
 //******************************ATTENDANCE LIST*******************************
 //IMPORT
