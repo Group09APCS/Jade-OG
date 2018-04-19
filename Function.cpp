@@ -1708,6 +1708,46 @@ void exportPresence(const char exportFileName[], Presence *presenceHead) {
 	//25
 	exportPresence("exportAttendance.csv", presenceHead);
 */
+
+//26. Search and view scoreboard of a course
+void viewScore(string courseCode, Score *scoreHead) { //ask user to input courseCode they want to view score
+	Score *cur = scoreHead;
+	cout << "Scoreboard of " << courseCode << " course, " << "semester " << cur->semester 
+		<< ", academic year: " << cur->academicYear << endl;
+	cout << setw(10) << "ID" << setw(10) << "Midterm Score" << setw(10) << "Lab Score" << endl;
+	while (cur->next != NULL) {
+		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str())) {
+			cout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+		}
+		cur = cur->next;
+	}
+	if (cur->next == NULL && (!strcmp(cur->courseCode.c_str(), courseCode.c_str()))){
+		cout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+	}
+}
+
+//27. Export a scoreboard to a csv file
+void exportScore(const char exportFileName[], string courseCode, Score *scoreHead) { //ask user to input courseCode whose score they want to export
+	ofstream fout;
+	fout.open(exportFileName);
+	if (!fout.is_open())
+		return;
+	Score *cur = scoreHead;
+	fout << "Scoreboard of " << courseCode << " course, " << "semester " << cur->semester
+		<< ", academic year: " << cur->academicYear << endl;
+	fout << setw(10) << "ID" << setw(10) << "Midterm Score" << setw(10) << "Lab Score" << endl;
+	while (cur->next != NULL) {
+		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str())) {
+			fout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+		}
+		cur = cur->next;
+	}
+	if (cur->next == NULL && (!strcmp(cur->courseCode.c_str(), courseCode.c_str()))) {
+		fout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+	}
+	fout.close();
+}
+
 //28Import score 
 void ImportScore(Score *&head,string sc)
 {
