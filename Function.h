@@ -132,7 +132,10 @@ void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, stri
 void viewAttendance(string courseCode, Presence *presenceHead);
 //25. Export Attendance list:
 void exportPresence(const char exportFileName[], Presence *presenceHead);
-
+//26. Search and view scoreboard of a course
+void viewScore(string courseCode, Score *scoreHead);
+//27. Export a scoreboard to a csv file
+void exportScore(const char exportFileName[], string courseCode, Score *scoreHead);
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
