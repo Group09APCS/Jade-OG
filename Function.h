@@ -62,7 +62,7 @@ struct Schedule {
 	Schedule *next;
 };
 
-struct Presence{
+struct Presence {
 	string courseCode;
 	string academicYear;
 	int semester;
@@ -109,7 +109,7 @@ bool duplicateCheck(int numberOfClass, string classes[], string curClass);
 void printcout(Course *&chead, const string file);
 //13. View list of students in a class
 void listOfStudent(User *head, string curClass); // call example: listOfStudent(head, "17CTT1")
-//15. Add a new course
+												 //15. Add a new course
 void addanewcourse(Course *&chead, string filename);
 //16. Edit an existing course
 void editcourse(Course *&chead, string filename);
@@ -140,7 +140,8 @@ void exportScore(const char exportFileName[], string courseCode, Score *scoreHea
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
 void studentMenu(User *&head, User *&cur);
-
+//33. View his / her scores of a course
+void viewyourScore(string courseCode, Score *scoreHead, string id);
 
 
 
@@ -148,7 +149,7 @@ void studentMenu(User *&head, User *&cur);
 //*****LECTURER*****
 void lecturerMenu();
 //28
-void ImportScore(Score *&head,string sc);
+void ImportScore(Score *&head, string sc);
 //29
 void EditGrade(Score *&head);
 //30
