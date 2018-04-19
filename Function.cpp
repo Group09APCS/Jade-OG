@@ -446,6 +446,8 @@ void studentMenu(User *&head, User *&cur)
 //LECTURER MENU
 void lecturerMenu()
 {
+	system("cls");
+	int choice;
 	cout << "\n\n  _________________________LECTURER DATABASE_________________________";
 	cout << "\n\n 1: Scoreboard ";
 	cout << "\n\n 2: Edit Grade ";
@@ -453,6 +455,47 @@ void lecturerMenu()
 	cout << "\n\n 4: Change password ";
 	cout << "\n\n 5: Log out ";
 	cout << "\n\n 6: Exit ";
+	cout << "\n\n What do you want to do: ";
+	cin.ignore();
+	cin >> choice;
+	int newchoice;
+	switch (choice)
+	{
+	case 1:
+		{
+			system("cls");
+			string crse;
+			cout<<"which course do you want?: \n";
+			cin>>crse;
+			string coursename="score_";
+			coursename+=crse;
+			coursename+=".csv";
+			Score *head=NULL;
+			ImportScore(head,coursename);
+			viewscore(head);
+			break;
+		}
+	case 2:
+		{
+			system("cls");
+			string crse;
+			cout<<"which course do you want?: ";
+			getline(cin,crse);
+			string coursename="score_";
+			coursename+=crse;
+			coursename+=".csv";
+			Score *head=NULL;
+			ImportScore(head,coursename);
+			EditGrade(head);
+			break;
+		}
+	default:
+		{
+			cout<<"Nothing here";
+			break;
+		}
+
+	}
 }
 //GENERATEID (NOT YET COMPLETED)
 void generateid(string&name, string&Username)
@@ -798,6 +841,7 @@ void acastaffMenu(User *&head, User*&cur)
 		break;
 	}
 	}
+}
 }
 //PRINT OUT STUDENT
 void printout(Student *&head, const string file)
@@ -1664,4 +1708,136 @@ void exportPresence(const char exportFileName[], Presence *presenceHead) {
 	//25
 	exportPresence("exportAttendance.csv", presenceHead);
 */
+//28Import score 
+void ImportScore(Score *&head,string sc)
+{
+	ifstream fin(sc);
+	if (!fin.is_open()) {
+		return;
+	}
+	string notuse,trash;
+	string temp1,temp2;
+	int temp3;
+	Score *cur = NULL;
+	getline(fin,notuse);
+	getline(fin,temp1,',');
+	getline(fin,temp2,',');
+	fin>>temp3;
+	while (fin.good()) 
+	{
+		if (head == NULL) {
+			head = new Score;
+			head->courseCode=temp1;
+			head->academicYear=temp2;
+			head->semester=temp3;
+			getline(fin,notuse);
+			getline(fin,notuse);
+			getline(fin,head->id,',');
+			fin>>head->midtermScore;
+			fin.ignore(10,',');
+			fin>>head->labScore;
+			fin.ignore(10,'\n');
+			head->next=NULL;
+			cur=head;
+			}
+		else
+		{
+			cur->next = new Score;
+			cur = cur->next;
+			cur->courseCode=temp1;
+			cur->academicYear=temp2;
+			cur->semester=temp3;
+			getline(fin,cur->id,',');
+			fin>>cur->midtermScore;
+			fin.ignore(10,',');
+			fin>>cur->labScore;
+			getline(fin,trash);
+			cur->next=NULL;
+		}
+	}
+	fin.close();
+}
+//29
+void EditGrade(Score *&head)
+{
+	string temp;
+	cout<<"Which student do you want to edit his/her grade?(input student ID)"<<endl;
+	getline(cin,temp);
+	Score *cur;
+	int grade;
+	cur=head;
+	while(temp!=cur->id&&cur!=NULL)
+	{
+		cur=cur->next;
+	}
+	if (cur==NULL)
+		cout<<"That student ID is not exist in system"<<endl;
+	else 
+	{
+		int choice;
+		cout<<"Which grade do you want to edit?"<<endl;
+		cout<<"1.midterm score\n";
+		cout<<"2.lap score\n";
+		cout<<"your choice: ";
+		cin>>choice;
+		switch(choice)
+		{
+		case 1: 
+			{
+				string exit;
+				do{
+					cout<<"Please enter the new grade: ";
+					cin>>grade;
+					cur->midtermScore=grade;
+					cout<<"Midterm score of "<<cur->id<<" is "<<cur->midtermScore<<endl;
+					cout<<"Is that correct? yes/no";
+					getline(cin,exit);
+				}
+				while(exit!="yes"&&exit!="YES"&&exit!="Yes");
+				break;
+			}
+		case 2:
+			{
+				string exit;
+				do{
+					cout<<"Please enter the new grade: ";
+					cin>>grade;
+					cur->labScore=grade;
+					cout<<"Lap score of "<<cur->id<<" is "<<cur->labScore<<endl;
+					cout<<"Is that correct? yes/no";
+					getline(cin,exit);
+				}
+				while(exit!="yes"&&exit!="YES"&&exit!="Yes");
+				break;
+			}
+		default:
+			{
+				cout<<"You enter something but nothing happen.\n";
+				cout<<"You feel something wrong with this program\n";
+				cout<<"Program's turn\n";
+				cout<<"Program uses <<SELFDESTRUCT>>\n";
+				cout<<"You lost all your data\n";
+				cout<<"Game over";
+				break;
+			}
+
+		}
+	}
+}
+//30
+void viewscore(Score *head)
+{
+	Score *cur=head;
+	while(cur!=NULL)
+	{
+		cout<<"ID: "<<cur->id<<endl;
+		cout<<"Course code: "<<cur->courseCode<<endl;
+		cout<<"Year: "<<cur->academicYear<<endl;
+		cout<<"Semester: "<<cur->semester<<endl;
+		cout<<"Midterm score: "<<cur->midtermScore<<endl;
+		cout<<"Lap Score: "<<cur->labScore<<endl;
+		cur=cur->next;
+	}
+}
+
 
