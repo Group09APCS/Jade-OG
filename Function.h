@@ -9,6 +9,7 @@
 #include<cstring>
 #include<cstdlib>
 #include<ctime>
+#include<iomanip>
 using namespace std;
 
 struct User {         //if user is a student, username is student ID
@@ -117,6 +118,12 @@ void editcourseschedule(Schedule* shead, string filename);
 //22. Remove a course schedule
 void removeacourseschedule(Schedule* shead, string filename);
 void findcourseschedule(Schedule* shead, string filename, string name, Schedule* &cur);
+//24. Search and view attendance list of a course
+void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, string *presenceLabel);
+void viewAttendance(string courseCode, Presence *presenceHead);
+//25. Export Attendance list:
+void exportPresence(const char exportFileName[], Presence *presenceHead);
+
 
 //THIS AREA IS USED FOR STUDENT, AUTHORIZED PERSONNEL ONLY!!!
 //*****STUDENT*****
