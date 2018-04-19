@@ -1555,4 +1555,113 @@ void removeacourseschedule(Schedule * shead, string filename)
 }
 //******************************ATTENDANCE LIST*******************************
 //IMPORT
+//24. Search and view attendance list of a course
+void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, string *presenceLabel) {
+	ifstream fin;
+	fin.open(pathToPresenceFile);
+	if (!fin.is_open()) {
+		return;
+	}
+	int x1 = 0, y1 = 0, x2 = 1, y2 = 1;  //x1, y1 for frame and x2, y2 for check-in number
+	Presence *cur = NULL;
+	char comma; //to skip the comma when read checkIn number
+	while (fin.good()) {
+		for (int i = 0; i < 4; ++i) {
+			getline(fin, *(presenceLabel + i), ',');
+			if (i == 3)
+				getline(fin, *(presenceLabel + i), '\n');
+		}
+		string temp;
+		if (presenceHead == NULL) {
+			presenceHead = new Presence;
+			getline(fin, presenceHead->courseCode, ',');  
+			getline(fin, presenceHead->academicYear, ','); 
+			fin >> presenceHead->semester;               
+			getline(fin, temp, '\n');
+			for (int y1 = 0; y1 < 11; ++y1) {
+				getline(fin, presenceHead->frame[x1][y1], ','); 
+				if (y1 == 10) {
+					getline(fin, presenceHead->frame[x1][y1], '\n');
+				}	
+			}
+			cout << endl;
+			
+			for (int x1 = 1; x1 < 105; ++x1) {
+				getline(fin, presenceHead->frame[x1][y1], ','); 
+
+				for (int y2 = 0; y2 < 10; ++y2) {
+					fin >> presenceHead->checkIn[x2][y2];
+					fin >> comma; //just to skip comma
+				}
+				getline(fin, temp, '\n');
+			}
+			cur = presenceHead;
+			cur->next = NULL;
+		} 
+			}
+	fin.close();
+}
+
+void viewAttendance(string courseCode, Presence *presenceHead) { //ask user for courseCode they want to to view attendance list                                                             
+	cout << "This is the Attendance List for the course: "
+		<< courseCode << endl
+		<< "Academic year: " << presenceHead->academicYear << endl
+		<< "Semester: " << presenceHead->semester << endl;
+
+	int x1 = 0, y1 = 0, x2 = 1, y2 = 1;  //x1, y1 for frame and x2, y2 for check-in number
+	for (int y1 = 0; y1 < 11; ++y1) {
+		cout << setw(10) << presenceHead->frame[x1][y1] << " ";
+		/*if (y1 == 10) {
+		cout << presenceHead->frame[x1][y1] << " ";
+		}*/
+	}
+	cout << endl;
+	for (int x1 = 1; x1 < 53; ++x1) {
+		cout << setw(10) << presenceHead->frame[x1][y1] << " ";
+		for (int y2 = 0; y2 < 10; ++y2) {
+			cout << setw(10) << presenceHead->checkIn[x2][y2] << " ";
+		}
+		cout << endl;
+	}
+}
+
+//25. Export Attendance list:
+
+void exportPresence(const char exportFileName[], Presence *presenceHead) {
+	ofstream fout;
+	fout.open(exportFileName);
+	if (!fout.is_open())
+		return;
+	fout << "This is the Attendance List for the course: " 
+		<< presenceHead->courseCode << endl
+		<<"Academic year: " << presenceHead->academicYear << endl
+		<<"Semester: " << presenceHead->semester << endl;
+
+	int x1 = 0, y1 = 0, x2 = 1, y2 = 1;  //x1, y1 for frame and x2, y2 for check-in number
+	for (int y1 = 0; y1 < 11; ++y1) {
+		fout << setw(10) << presenceHead->frame[x1][y1] << " ";
+		/*if (y1 == 10) {
+			cout << presenceHead->frame[x1][y1] << " ";
+		}*/
+	}
+	fout << endl;
+	for (int x1 = 1; x1 < 53; ++x1) {
+		fout << setw(10) <<  presenceHead->frame[x1][y1] << " ";		
+		for (int y2 = 0; y2 < 10; ++y2) {
+			fout << setw(10) << presenceHead->checkIn[x2][y2] << " ";
+		}
+		fout << endl;
+	}
+	fout.close();
+}
+/*ông thêm vào main khi chạy thử: 
+
+	Presence *presenceHead = NULL;
+	string *presenceLabel = new string[5];
+	//24
+	loadPresence("presence.csv", presenceHead, presenceLabel);
+	viewAttendance("Nope", presenceHead);
+	//25
+	exportPresence("exportAttendance.csv", presenceHead);
+*/
 
