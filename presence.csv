@@ -1,6 +1,6 @@
 Course Code,Academic Year,Semester,,,,,,,,
 CS161,2017 - 2018,1,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,0,1,1,1,1,1,1,1,1,1
 1751048,0,1,1,1,1,1,1,1,1,1
 1751049,0,1,1,1,1,1,1,1,1,1
@@ -107,7 +107,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,0,1,1,1,1,1,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 CM101,2017 - 2018,1,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,0,1,1,1,1,1,1,1,1
 1751048,1,0,1,1,1,1,1,1,1,1
 1751049,1,0,1,1,1,1,1,1,1,1
@@ -214,7 +214,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,0,1,1,1,1,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 MTH251,2017 - 2018,1,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,0,1,1,1,1,1,1,1
 1751048,1,1,0,1,1,1,1,1,1,1
 1751049,1,1,0,1,1,1,1,1,1,1
@@ -321,7 +321,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,1,0,1,1,1,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 PH211,2017 - 2018,1,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,1,0,1,1,1,1,1,1
 1751048,1,1,1,0,1,1,1,1,1,1
 1751049,1,1,1,0,1,1,1,1,1,1
@@ -428,7 +428,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,1,1,0,1,1,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 CS162,2017 - 2018,2,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,1,1,0,1,1,1,1,1
 1751048,1,1,1,1,0,1,1,1,1,1
 1751049,1,1,1,1,0,1,1,1,1,1
@@ -535,7 +535,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,1,1,1,0,1,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 PH212,2017 - 2018,2,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,1,1,1,0,1,1,1,1
 1751048,1,1,1,1,1,0,1,1,1,1
 1751049,1,1,1,1,1,0,1,1,1,1
@@ -642,7 +642,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,1,1,1,1,0,1,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 MTH252,2017 - 2018,2,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,1,1,1,1,0,1,1,1
 1751048,1,1,1,1,1,1,0,1,1,1
 1751049,1,1,1,1,1,1,0,1,1,1
@@ -749,7 +749,7 @@ Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 
 1751123,1,1,1,1,1,1,0,1,1,1
 Course Code,Academic Year,Semester,,,,,,,,
 TCH001,2017 - 2018,2,,,,,,,,
-Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10
+Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10,
 1751047,1,1,1,1,1,1,1,0,1,1
 1751048,1,1,1,1,1,1,1,0,1,1
 1751049,1,1,1,1,1,1,1,0,1,1
