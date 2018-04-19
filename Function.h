@@ -62,6 +62,15 @@ struct Schedule {
 	Schedule *next;
 };
 
+struct Presence{
+	string courseCode;
+	string academicYear;
+	int semester;
+	int checkIn[105][11]; //0 = absent, 1 = not absent
+	string frame[105][11];
+	Presence *next;
+};
+
 //THIS AREA IS USED FOR MENU, AUTHORIZED PERSONNEL ONLY!!!
 //******************USER MENU*********************
 void Import(User *&head);
