@@ -144,7 +144,12 @@ void studentMenu(User *&head, User *&cur);
 //THIS AREA IS USED FOR LECTURER, AUTHORIZED PERSONNEL ONLY!!!
 //*****LECTURER*****
 void lecturerMenu();
-
+//28
+void ImportScore(Score *&head,string sc);
+//29
+void EditGrade(Score *&head);
+//30
+void viewscore(Score *head);
 
 
 #endif // !FUNCTION_H_
