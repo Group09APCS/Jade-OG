@@ -1125,27 +1125,33 @@ void changeclass(Student  *&head1, Student *&head2)
 	string studentID;
 	cout << "Please input ID of the student that you want to change class:";
 	cin.ignore();
-	getline(cin, studentID);
+	getline(std::cin, studentID);
 	Student*cur = head1;
-	while (studentID.compare(cur->ID) != 0 && cur != NULL)
+	if (studentID.compare(cur->ID)==0)
+	{
+		Student *temp =cur;
+		head1=cur->next;
+		delete temp;
+	}
+	else
+	{
+	while (studentID.compare(cur->next->ID) != 0 && cur->next != NULL)
 	{
 		cur = cur->next;
 	}
-	if (cur == NULL)
+	if (cur->next == NULL&&studentID.compare(cur->next->ID) != 0)
 	{
 		cout << "That student is not in this class";
-		system("pause");
-		return;
 	}
 	else
 	{
 		{
+			
 			Student *temp = new Student;
-			temp = cur;
-			cur = cur->next;
-
+			temp = cur->next;
+			cur->next = cur->next->next;
 			Student*cur2 = head2;
-			while (studentID.compare(cur2->ID) < 0 && cur2->next != NULL)
+			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
 				cur2 = cur2->next;
 			if (cur2->next == NULL)
 			{
@@ -1174,8 +1180,10 @@ void changeclass(Student  *&head1, Student *&head2)
 		}
 
 	}
-	printout(head1, "17CTT1.csv");
-	printout(head2, "17CTT2.csv");
+	}
+	printout(head1, "1.csv");
+	printout(head2, "2.csv");
+	system("pause");
 }
 //11
 void newclass()

@@ -125,7 +125,7 @@ void addnewcourseschedule(Schedule* shead, string filename);
 //21.Edit a course schedule
 void editcourseschedule(Schedule* shead, string filename);
 //22. Remove a course schedule
-void removeacourseschedule(Schedule* shead, string filename);
+void removeacourseschedule(Schedule*& shead, string filename);
 void findcourseschedule(Schedule* shead, string filename, string name, Schedule* &cur);
 //24. Search and view attendance list of a course
 void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, string *presenceLabel);
