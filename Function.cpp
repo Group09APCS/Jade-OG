@@ -64,6 +64,45 @@ void slowprint(const string& message, unsigned int millis_per_char)
 		sleep_for(milliseconds(millis_per_char));
 	}
 }
+void zero9()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 6);
+	slowprint("					Welcome to our Project!", 60);
+	cout << endl;
+	slowprint("					We are...", 60);
+	cout << endl;
+	SetConsoleTextAttribute(hConsole, 12);
+	cout << "					                                                  " << endl;
+	cout << "					                                                  " << endl;
+	cout << "					                                      . / ymh /       " << endl;
+	cout << "					                                    +dMMMMMMNs.   " << endl;
+	cout << "					                                  +mMMMMMMMMMMN /   " << endl;
+	cout << "					                               -smMMMMMMMMMMMMN -   " << endl;
+	cout << "					                             /dMMMMMMMMMMMMMMM +    " << endl;
+	cout << "					          .++  +ymN:       +mMMMMMMMMMMMMMMMMm    " << endl;
+	cout << "					        -hMhshMMy:.       sMMMh+ / +dMMMMMMMMMMs    " << endl;
+	cout << "					      .sMN / dMMd -           /MN -      +MMMMMMMMM:    " << endl;
+	cout << "					     +MMM + dMMN             mM+     oMMMMMMMMMs    " << endl;
+	cout << "					    /MMMMNMMM +   .: / :        /NMdoydNMMMMMMMMMMM.   " << endl;
+	cout << "					    dMMMMMMMMmhNMMMMm+      .sNMMMNhyNMMMMMMMM /    " << endl;
+	cout << "					    oMMMMMMMMMMMhy+omMm        ::.   mMMNNMMMd    " << endl;
+	cout << "					    .NMMMMMMMMd.     hMo            oMMM:mMMd.    " << endl;
+	cout << "					     hMMMMMMMMm-     yMN           sMMN+hMd -       " << endl;
+	cout << "					    .MMMMMMMMMMMy + oyNMMN        :oNMdoyNm +         " << endl;
+	cout << "					    +MMMMMMMMMMMMMMMMNs.       hmyo. . + -          " << endl;
+	cout << "					   .mMMMMMMMMMMMMMMNo                             " << endl;
+	cout << "					   hMMMMMMMMMMMMNy:                               " << endl;
+	cout << "					   yMMMMMMMMMMMs.                                 " << endl;
+	cout << "					    -yMMMMMMmo.                                   " << endl;
+	cout << "					      .ohh + .                                      " << endl;
+	cout << "					                                                  " << endl;
+	SetConsoleTextAttribute(hConsole, 6);
+	slowprint("					          Zero9", 60);
+	cout << endl;
+	slowprint("					         Group09", 30);
+	cout << endl;
+}
 //IMPORT USER
 void Import(User *&head)
 {
@@ -104,6 +143,8 @@ void Import(User *&head)
 //LOGIN
 void Login(User *&head)
 {
+	zero9();
+	system("pause");
 	system("cls");
 	int choice;
 	string name, Username, password;
