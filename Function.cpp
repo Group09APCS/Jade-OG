@@ -268,6 +268,7 @@ void showMenu(User *&head, User *&cur)
 			break;
 		}
 		}
+		break;
 	}
 	case 3:
 	{
