@@ -1,22 +1,62 @@
 #include "Function.h"
-/*
-void save(const char pathToSaveFile[], Student *head) {
+//SAVE USER
+void save(string pathToSaveFile, User *&head) {
 ofstream fout(pathToSaveFile);
 if (!fout.is_open()) {
 return;
 }
-Student *cur = head;
-while (cur->next != NULL) {
-fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
-cur = cur->next;
-}
-if (cur->next == NULL) {
-fout << cur->no << "  " << cur->ID << "  " << cur->name << "  ";
-}
 
+User *cur = head;
+while (cur) {
+	fout << cur->userName << "," << cur->fullName << "," << cur->ID << "," << cur->email << "," << cur->mobilePhone
+		<< "," << cur->type << "," << cur->password << "," <<  cur->className << endl;
+		cur = cur->next;
+}
 fout.close();
 }
-*/
+void changepass(User *&head, User *&cur)
+{
+	system("cls");
+	cout << " Pls enter your old password: \n";
+	cin.ignore();
+	string password;
+	bool check = false;
+	getline(cin, password);
+	for (int i = 0; i < 3; i++)
+	{
+		if (password == cur->password)
+		{
+			check = true;
+			break;
+		}
+		if (password != cur->password)
+		{
+			cout << " Mismatched! " << 3 - i << " time(s) remain: \n";
+			check = false;
+			getline(cin, password);
+		}
+
+	}
+	if (check == true)
+	{
+		cout << " Pls enter your new password: \n";
+		getline(cin, password);
+		cur->password = password;
+		cout << " Pls enter your new password again: \n";
+		getline(cin, password);
+		while (password != cur->password)
+			getline(cin, password);
+		cur->password = password;
+		cout << " Complete! Your password has been changed! \n";
+		save("user.csv", head);
+
+	}
+
+	else {
+		Login(head);
+	}
+}
+
 
 //IMPORT USER
 void Import(User *&head)
@@ -231,66 +271,32 @@ void showMenu(User *&head, User *&cur)
 	}
 	case 3:
 	{
-		system("cls");
-		cout << " Pls enter your old password: \n";
-		cin.ignore();
-		getline(cin, password);
-		check = false;
-		for (int i = 0; i < 3; i++)
+		changepass(head, cur);
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		save("user.csv", head);
+		cin >> choice;
+		switch (choice)
 		{
-			if (password == cur->password)
-			{
-				check = true;
-				break;
-			}
-			if (password != cur->password)
-			{
-				cout << " Mismatched! " << 3 - i << " time(s) remain: \n";
-				check = false;
-				getline(cin, password);
-			}
-
+		case 1:
+		{showMenu(head, cur);
+		break;
 		}
-		if (check == true)
+		case 2:
 		{
-			cout << " Pls enter your new password: \n";
-			getline(cin, password);
-			cur->password = password;
-			cout << " Pls enter your new password again: \n";
-			getline(cin, password);
-			while (password != cur->password)
-				getline(cin, password);
-			cur->password = password;
-			cout << " Complete! Your password has been changed! \n";
-			cout << " 1 - Return to the menu.\n";
-			cout << " 2 - Exit. \n";
-			cin >> choice;
-			switch (choice)
-			{
-			case 1:
-			{showMenu(head, cur);
+			cout << "SEEYA!.\n";
+			exit(0);
 			break;
-			}
-			case 2:
-			{
-				cout << "SEEYA!.\n";
-				exit(0);
-				break;
-			}
-			default:
-			{
-				cout << "Not a Valid Choice. \n"
-					<< "Choose again.\n";
-				break;
-			}
-			}
-
 		}
-
-		else {
-			Login(head);
+		default:
+		{
+			cout << "Not a Valid Choice. \n"
+				<< "Choose again.\n";
+			break;
+		}
 		}
 		break;
+		
 	}
 	case 4:
 	{
@@ -384,40 +390,10 @@ void studentMenu(User *&head, User *&cur)
 	}
 	case 5:
 	{
-		system("cls");
-		cout << " Pls enter your old password: \n";
-		cin.ignore();
-		string password;
-		getline(cin, password);
-		bool check = false;
-		for (int i = 0; i < 3; i++)
-		{
-			if (password == cur->password)
-			{
-				check = true;
-				break;
-			}
-			if (password != cur->password)
-			{
-				cout << " Mismatched! " << 3 - i << " time(s) remain: \n";
-				check = false;
-				getline(cin, password);
-			}
-
-		}
-		if (check == true)
-		{
-			cout << " Pls enter your new password: \n";
-			getline(cin, password);
-			cur->password = password;
-			cout << " Pls enter your new password again: \n";
-			getline(cin, password);
-			while (password != cur->password)
-				getline(cin, password);
-			cur->password = password;
-			cout << " Complete! Your password has been changed! \n";
+			changepass(head, cur);
 			cout << " 1 - Return to the menu.\n";
 			cout << " 2 - Exit. \n";
+			save("user.csv", head);
 			cin >> choice;
 			switch (choice)
 			{
@@ -439,11 +415,6 @@ void studentMenu(User *&head, User *&cur)
 			}
 			}
 
-		}
-
-		else {
-			Login(head);
-		}
 		break;
 	}
 	case 6:
@@ -1128,55 +1099,16 @@ void changeclass(Student  *&head1, Student *&head2)
 	cin.ignore();
 	getline(std::cin, studentID);
 	Student*cur = head1;
-<<<<<<< HEAD
-	if (studentID.compare(cur->ID)==0)
-	{
-		Student *temp =cur;
-		head1=cur->next;
-		delete temp;
-	}
-	else
-	{
-	while (studentID.compare(cur->next->ID) != 0 && cur->next != NULL)
-	{
-		cur = cur->next;
-	}
-	if (cur->next == NULL&&studentID.compare(cur->next->ID) != 0)
-	{
-		cout << "That student is not in this class";
-=======
 	if (studentID.compare(cur->ID) == 0)
 	{
 		Student *temp = cur;
 		head1 = cur->next;
 		delete temp;
->>>>>>> 80b59868318486c532938ce3fa41a063452f53d7
 	}
 	else
 	{
 		while (studentID.compare(cur->next->ID) != 0 && cur->next != NULL)
 		{
-<<<<<<< HEAD
-			
-			Student *temp = new Student;
-			temp = cur->next;
-			cur->next = cur->next->next;
-			Student*cur2 = head2;
-			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
-				cur2 = cur2->next;
-			if (cur2->next == NULL)
-			{
-				cur2->next = new Student;
-				cur2 = cur2->next;
-				cur2->ID = temp->ID;
-				cur2->fullName = temp->fullName;
-				cur2->email = temp->email;
-				cur2->sclass = temp->sclass;
-				cur2->next = NULL;
-				cout << "Added student in the end of the class";
-			}
-			else
-=======
 			cur = cur->next;
 		}
 		if (cur->next == NULL&&studentID.compare(cur->next->ID) != 0)
@@ -1185,7 +1117,6 @@ void changeclass(Student  *&head1, Student *&head2)
 		}
 		else
 		{
->>>>>>> 80b59868318486c532938ce3fa41a063452f53d7
 			{
 
 				Student *temp = new Student;
@@ -1222,10 +1153,6 @@ void changeclass(Student  *&head1, Student *&head2)
 
 		}
 	}
-<<<<<<< HEAD
-	}
-=======
->>>>>>> 80b59868318486c532938ce3fa41a063452f53d7
 	printout(head1, "1.csv");
 	printout(head2, "2.csv");
 	system("pause");
