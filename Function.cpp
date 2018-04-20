@@ -1573,6 +1573,7 @@ void editcourse(Course *&chead, string filename)
 	cout << "Which course do you want edit?\n";
 	cin.ignore();
 	getline(cin, name);
+	findcourse(cur, chead, name);
 	cout << "\n What do you want to edit?\n";
 	cout << "1: Course Code \n";
 	cout << "2: Academic Year \n";
@@ -1587,7 +1588,6 @@ void editcourse(Course *&chead, string filename)
 	int Choice1;
 	cin >> Choice1;
 	string str;
-	findcourse(cur, chead, name);
 	switch (Choice1)
 	{
 	case 1:
@@ -1632,7 +1632,7 @@ void editcourse(Course *&chead, string filename)
 	}
 	case 5:
 	{
-		cout << "Please enter the new :ecturer Name: ";
+		cout << "Please enter the new Lecturer Name: ";
 		cin.ignore();
 		getline(cin, str, '\n');
 		cur->lecturerName = str;
