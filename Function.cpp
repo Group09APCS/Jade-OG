@@ -325,6 +325,33 @@ void studentMenu(User *&head, User *&cur)
 	int newchoice;
 	switch (choice)
 	{
+	case 1:
+	{
+		system("cls");
+		cout << "Which week is this week ?";
+		string week;
+		cin.ignore();
+		getline(cin, week);
+		Presence *presenceHead = NULL;
+		string *presenceLabel = new string[5];
+		loadPresence("Presence.csv", presenceHead, presenceLabel);
+		Presence * cur = presenceHead;
+	}
+	case 2:
+	{
+		system("cls");
+		Score * schead = NULL;
+		ImportScore(schead, "score.csv");
+		cout << "Which course do you want to view its score? (Enter the courseCode):";
+		string str;
+		cin.ignore();
+		getline(cin, str);
+		string id;
+		id = cur->ID;
+		viewyourScore(str, schead, id);
+		cout << "Done!";
+		break;
+	}
 	case 4:
 	{
 		system("cls");
@@ -431,7 +458,7 @@ void studentMenu(User *&head, User *&cur)
 	}
 	case 7:
 	{
-		return;
+		exit(0);
 	}
 	default:
 	{
@@ -441,6 +468,7 @@ void studentMenu(User *&head, User *&cur)
 	}
 
 	}
+	system("pause");
 	studentMenu(head, cur);
 }
 //LECTURER MENU
@@ -462,38 +490,38 @@ void lecturerMenu()
 	switch (choice)
 	{
 	case 1:
-		{
-			system("cls");
-			string crse;
-			cout<<"which course do you want?: \n";
-			cin>>crse;
-			string coursename="score_";
-			coursename+=crse;
-			coursename+=".csv";
-			Score *head=NULL;
-			ImportScore(head,coursename);
-			viewscore(head);
-			break;
-		}
+	{
+		system("cls");
+		string crse;
+		cout << "which course do you want?: \n";
+		cin >> crse;
+		string coursename = "score_";
+		coursename += crse;
+		coursename += ".csv";
+		Score *head = NULL;
+		ImportScore(head, coursename);
+		viewscore(head);
+		break;
+	}
 	case 2:
-		{
-			system("cls");
-			string crse;
-			cout<<"which course do you want?: ";
-			getline(cin,crse);
-			string coursename="score_";
-			coursename+=crse;
-			coursename+=".csv";
-			Score *head=NULL;
-			ImportScore(head,coursename);
-			EditGrade(head);
-			break;
-		}
+	{
+		system("cls");
+		string crse;
+		cout << "which course do you want?: ";
+		getline(cin, crse);
+		string coursename = "score_";
+		coursename += crse;
+		coursename += ".csv";
+		Score *head = NULL;
+		ImportScore(head, coursename);
+		EditGrade(head);
+		break;
+	}
 	default:
-		{
-			cout<<"Nothing here";
-			break;
-		}
+	{
+		cout << "Nothing here";
+		break;
+	}
 
 	}
 }
@@ -768,6 +796,7 @@ void acastaffMenu(User *&head, User*&cur)
 		}
 		}
 	}
+	//*************************** SCHEDULE *****************************
 	case 3:
 	{	system("cls");
 	cout << "\n\n 1: Import Courses' Schedules ";
@@ -776,47 +805,119 @@ void acastaffMenu(User *&head, User*&cur)
 	cout << "\n\n 4: Edit Courses' Schedules ";
 	cout << "\n\n 5: Remove Courses' Schedules ";
 	cout << "\n\n What do you want to do: ";
-	Course * chead = NULL;
+	Schedule * shead = NULL;
 	importschedulefromfile(shead, "course.csv");
 	int richchoi;
 	cin >> richchoi;
 	switch (richchoi)
 	{
+	case 1:
+	{
+		shead = NULL;
+		importschedulefromfile(shead, "course.csv");
+		cout << "Done!";
+		acastaffMenu(head, cur);
+		break;
+	}
+	case 2:
+	{
+		addnewcourseschedule(shead, "course.csv");
+		cout << "Done!";
+		acastaffMenu(head, cur);
+		break;
+	}
+	case 3:
+	{
+
+	}
+	case 4:
+	{
+		editcourseschedule(shead, "course.csv");
+		break;
+	}
+	case 5:
+	{
+		removeacourseschedule(shead, "course.csv");
+		break;
+	}
+	}
+	}
+	//**************************** PRESENCE ****************************
+	case 4:
+	{
+		system("cls");
+		cout << "\n\n 1: Search and view attendance list of a course ";
+		cout << "\n\n 2: Export attendance list to a csv file ";
+		cout << "\n\n What do you want to do: ";
+		int nchoice;
+		Presence *presenceHead = NULL;
+		string *presenceLabel = new string[5];
+		cin >> nchoice;
+		loadPresence("presence.csv", presenceHead, presenceLabel);
+		switch (nchoice)
+		{
 		case 1:
 		{
-			shead = NULL;
-			importschedulefromfile(shead, "course.csv");
+			viewAttendance("Nope", presenceHead);
 			cout << "Done!";
-			acastaffMenu(head, cur);
 			break;
 		}
 		case 2:
 		{
-			addnewcourseschedule(shead, "course.csv");
+			exportPresence("exportAttendance.csv", presenceHead);
 			cout << "Done!";
-			acastaffMenu(head, cur);
 			break;
 		}
-		case 3:
+		default:
 		{
-				
-		}
-		case 4:
-		{	
-			editcourseschedule(shead, "course.csv");
+			cout << " Invalid Choice!";
 			break;
 		}
-		case 5:
-		{	
-			removeacourseschedule(shead, "course.csv");
-			break;
 		}
+		system("pause");
+		acastaffMenu(head, cur);
 	}
-	case 4:
-	{
-	}
+	//**************************** SCORE *******************************
 	case 5:
 	{
+		system("cls");
+		cout << "\n\n 1: Search and view scoreboard of a course ";
+		cout << "\n\n 2: Export a scoreboard to a csv file ";
+		cout << "\n\n What do you want to do: ";
+		int rchoice;
+		cin >> rchoice;
+		Score * schead = NULL;
+		ImportScore(schead, "score.csv");
+		switch (rchoice)
+		{
+		case 1:
+		{
+			cout << "Which course do you want to view its score? (Enter the courseCode):";
+			string str;
+			cin.ignore();
+			getline(cin, str);
+			viewScore(str, schead);
+			cout << "Done!";
+			break;
+		}
+		case 2:
+		{
+			cout << "Which course do you want to export its score? (Enter the courseCode):";
+			string str;
+			cin.ignore();
+			getline(cin, str);
+			exportScore("score1.csv", str, schead);
+			cout << "Done!";
+			break;
+		}
+		default:
+		{
+			cout << "Invalid Choice";
+			break;
+		}
+		}
+		system("pause");
+		acastaffMenu(head, cur);
 	}
 	case 6:
 	{
@@ -841,8 +942,7 @@ void acastaffMenu(User *&head, User*&cur)
 		break;
 	}
 	}
-}
-}
+	}
 //PRINT OUT STUDENT
 void printout(Student *&head, const string file)
 {
@@ -1505,7 +1605,7 @@ void editcourseschedule(Schedule * shead, string filename)
 	string name, str;
 	cout << "Please input the Course Code you want to edit: ";
 	getline(cin, name, '\n');
-	cin.ignore(1000,'\n');
+	cin.ignore(1000, '\n');
 	findcourseschedule(shead, filename, name, cur1);
 	cur1 = cur1->next;
 	cout << "What do you want to edit?\n";
@@ -1519,53 +1619,53 @@ void editcourseschedule(Schedule * shead, string filename)
 	cin >> choice;
 	switch (choice)
 	{
-		case 1:
-		{
-			cout << "Please inpute new course code: ";
-			getline(cin, str, '\n');
-			cin.ignore(1000, '\n');
-			cur1->courseCode = str;
-			break;
-		}
-		case 2:
-		{
-			cout << "Please input new start date: ";
-			getline(cin, str, '\n');
-			cin.ignore(1000, '\n');
-			cur1->startDate = str;
-			break;
-		}
-		case 3:
-		{
-			cout << "Please input new end date: ";
-			getline(cin, str, '\n');
-			cur1->endDate = str;
-			break;
-		}
-		case 4:
-		{
-			cout << "Please input new day of week: ";
-			getline(cin, str, '\n');
-			cin.ignore(1000, '\n');
-			cur1->dayOfWeek = str;
-			break;
-		}
-		case 5:
-		{
-			cout << "Please input new start hour: ";
-			getline(cin, str, '\n');
-			cin.ignore(1000, '\n');
-			cur1->startHour = str;
-			break;
-		}
-		case 6:
-		{
-			cout << "Please input new end hour: ";
-			getline(cin, str, '\n');
-			cin.ignore(1000, '\n');
-			cur1->endHour = str;
-			break;
-		}
+	case 1:
+	{
+		cout << "Please inpute new course code: ";
+		getline(cin, str, '\n');
+		cin.ignore(1000, '\n');
+		cur1->courseCode = str;
+		break;
+	}
+	case 2:
+	{
+		cout << "Please input new start date: ";
+		getline(cin, str, '\n');
+		cin.ignore(1000, '\n');
+		cur1->startDate = str;
+		break;
+	}
+	case 3:
+	{
+		cout << "Please input new end date: ";
+		getline(cin, str, '\n');
+		cur1->endDate = str;
+		break;
+	}
+	case 4:
+	{
+		cout << "Please input new day of week: ";
+		getline(cin, str, '\n');
+		cin.ignore(1000, '\n');
+		cur1->dayOfWeek = str;
+		break;
+	}
+	case 5:
+	{
+		cout << "Please input new start hour: ";
+		getline(cin, str, '\n');
+		cin.ignore(1000, '\n');
+		cur1->startHour = str;
+		break;
+	}
+	case 6:
+	{
+		cout << "Please input new end hour: ";
+		getline(cin, str, '\n');
+		cin.ignore(1000, '\n');
+		cur1->endHour = str;
+		break;
+	}
 	}
 }
 
@@ -1618,20 +1718,20 @@ void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, stri
 		string temp;
 		if (presenceHead == NULL) {
 			presenceHead = new Presence;
-			getline(fin, presenceHead->courseCode, ',');  
-			getline(fin, presenceHead->academicYear, ','); 
-			fin >> presenceHead->semester;               
+			getline(fin, presenceHead->courseCode, ',');
+			getline(fin, presenceHead->academicYear, ',');
+			fin >> presenceHead->semester;
 			getline(fin, temp, '\n');
 			for (int y1 = 0; y1 < 11; ++y1) {
-				getline(fin, presenceHead->frame[x1][y1], ','); 
+				getline(fin, presenceHead->frame[x1][y1], ',');
 				if (y1 == 10) {
 					getline(fin, presenceHead->frame[x1][y1], '\n');
-				}	
+				}
 			}
 			cout << endl;
-			
+
 			for (int x1 = 1; x1 < 105; ++x1) {
-				getline(fin, presenceHead->frame[x1][y1], ','); 
+				getline(fin, presenceHead->frame[x1][y1], ',');
 
 				for (int y2 = 0; y2 < 10; ++y2) {
 					fin >> presenceHead->checkIn[x2][y2];
@@ -1641,8 +1741,8 @@ void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, stri
 			}
 			cur = presenceHead;
 			cur->next = NULL;
-		} 
-			}
+		}
+	}
 	fin.close();
 }
 
@@ -1676,21 +1776,21 @@ void exportPresence(const char exportFileName[], Presence *presenceHead) {
 	fout.open(exportFileName);
 	if (!fout.is_open())
 		return;
-	fout << "This is the Attendance List for the course: " 
+	fout << "This is the Attendance List for the course: "
 		<< presenceHead->courseCode << endl
-		<<"Academic year: " << presenceHead->academicYear << endl
-		<<"Semester: " << presenceHead->semester << endl;
+		<< "Academic year: " << presenceHead->academicYear << endl
+		<< "Semester: " << presenceHead->semester << endl;
 
 	int x1 = 0, y1 = 0, x2 = 1, y2 = 1;  //x1, y1 for frame and x2, y2 for check-in number
 	for (int y1 = 0; y1 < 11; ++y1) {
 		fout << setw(10) << presenceHead->frame[x1][y1] << " ";
 		/*if (y1 == 10) {
-			cout << presenceHead->frame[x1][y1] << " ";
+		cout << presenceHead->frame[x1][y1] << " ";
 		}*/
 	}
 	fout << endl;
 	for (int x1 = 1; x1 < 53; ++x1) {
-		fout << setw(10) <<  presenceHead->frame[x1][y1] << " ";		
+		fout << setw(10) << presenceHead->frame[x1][y1] << " ";
 		for (int y2 = 0; y2 < 10; ++y2) {
 			fout << setw(10) << presenceHead->checkIn[x2][y2] << " ";
 		}
@@ -1698,61 +1798,101 @@ void exportPresence(const char exportFileName[], Presence *presenceHead) {
 	}
 	fout.close();
 }
-/*ông thêm vào main khi chạy thử: 
+/*ông thêm vào main khi chạy thử:
 
-	Presence *presenceHead = NULL;
-	string *presenceLabel = new string[5];
-	//24
-	loadPresence("presence.csv", presenceHead, presenceLabel);
-	viewAttendance("Nope", presenceHead);
-	//25
-	exportPresence("exportAttendance.csv", presenceHead);
+Presence *presenceHead = NULL;
+string *presenceLabel = new string[5];
+//24
+loadPresence("presence.csv", presenceHead, presenceLabel);
+viewAttendance("Nope", presenceHead);
+//25
+exportPresence("exportAttendance.csv", presenceHead);
 */
+
+//26. Search and view scoreboard of a course
+void viewScore(string courseCode, Score *scoreHead) { //ask user to input courseCode they want to view score
+	Score *cur = scoreHead;
+	cout << "Scoreboard of " << courseCode << " course, " << "semester " << cur->semester
+		<< ", academic year: " << cur->academicYear << endl;
+	cout << setw(10) << "ID" << setw(10) << "Midterm Score" << setw(10) << "Lab Score" << endl;
+	while (cur->next != NULL) {
+		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str())) {
+			cout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+		}
+		cur = cur->next;
+	}
+	if (cur->next == NULL && (!strcmp(cur->courseCode.c_str(), courseCode.c_str()))) {
+		cout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+	}
+}
+
+//27. Export a scoreboard to a csv file
+void exportScore(const char exportFileName[], string courseCode, Score *scoreHead) { //ask user to input courseCode whose score they want to export
+	ofstream fout;
+	fout.open(exportFileName);
+	if (!fout.is_open())
+		return;
+	Score *cur = scoreHead;
+	fout << "Scoreboard of " << courseCode << " course, " << "semester " << cur->semester
+		<< ", academic year: " << cur->academicYear << endl;
+	fout << setw(10) << "ID" << setw(10) << "Midterm Score" << setw(10) << "Lab Score" << endl;
+	while (cur->next != NULL) {
+		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str())) {
+			fout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+		}
+		cur = cur->next;
+	}
+	if (cur->next == NULL && (!strcmp(cur->courseCode.c_str(), courseCode.c_str()))) {
+		fout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+	}
+	fout.close();
+}
+
 //28Import score 
-void ImportScore(Score *&head,string sc)
+void ImportScore(Score *&head, string sc)
 {
 	ifstream fin(sc);
 	if (!fin.is_open()) {
 		return;
 	}
-	string notuse,trash;
-	string temp1,temp2;
+	string notuse, trash;
+	string temp1, temp2;
 	int temp3;
 	Score *cur = NULL;
-	getline(fin,notuse);
-	getline(fin,temp1,',');
-	getline(fin,temp2,',');
-	fin>>temp3;
-	while (fin.good()) 
+	getline(fin, notuse);
+	getline(fin, temp1, ',');
+	getline(fin, temp2, ',');
+	fin >> temp3;
+	while (fin.good())
 	{
 		if (head == NULL) {
 			head = new Score;
-			head->courseCode=temp1;
-			head->academicYear=temp2;
-			head->semester=temp3;
-			getline(fin,notuse);
-			getline(fin,notuse);
-			getline(fin,head->id,',');
-			fin>>head->midtermScore;
-			fin.ignore(10,',');
-			fin>>head->labScore;
-			fin.ignore(10,'\n');
-			head->next=NULL;
-			cur=head;
-			}
+			head->courseCode = temp1;
+			head->academicYear = temp2;
+			head->semester = temp3;
+			getline(fin, notuse);
+			getline(fin, notuse);
+			getline(fin, head->id, ',');
+			fin >> head->midtermScore;
+			fin.ignore(10, ',');
+			fin >> head->labScore;
+			fin.ignore(10, '\n');
+			head->next = NULL;
+			cur = head;
+		}
 		else
 		{
 			cur->next = new Score;
 			cur = cur->next;
-			cur->courseCode=temp1;
-			cur->academicYear=temp2;
-			cur->semester=temp3;
-			getline(fin,cur->id,',');
-			fin>>cur->midtermScore;
-			fin.ignore(10,',');
-			fin>>cur->labScore;
-			getline(fin,trash);
-			cur->next=NULL;
+			cur->courseCode = temp1;
+			cur->academicYear = temp2;
+			cur->semester = temp3;
+			getline(fin, cur->id, ',');
+			fin >> cur->midtermScore;
+			fin.ignore(10, ',');
+			fin >> cur->labScore;
+			getline(fin, trash);
+			cur->next = NULL;
 		}
 	}
 	fin.close();
@@ -1761,65 +1901,63 @@ void ImportScore(Score *&head,string sc)
 void EditGrade(Score *&head)
 {
 	string temp;
-	cout<<"Which student do you want to edit his/her grade?(input student ID)"<<endl;
-	getline(cin,temp);
+	cout << "Which student do you want to edit his/her grade?(input student ID)" << endl;
+	getline(cin, temp);
 	Score *cur;
 	int grade;
-	cur=head;
-	while(temp!=cur->id&&cur!=NULL)
+	cur = head;
+	while (temp != cur->id&&cur != NULL)
 	{
-		cur=cur->next;
+		cur = cur->next;
 	}
-	if (cur==NULL)
-		cout<<"That student ID is not exist in system"<<endl;
-	else 
+	if (cur == NULL)
+		cout << "That student ID is not exist in system" << endl;
+	else
 	{
 		int choice;
-		cout<<"Which grade do you want to edit?"<<endl;
-		cout<<"1.midterm score\n";
-		cout<<"2.lap score\n";
-		cout<<"your choice: ";
-		cin>>choice;
-		switch(choice)
+		cout << "Which grade do you want to edit?" << endl;
+		cout << "1.midterm score\n";
+		cout << "2.lap score\n";
+		cout << "your choice: ";
+		cin >> choice;
+		switch (choice)
 		{
-		case 1: 
-			{
-				string exit;
-				do{
-					cout<<"Please enter the new grade: ";
-					cin>>grade;
-					cur->midtermScore=grade;
-					cout<<"Midterm score of "<<cur->id<<" is "<<cur->midtermScore<<endl;
-					cout<<"Is that correct? yes/no";
-					getline(cin,exit);
-				}
-				while(exit!="yes"&&exit!="YES"&&exit!="Yes");
-				break;
-			}
+		case 1:
+		{
+			string exit;
+			do {
+				cout << "Please enter the new grade: ";
+				cin >> grade;
+				cur->midtermScore = grade;
+				cout << "Midterm score of " << cur->id << " is " << cur->midtermScore << endl;
+				cout << "Is that correct? yes/no";
+				getline(cin, exit);
+			} while (exit != "yes"&&exit != "YES"&&exit != "Yes");
+			break;
+		}
 		case 2:
-			{
-				string exit;
-				do{
-					cout<<"Please enter the new grade: ";
-					cin>>grade;
-					cur->labScore=grade;
-					cout<<"Lap score of "<<cur->id<<" is "<<cur->labScore<<endl;
-					cout<<"Is that correct? yes/no";
-					getline(cin,exit);
-				}
-				while(exit!="yes"&&exit!="YES"&&exit!="Yes");
-				break;
-			}
+		{
+			string exit;
+			do {
+				cout << "Please enter the new grade: ";
+				cin >> grade;
+				cur->labScore = grade;
+				cout << "Lap score of " << cur->id << " is " << cur->labScore << endl;
+				cout << "Is that correct? yes/no";
+				getline(cin, exit);
+			} while (exit != "yes"&&exit != "YES"&&exit != "Yes");
+			break;
+		}
 		default:
-			{
-				cout<<"You enter something but nothing happen.\n";
-				cout<<"You feel something wrong with this program\n";
-				cout<<"Program's turn\n";
-				cout<<"Program uses <<SELFDESTRUCT>>\n";
-				cout<<"You lost all your data\n";
-				cout<<"Game over";
-				break;
-			}
+		{
+			cout << "You enter something but nothing happen.\n";
+			cout << "You feel something wrong with this program\n";
+			cout << "Program's turn\n";
+			cout << "Program uses <<SELFDESTRUCT>>\n";
+			cout << "You lost all your data\n";
+			cout << "Game over";
+			break;
+		}
 
 		}
 	}
@@ -1827,16 +1965,28 @@ void EditGrade(Score *&head)
 //30
 void viewscore(Score *head)
 {
-	Score *cur=head;
-	while(cur!=NULL)
+	Score *cur = head;
+	while (cur != NULL)
 	{
-		cout<<"ID: "<<cur->id<<endl;
-		cout<<"Course code: "<<cur->courseCode<<endl;
-		cout<<"Year: "<<cur->academicYear<<endl;
-		cout<<"Semester: "<<cur->semester<<endl;
-		cout<<"Midterm score: "<<cur->midtermScore<<endl;
-		cout<<"Lap Score: "<<cur->labScore<<endl;
-		cur=cur->next;
+		cout << "ID: " << cur->id << endl;
+		cout << "Course code: " << cur->courseCode << endl;
+		cout << "Year: " << cur->academicYear << endl;
+		cout << "Semester: " << cur->semester << endl;
+		cout << "Midterm score: " << cur->midtermScore << endl;
+		cout << "Lap Score: " << cur->labScore << endl;
+		cur = cur->next;
+	}
+}
+//33. View his / her scores of a course
+void viewyourScore(string courseCode, Score *scoreHead, string id)
+{
+	Score * cur = scoreHead;
+	while (cur->next != NULL) {
+		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str()) && !strcmp(cur->id.c_str(), id.c_str())) {
+			cout << setw(10) << "ID" << setw(10) << "Midterm" << setw(10) << "Lab" << endl;
+			cout << setw(10) << cur->id << setw(10) << cur->midtermScore << setw(10) << cur->labScore << endl;
+		}
+		cur = cur->next;
 	}
 }
 
