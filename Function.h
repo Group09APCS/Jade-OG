@@ -159,5 +159,8 @@ void EditGrade(Score *&head);
 void viewscore(Score *head);
 //31
 void checkin(Course*chead, User *Uhead);
+//32
+void viewcheckin(Presence *phead, User *Uhead);
+
 
 #endif // !FUNCTION_H_
