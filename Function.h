@@ -10,8 +10,8 @@
 #include<cstdlib>
 #include<ctime>
 #include<iomanip>
+#include <time.h>
 using namespace std;
-
 struct User {         //if user is a student, username is student ID
 	string userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
 	string fullName;
@@ -114,7 +114,7 @@ void addanewcourse(Course *&chead, string filename);
 //16. Edit an existing course
 void editcourse(Course *&chead, string filename);
 //17. Remove a course
-void removeCourse(Course *head, string courseToRemove);   //use courseCode for courseToRemove
+void removeCourse(Course *&head, string courseToRemove);   //use courseCode for courseToRemove
 void importcoursefromfile(Course* &chead, string filename);
 //18. View list of courses
 void viewcourse(Course*&chead, string f);
@@ -127,11 +127,14 @@ void editcourseschedule(Schedule* shead, string filename);
 //22. Remove a course schedule
 void removeacourseschedule(Schedule*& shead, string filename);
 void findcourseschedule(Schedule* shead, string filename, string name, Schedule* &cur);
+
+//23
+void viewcourseschedule(Schedule * &head, string filename);
 //24. Search and view attendance list of a course
-void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, string *presenceLabel);
+void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel);
 void viewAttendance(string courseCode, Presence *presenceHead);
 //25. Export Attendance list:
-void exportPresence(const char exportFileName[], Presence *presenceHead);
+void exportPresence(string exportFileName, Presence *presenceHead);
 //26. Search and view scoreboard of a course
 void viewScore(string courseCode, Score *scoreHead);
 //27. Export a scoreboard to a csv file
@@ -154,6 +157,7 @@ void ImportScore(Score *&head, string sc);
 void EditGrade(Score *&head);
 //30
 void viewscore(Score *head);
-
+//31
+void checkin(Course*chead,User *Uhead);
 
 #endif // !FUNCTION_H_
