@@ -76,8 +76,8 @@ struct Presence {
 void Import(User *&head);
 void Login(User *&head);
 void showMenu(User *&head, User *&cur);
-
-
+void save(string pathToSaveFile, User *&head);
+void changepass(User *&head, User *&cur);
 
 
 
@@ -125,7 +125,7 @@ void addnewcourseschedule(Schedule* shead, string filename);
 //21.Edit a course schedule
 void editcourseschedule(Schedule* shead, string filename);
 //22. Remove a course schedule
-void removeacourseschedule(Schedule*& shead, string filename);
+void removeacourseschedule(Schedule* shead, string filename);
 void findcourseschedule(Schedule* shead, string filename, string name, Schedule* &cur);
 
 //23
@@ -158,6 +158,6 @@ void EditGrade(Score *&head);
 //30
 void viewscore(Score *head);
 //31
-void checkin(Course*chead,User *Uhead);
+void checkin(Course*chead, User *Uhead);
 
 #endif // !FUNCTION_H_
