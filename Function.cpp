@@ -132,13 +132,15 @@ void Login(User *&head)
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, 12);
-	cout << "	          @@HH00                      00                            MM@@HH      @@HH00" << endl;
-	cout << "	            @@                        HH                          WW      HH  WW" << endl;
-	cout << "	            MM      WWOOMM            @@    WWOOMM                00      @@  00" << endl;
-	cout << "	            OO            MM    00WWOOMM  HH      MM              HH      MM  HH        " << endl;
-	cout << "	            WW      HH00WWOO  @@      OO  @@HH00WWOO    HH00WW    @@      OO  @@    WWOO" << endl;
-	cout << "	    OO      00    MM      WW  MM      WW  MM                      MM      WW  MM      WW" << endl;
-	cout << "	      OOMM@@        MM@@HH00    MM@@HH00    MM@@HH                  MM@@HH      MM@@HH" << endl;
+	cout << "		 `...```......`  ``.....```...`  ``......```...`        `.-:---.`       `.-:---`" << endl;
+	cout << "		 +Nd+: -hMMMMMN+ `.mMMMMMs.-/yNs  .:NMMMMM/.sMMNmh-    -smNMs`:MMmy/`   /hNMm`:MNh:" << endl;
+	cout << "		 os`  `sMMMMMN+    mMMMMMo  . :o   .MMMMMM: /MMMMMd   sMMMMMo .MMMMMh` oMMMMd .MMMMo" << endl;
+	cout << "		  -` `sMMMMMN+     mMMMMMo .y  `   .MMMMMM: +MMMMN+  /MMMMMMo .MMMMMMs yMMMMd .MMMMM." << endl;
+	cout << "		    `yMMMMMN/  `   mMMMMMs:yN      .MMMMMM+:hMMMNo`  oMMMMMMo .MMMMMMd `smNMm`-MMMMM:" << endl;
+	cout << "		   `yMMMMMN/  `y   mMMMMMo  s  /`  .MMMMMM: +MMMMMs  :MMMMMMo .MMMMMMo  -/+::.:MMMMm`" << endl;
+	cout << "		  `yMMMMMN:  :dd   mMMMMMo  ``+N`  .MMMMMM: :MMMMMh.  +NMMMMo .MMMMNs` /NMN+  .MMMd-" << endl;
+	cout << "		  ommmmmm+-/ymmh `.dmmmmmo.:+hmm` .-mmmmmm/``smMMMm+   .+hmNy./Nmds-   -hmm:..+ds:`" << endl;
+	cout << "		  `````````````` ```````````````  ``````````  `.-..       `..`...`       ..```.`" << endl;
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, 6);
@@ -1573,7 +1575,6 @@ void editcourse(Course *&chead, string filename)
 	cout << "Which course do you want edit?\n";
 	cin.ignore();
 	getline(cin, name);
-	findcourse(cur, chead, name);
 	cout << "\n What do you want to edit?\n";
 	cout << "1: Course Code \n";
 	cout << "2: Academic Year \n";
@@ -1588,6 +1589,7 @@ void editcourse(Course *&chead, string filename)
 	int Choice1;
 	cin >> Choice1;
 	string str;
+	findcourse(cur, chead, name);
 	switch (Choice1)
 	{
 	case 1:
@@ -1632,7 +1634,7 @@ void editcourse(Course *&chead, string filename)
 	}
 	case 5:
 	{
-		cout << "Please enter the new Lecturer Name: ";
+		cout << "Please enter the new :ecturer Name: ";
 		cin.ignore();
 		getline(cin, str, '\n');
 		cur->lecturerName = str;
