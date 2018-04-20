@@ -1408,11 +1408,11 @@ void printcout(Course *&chead, const string file)
 void findcourse(Course *&cur, Course *&chead, string name)
 {
 	cur = chead;
-	if (chead->courseName == name)
+	if (chead->courseCode == name)
 		return;
 	else
 	{
-		while (cur != NULL && cur->courseName != name)
+		while (cur != NULL && cur->courseCode != name)
 			cur = cur->next;
 	}
 	if (cur == NULL)
