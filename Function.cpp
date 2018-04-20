@@ -211,6 +211,7 @@ void Login(User *&head)
 //SHOW MENU
 void showMenu(User *&head, User *&cur)
 {
+	system("color 0C");
 	bool check = false;
 	int choice;
 	string password;
@@ -317,6 +318,7 @@ void showMenu(User *&head, User *&cur)
 //STUDENT MENU
 void studentMenu(User *&head, User *&cur)
 {
+	system("color 0A");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
@@ -470,6 +472,7 @@ void studentMenu(User *&head, User *&cur)
 //LECTURER MENU
 void lecturerMenu(User *&head, User *&cur)
 {
+	system("color 0E");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________LECTURER DATABASE_________________________";
@@ -646,6 +649,7 @@ int pass()
 //ACADEMIC STAFF MENU
 void acastaffMenu(User *&head, User*&cur)
 {
+	system("color 09");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________ACADEMIC STAFF DATABASE_________________________";
