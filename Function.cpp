@@ -1,18 +1,18 @@
 #include "Function.h"
 //SAVE USER
 void save(string pathToSaveFile, User *&head) {
-ofstream fout(pathToSaveFile);
-if (!fout.is_open()) {
-return;
-}
+	ofstream fout(pathToSaveFile);
+	if (!fout.is_open()) {
+		return;
+	}
 
-User *cur = head;
-while (cur) {
-	fout << cur->userName << "," << cur->fullName << "," << cur->ID << "," << cur->email << "," << cur->mobilePhone
-		<< "," << cur->type << "," << cur->password << "," <<  cur->className << endl;
+	User *cur = head;
+	while (cur) {
+		fout << cur->userName << "," << cur->fullName << "," << cur->ID << "," << cur->email << "," << cur->mobilePhone
+			<< "," << cur->type << "," << cur->password << "," << cur->className << endl;
 		cur = cur->next;
-}
-fout.close();
+	}
+	fout.close();
 }
 void changepass(User *&head, User *&cur)
 {
@@ -127,7 +127,7 @@ void Login(User *&head)
 	bool check = false;
 	int t = 0;
 	User * cur = head->next;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i <= 3; i++)
 	{
 		cur = head->next;
 		getline(cin, Username);
@@ -143,7 +143,7 @@ void Login(User *&head)
 		if (check == true)
 			break;
 		else
-			cout << "					Mismatched! " << 3 - i << " time(s) remain:";
+			cout << "					Mismatched! " << 3 - i << " time(s) remain: ";
 
 	}
 	if (check == false)
@@ -194,7 +194,7 @@ void Login(User *&head)
 	cout << "					Enter Password: ";
 	check = false;
 	t = 0;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i <= 3; i++)
 	{
 		getline(cin, password);
 		if (password == cur->password)
@@ -202,7 +202,7 @@ void Login(User *&head)
 			check = true;
 			break;
 		}
-		else cout << "					" << 3 - i << "time(s) to try";
+		else cout << "					" << 3 - i << "time(s) to try: ";
 	}
 	if (check == false)
 		exit(0);
@@ -215,14 +215,14 @@ void showMenu(User *&head, User *&cur)
 	int choice;
 	string password;
 	system("cls");
-	cout << "______________________________________________________WELCOME___________________________________________________________" << endl;
+	cout << "\n\n______________________________________________________WELCOME_________________________________________________________" << endl;
 
 	cout << endl
-		<< " 1 - Show the menu.\n"
-		<< " 2 - View info.\n"
-		<< " 3 - Change password.\n"
-		<< " 4 - Exit.\n"
-		<< " What do you want to do: ";
+		<< "\n\n 1 - Show the menu."
+		<< "\n\n 2 - View info."
+		<< "\n\n 3 - Change password."
+		<< "\n\n 4 - Exit."
+		<< "\n\n What do you want to do: ";
 	cin >> choice;
 	switch (choice)
 	{
@@ -232,7 +232,7 @@ void showMenu(User *&head, User *&cur)
 	if (cur->type == "0")
 		studentMenu(head, cur);
 	if (cur->type == "2")
-		lecturerMenu();
+		lecturerMenu(head,cur);
 	break;
 	}
 	case 2:
@@ -296,7 +296,7 @@ void showMenu(User *&head, User *&cur)
 		}
 		}
 		break;
-		
+
 	}
 	case 4:
 	{
@@ -324,8 +324,9 @@ void studentMenu(User *&head, User *&cur)
 	cout << "\n\n 4: Schedule ";
 	cout << "\n\n 5: View your info ";
 	cout << "\n\n 6: Change password ";
-	cout << "\n\n 7: Log out ";
-	cout << "\n\n 8: Exit ";
+	cout << "\n\n 7: Return ";
+	cout << "\n\n 8: Log out ";
+	cout << "\n\n 9: Exit ";
 	cout << "\n\n What do you want to do: ";
 	cin.ignore();
 	cin >> choice;
@@ -344,7 +345,7 @@ void studentMenu(User *&head, User *&cur)
 	{
 		Presence * phead = NULL;
 		string *presenceLabel = new string[5];
-		loadPresence("presence.csv",phead,presenceLabel);
+		loadPresence("presence.csv", phead, presenceLabel);
 		viewcheckin(phead, cur);
 		break;
 	}
@@ -403,43 +404,49 @@ void studentMenu(User *&head, User *&cur)
 			break;
 		}
 		}
+		break;
 	}
 	case 6:
 	{
-			changepass(head, cur);
-			cout << " 1 - Return to the menu.\n";
-			cout << " 2 - Exit. \n";
-			save("user.csv", head);
-			cin >> choice;
-			switch (choice)
-			{
-			case 1:
-			{showMenu(head, cur);
+		changepass(head, cur);
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		save("user.csv", head);
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << "SEEYA!.\n";
+			exit(0);
 			break;
-			}
-			case 2:
-			{
-				cout << "SEEYA!.\n";
-				exit(0);
-				break;
-			}
-			default:
-			{
-				cout << "Not a Valid Choice. \n"
-					<< "Choose again.\n";
-				break;
-			}
-			}
+		}
+		default:
+		{
+			cout << "Not a Valid Choice. \n"
+				<< "Choose again.\n";
+			break;
+		}
+		}
 
 		break;
 	}
 	case 7:
 	{
+		showMenu(head, cur);
+		break;
+	}
+	case 8:
+	{
 		cin.ignore();
 		Login(head);
 		break;
 	}
-	case 8:
+	case 9:
 	{
 		exit(0);
 	}
@@ -455,7 +462,7 @@ void studentMenu(User *&head, User *&cur)
 	studentMenu(head, cur);
 }
 //LECTURER MENU
-void lecturerMenu()
+void lecturerMenu(User *&head, User *&cur)
 {
 	system("cls");
 	int choice;
@@ -464,8 +471,9 @@ void lecturerMenu()
 	cout << "\n\n 2: Edit Grade ";
 	cout << "\n\n 3: Your info ";
 	cout << "\n\n 4: Change password ";
-	cout << "\n\n 5: Log out ";
-	cout << "\n\n 6: Exit ";
+	cout << "\n\n 5: Return ";
+	cout << "\n\n 6: Log out ";
+	cout << "\n\n 7: Exit ";
 	cout << "\n\n What do you want to do: ";
 	cin.ignore();
 	cin >> choice;
@@ -476,7 +484,7 @@ void lecturerMenu()
 	{
 		system("cls");
 		string crse;
-		cout << "which course do you want?: \n";
+		cout << "Which course do you want?: \n";
 		cin >> crse;
 		string coursename = "score_";
 		coursename += crse;
@@ -490,7 +498,7 @@ void lecturerMenu()
 	{
 		system("cls");
 		string crse;
-		cout << "which course do you want?: ";
+		cout << "Which course do you want?: ";
 		cin >> crse;
 		string coursename = "score_";
 		coursename += crse;
@@ -500,6 +508,85 @@ void lecturerMenu()
 		EditGrade(head);
 		break;
 	}
+	case 3:
+	{
+		system("cls");
+		cout << " User Name: " << cur->userName << endl;
+		cout << " Full Name: " << cur->fullName << endl;
+		cout << " ID: " << cur->ID << endl;
+		cout << " Email: " << cur->email << endl;
+		cout << " Phone: " << cur->mobilePhone << endl;
+		cout << " Type: " << cur->type << endl;
+		cout << " Password: " << cur->password << endl;
+		cout << " Class: " << cur->className << endl;
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << " SEEYA!.\n";
+			exit(0);
+			break;
+		}
+		default:
+		{
+			cout << " Not a Valid Choice. \n"
+				<< " Choose again.\n";
+			break;
+		}
+		}
+		break;
+	}
+	case 4:
+	{
+		changepass(head, cur);
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		save("user.csv", head);
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << "SEEYA!.\n";
+			exit(0);
+			break;
+		}
+		default:
+		{
+			cout << "Not a Valid Choice. \n"
+				<< "Choose again.\n";
+			break;
+		}
+		}
+
+		break;
+	}
+	case 5:
+	{
+		showMenu(head, cur);
+		break;
+	}
+	case 6:
+	{
+		cin.ignore();
+		Login(head);
+	}
+	case 7:
+	{
+		exit(0);
+		break;
+	}
 	default:
 	{
 		cout << "Nothing here";
@@ -507,8 +594,10 @@ void lecturerMenu()
 	}
 
 	}
+	system("pause");
+	lecturerMenu(head, cur);
 }
-//GENERATEID (NOT YET COMPLETED)
+//GENERATEID =
 void generateid(string&name, string&Username)
 {
 	int i = name.length() - 1;
@@ -556,9 +645,11 @@ void acastaffMenu(User *&head, User*&cur)
 	cout << "\n\n 3: Courses Schedule ";
 	cout << "\n\n 4: Search for attendance list ";
 	cout << "\n\n 5: Scoreboard ";
-	cout << "\n\n 6: Return ";
-	cout << "\n\n 7: Log out ";
-	cout << "\n\n 8: Exit ";
+	cout << "\n\n 6: View your info ";
+	cout << "\n\n 7: Change password ";
+	cout << "\n\n 8: Return ";
+	cout << "\n\n 9: Log out ";
+	cout << "\n\n 10: Exit ";
 	cout << "\n\n What do you want to do: ";
 	cin >> choice;
 	int newchoice;
@@ -909,16 +1000,80 @@ void acastaffMenu(User *&head, User*&cur)
 	}
 	case 6:
 	{
-		showMenu(head, cur);
+		system("cls");
+		cout << " User Name: " << cur->userName << endl;
+		cout << " Full Name: " << cur->fullName << endl;
+		cout << " ID: " << cur->ID << endl;
+		cout << " Email: " << cur->email << endl;
+		cout << " Phone: " << cur->mobilePhone << endl;
+		cout << " Type: " << cur->type << endl;
+		cout << " Password: " << cur->password << endl;
+		cout << " Class: " << cur->className << endl;
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << " SEEYA!.\n";
+			exit(0);
+			break;
+		}
+		default:
+		{
+			cout << " Not a Valid Choice. \n"
+				<< " Choose again.\n";
+			break;
+		}
+		}
 		break;
 	}
 	case 7:
+	{
+		changepass(head, cur);
+		cout << " 1 - Return to the menu.\n";
+		cout << " 2 - Exit. \n";
+		save("user.csv", head);
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{showMenu(head, cur);
+		break;
+		}
+		case 2:
+		{
+			cout << "SEEYA!.\n";
+			exit(0);
+			break;
+		}
+		default:
+		{
+			cout << "Not a Valid Choice. \n"
+				<< "Choose again.\n";
+			break;
+		}
+		}
+
+		break;
+	}
+	case 8:
+	{
+		showMenu(head, cur);
+		break;
+	}
+	case 9:
 	{
 		cin.ignore();
 		Login(head);
 		break;
 	}
-	case 8:
+	case 10:
 	{
 		exit(0);
 		break;
@@ -2071,7 +2226,7 @@ void viewcheckin(Presence *phead, User *Uhead)
 		{
 			cout << setw(10) << "Week[" << j << "]: ";
 			if (pcur->checkIn[i][j] == 1)
-			cout << setw(10) << "In class" << endl;
+				cout << setw(10) << "In class" << endl;
 			else cout << setw(10) << "Absent" << endl;
 		}
 		system("pause");
