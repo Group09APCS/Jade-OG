@@ -150,7 +150,7 @@ void viewyourScore(string courseCode, Score *scoreHead, string id);
 
 //THIS AREA IS USED FOR LECTURER, AUTHORIZED PERSONNEL ONLY!!!
 //*****LECTURER*****
-void lecturerMenu();
+void lecturerMenu(User *&head, User *&cur);
 //28
 void ImportScore(Score *&head, string sc);
 //29
