@@ -319,12 +319,13 @@ void studentMenu(User *&head, User *&cur)
 	int choice;
 	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
 	cout << "\n\n 1: Check - in ";
-	cout << "\n\n 2: View score for a course ";
-	cout << "\n\n 3: Schedule ";
-	cout << "\n\n 4: View your info ";
-	cout << "\n\n 5: Change password ";
-	cout << "\n\n 6: Log out ";
-	cout << "\n\n 7: Exit ";
+	cout << "\n\n 2: View Check - in Result ";
+	cout << "\n\n 3: View score for a course ";
+	cout << "\n\n 4: Schedule ";
+	cout << "\n\n 5: View your info ";
+	cout << "\n\n 6: Change password ";
+	cout << "\n\n 7: Log out ";
+	cout << "\n\n 8: Exit ";
 	cout << "\n\n What do you want to do: ";
 	cin.ignore();
 	cin >> choice;
@@ -341,6 +342,14 @@ void studentMenu(User *&head, User *&cur)
 	}
 	case 2:
 	{
+		Presence * phead = NULL;
+		string *presenceLabel = new string[5];
+		loadPresence("presence.csv",phead,presenceLabel);
+		viewcheckin(phead, cur);
+		break;
+	}
+	case 3:
+	{
 		system("cls");
 		Score * schead = NULL;
 		ImportScore(schead, "score.csv");
@@ -355,6 +364,13 @@ void studentMenu(User *&head, User *&cur)
 		break;
 	}
 	case 4:
+	{
+		Schedule * schead = NULL;
+		importschedulefromfile(schead, "course.csv");
+		viewcourseschedule(schead, "course.csv");
+		break;
+	}
+	case 5:
 	{
 		system("cls");
 		cout << " User Name: " << cur->userName << endl;
@@ -388,7 +404,7 @@ void studentMenu(User *&head, User *&cur)
 		}
 		}
 	}
-	case 5:
+	case 6:
 	{
 			changepass(head, cur);
 			cout << " 1 - Return to the menu.\n";
@@ -417,13 +433,13 @@ void studentMenu(User *&head, User *&cur)
 
 		break;
 	}
-	case 6:
+	case 7:
 	{
 		cin.ignore();
 		Login(head);
 		break;
 	}
-	case 7:
+	case 8:
 	{
 		exit(0);
 	}
@@ -1682,7 +1698,7 @@ void removeacourseschedule(Schedule * shead, string filename)
 void viewcourseschedule(Schedule * &head, string filename)
 {
 	Schedule *cur = head;
-	cout << "Hom nay la thu may? \n (Mon for Monday,...)";
+	cout << "What day is today? \n (Mon for Monday,...)";
 	string  day;
 	getline(cin, day);
 	while (day != "Mon" && day != "Tue" && day != "Wed" && day != "Thu" && day != "Fri" && day != "Sat" && day != "Sun")
@@ -1803,16 +1819,6 @@ void exportPresence(string exportFileName, Presence *presenceHead) {
 	}
 	fout.close();
 }
-/*ông thêm vào main khi chạy thử:
-
-Presence *presenceHead = NULL;
-string *presenceLabel = new string[5];
-//24
-loadPresence("presence.csv", presenceHead, presenceLabel);
-viewAttendance("Nope", presenceHead);
-//25
-exportPresence("exportAttendance.csv", presenceHead);
-*/
 
 //26. Search and view scoreboard of a course
 void viewScore(string courseCode, Score *scoreHead) { //ask user to input courseCode they want to view score
@@ -2049,6 +2055,26 @@ void checkin(Course*chead, User *Uhead)
 			system("pause");
 		}
 		exportPresence(coursename, pHead);
+	}
+}
+//32
+void viewcheckin(Presence *phead, User *Uhead)
+{
+	string ID = Uhead->ID;
+	Presence * pcur = phead;
+	int i = 0;
+	if (pcur != NULL)
+	{
+		while (pcur->frame[i][0] != ID)
+			i++;
+		for (int j = 0; j < 10; j++)
+		{
+			cout << setw(10) << "Week[" << j << "]: ";
+			if (pcur->checkIn[i][j] == 1)
+			cout << setw(10) << "In class" << endl;
+			else cout << setw(10) << "Absent" << endl;
+		}
+		system("pause");
 	}
 }
 //33. View his / her scores of a course
