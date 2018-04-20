@@ -810,37 +810,37 @@ void acastaffMenu(User *&head, User*&cur)
 	int richchoi;
 	cin >> richchoi;
 	switch (richchoi)
-	{
-	case 1:
-	{
-		shead = NULL;
-		importschedulefromfile(shead, "course.csv");
-		cout << "Done!";
-		acastaffMenu(head, cur);
-		break;
-	}
-	case 2:
-	{
-		addnewcourseschedule(shead, "course.csv");
-		cout << "Done!";
-		acastaffMenu(head, cur);
-		break;
-	}
-	case 3:
-	{
-
-	}
-	case 4:
-	{
-		editcourseschedule(shead, "course.csv");
-		break;
-	}
-	case 5:
-	{
-		removeacourseschedule(shead, "course.csv");
-		break;
-	}
-	}
+		{
+			case 1:
+			{
+				shead = NULL;
+				importschedulefromfile(shead, "course.csv");
+				cout << "Done!";
+				acastaffMenu(head, cur);
+				break;
+			}
+			case 2:
+			{
+				addnewcourseschedule(shead, "course.csv");
+				cout << "Done!";
+				acastaffMenu(head, cur);
+				break;
+			}
+			case 3:
+			{
+					
+			}
+			case 4:
+			{
+				editcourseschedule(shead, "course.csv");
+				break;
+			}
+			case 5:
+			{
+				removeacourseschedule(shead, "course.csv");
+				break;
+			}
+		}
 	}
 	//**************************** PRESENCE ****************************
 	case 4:
