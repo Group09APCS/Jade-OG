@@ -273,6 +273,7 @@ void showMenu(User *&head, User *&cur)
 	case 3:
 	{
 		changepass(head, cur);
+		cout << "Done! \n";
 		cout << " 1 - Return to the menu.\n";
 		cout << " 2 - Exit. \n";
 		save("user.csv", head);
@@ -340,6 +341,7 @@ void studentMenu(User *&head, User *&cur)
 		Course * chead = NULL;
 		importcoursefromfile(chead, "course.csv");
 		checkin(chead, cur);
+		cout << "Done! \n";
 		break;
 	}
 	case 2:
@@ -348,6 +350,7 @@ void studentMenu(User *&head, User *&cur)
 		string *presenceLabel = new string[5];
 		loadPresence("presence.csv", phead, presenceLabel);
 		viewcheckin(phead, cur);
+		cout << "Done! \n";
 		break;
 	}
 	case 3:
@@ -370,6 +373,7 @@ void studentMenu(User *&head, User *&cur)
 		Schedule * schead = NULL;
 		importschedulefromfile(schead, "course.csv");
 		viewcourseschedule(schead, "course.csv");
+		cout << "Done! \n";
 		break;
 	}
 	case 5:
@@ -410,6 +414,7 @@ void studentMenu(User *&head, User *&cur)
 	case 6:
 	{
 		changepass(head, cur);
+		cout << "Done! \n";
 		cout << " 1 - Return to the menu.\n";
 		cout << " 2 - Exit. \n";
 		save("user.csv", head);
@@ -493,6 +498,7 @@ void lecturerMenu(User *&head, User *&cur)
 		Score *head = NULL;
 		ImportScore(head, coursename);
 		viewscore(head);
+		cout << "Done! \n";
 		break;
 	}
 	case 2:
@@ -507,6 +513,7 @@ void lecturerMenu(User *&head, User *&cur)
 		Score *head = NULL;
 		ImportScore(head, coursename);
 		EditGrade(head);
+		cout << "Done! \n";
 		break;
 	}
 	case 3:
@@ -547,6 +554,7 @@ void lecturerMenu(User *&head, User *&cur)
 	case 4:
 	{
 		changepass(head, cur);
+		cout << "Done! \n";
 		cout << " 1 - Return to the menu.\n";
 		cout << " 2 - Exit. \n";
 		save("user.csv", head);
@@ -686,6 +694,7 @@ void acastaffMenu(User *&head, User*&cur)
 			while (cl != "1" && cl != "2")
 				getline(cin, cl);
 			cout << "Successful! Return to menu... \n";
+			system("pause");
 			showMenu(head, cur);
 		}
 		//7. Add a new student to a class
@@ -710,7 +719,7 @@ void acastaffMenu(User *&head, User*&cur)
 				addnewstudent(head2, css);
 				printout(head2, "17CTT1.csv");
 			}
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//8. Edit an existing student
@@ -735,7 +744,8 @@ void acastaffMenu(User *&head, User*&cur)
 				string unscs = "17CTT1.csv";
 				editastudent(head2, head1, scs, unscs);
 			}
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
+			break;
 		}
 		//9. Remove a student
 		case 4:
@@ -771,7 +781,8 @@ void acastaffMenu(User *&head, User*&cur)
 				break;
 			}
 			}
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
+			break;
 		}
 		//10. Change Class (Binh sua lai nha)
 		case 5:
@@ -784,7 +795,7 @@ void acastaffMenu(User *&head, User*&cur)
 		{
 			system("cls");
 			newclass();
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//12. View list of classes (Phuong sua lai nha)
@@ -792,7 +803,7 @@ void acastaffMenu(User *&head, User*&cur)
 		{
 			listOfClass(head);
 			system("pause");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//13. View list of students in a class
@@ -804,9 +815,11 @@ void acastaffMenu(User *&head, User*&cur)
 			cin.ignore();
 			getline(cin, nme);
 			listOfStudent(head, nme);
+			cout << "Done! \n";
+			break;
+		}
 		}
 		break;
-		}
 	}
 	//***************************   COURSE   ***************************
 	case 2:
@@ -829,7 +842,7 @@ void acastaffMenu(User *&head, User*&cur)
 			system("cls");
 			Course * chead = NULL;
 			importcoursefromfile(chead, "course.csv");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//15. Add a new course
@@ -837,7 +850,7 @@ void acastaffMenu(User *&head, User*&cur)
 		{
 			system("cls");
 			addanewcourse(chead, "course.csv");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//16. Edit an existing course
@@ -845,7 +858,7 @@ void acastaffMenu(User *&head, User*&cur)
 		{
 			system("cls");
 			editcourse(chead, "course.csv");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//17. Remove a course
@@ -858,7 +871,7 @@ void acastaffMenu(User *&head, User*&cur)
 			getline(cin, c);
 			removeCourse(chead, c);
 			printcout(chead, "course.csv");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		//18. View list of courses
@@ -867,10 +880,11 @@ void acastaffMenu(User *&head, User*&cur)
 			system("cls");
 			viewcourse(chead, "course.csv");
 			system("pause");
-			acastaffMenu(head, cur);
+			cout << "Done! \n";
 			break;
 		}
 		}
+		break;
 	}
 	//*************************** SCHEDULE *****************************
 	case 3:
@@ -919,8 +933,6 @@ void acastaffMenu(User *&head, User*&cur)
 		break;
 	}
 	}
-	system("pause");
-	acastaffMenu(head, cur);
 	}
 	//**************************** PRESENCE ****************************
 	case 4:
@@ -954,8 +966,6 @@ void acastaffMenu(User *&head, User*&cur)
 			break;
 		}
 		}
-		system("pause");
-		acastaffMenu(head, cur);
 	}
 	//**************************** SCORE *******************************
 	case 5:
@@ -996,8 +1006,6 @@ void acastaffMenu(User *&head, User*&cur)
 			break;
 		}
 		}
-		system("pause");
-		acastaffMenu(head, cur);
 	}
 	case 6:
 	{
@@ -1037,6 +1045,7 @@ void acastaffMenu(User *&head, User*&cur)
 	case 7:
 	{
 		changepass(head, cur);
+		cout << "Done! \n";
 		cout << " 1 - Return to the menu.\n";
 		cout << " 2 - Exit. \n";
 		save("user.csv", head);
@@ -1086,6 +1095,8 @@ void acastaffMenu(User *&head, User*&cur)
 		break;
 	}
 	}
+	system("pause");
+	acastaffMenu(head, cur);
 }
 //PRINT OUT STUDENT
 void printout(Student *&head, const string file)
