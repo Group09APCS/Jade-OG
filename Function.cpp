@@ -1724,20 +1724,22 @@ void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, stri
 			getline(fin, temp, '\n');
 			for (int y1 = 0; y1 < 11; ++y1) {
 				getline(fin, presenceHead->frame[x1][y1], ',');
-				if (y1 == 10) {
-					getline(fin, presenceHead->frame[x1][y1], '\n');
-				}
+				//if (y1 == 10) {
+				//	getline(fin, presenceHead->frame[x1][y1], '\n');
+				//}
+				
 			}
+			getline(fin, temp, '\n');
 			cout << endl;
 
 			for (int x1 = 1; x1 < 105; ++x1) {
 				getline(fin, presenceHead->frame[x1][y1], ',');
 
-				for (int y2 = 0; y2 < 10; ++y2) {
+				for (int y2 = 1; y2 < 11; ++y2) {
 					fin >> presenceHead->checkIn[x2][y2];
 					fin >> comma; //just to skip comma
 				}
-				getline(fin, temp, '\n');
+				
 			}
 			cur = presenceHead;
 			cur->next = NULL;
@@ -1754,16 +1756,13 @@ void viewAttendance(string courseCode, Presence *presenceHead) { //ask user for 
 
 	int x1 = 0, y1 = 0, x2 = 1, y2 = 1;  //x1, y1 for frame and x2, y2 for check-in number
 	for (int y1 = 0; y1 < 11; ++y1) {
-		cout << setw(10) << presenceHead->frame[x1][y1] << " ";
-		/*if (y1 == 10) {
-		cout << presenceHead->frame[x1][y1] << " ";
-		}*/
+		cout << setw(7) << presenceHead->frame[x1][y1] << " ";
 	}
-	cout << endl;
+	cout << endl << endl << endl << endl;
 	for (int x1 = 1; x1 < 53; ++x1) {
-		cout << setw(10) << presenceHead->frame[x1][y1] << " ";
-		for (int y2 = 0; y2 < 10; ++y2) {
-			cout << setw(10) << presenceHead->checkIn[x2][y2] << " ";
+		cout << setw(7) << presenceHead->frame[x1][y1] << " ";
+		for (int y2 = 1; y2 < 11; ++y2) {
+			cout << setw(7) << presenceHead->checkIn[x2][y2] << " ";
 		}
 		cout << endl;
 	}
