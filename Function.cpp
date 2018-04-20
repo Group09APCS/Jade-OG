@@ -132,7 +132,7 @@ void Login(User *&head)
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
 	SetConsoleTextAttribute(hConsole, 12);
-	cout << "		 `...```......`  ``.....```...`  ``......```...`        `.-:---.`       `.-:---`" << endl;
+	cout << "		  `...```......`  ``.....```...`  ``......```...`        `.-:---.`       `.-:---`" << endl;
 	cout << "		 +Nd+: -hMMMMMN+ `.mMMMMMs.-/yNs  .:NMMMMM/.sMMNmh-    -smNMs`:MMmy/`   /hNMm`:MNh:" << endl;
 	cout << "		 os`  `sMMMMMN+    mMMMMMo  . :o   .MMMMMM: /MMMMMd   sMMMMMo .MMMMMh` oMMMMd .MMMMo" << endl;
 	cout << "		  -` `sMMMMMN+     mMMMMMo .y  `   .MMMMMM: +MMMMN+  /MMMMMMo .MMMMMMs yMMMMd .MMMMM." << endl;
