@@ -168,6 +168,9 @@ void viewscore(Score *head);
 void checkin(Course*chead, User *Uhead);
 //32
 void viewcheckin(Presence *phead, User *Uhead);
-
+void zero9();
 
 #endif // !FUNCTION_H_
+
+
+
