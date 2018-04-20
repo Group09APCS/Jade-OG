@@ -1847,7 +1847,7 @@ void viewScore(string courseCode, Score *scoreHead) { //ask user to input course
 	Score *cur = scoreHead;
 	cout << "Scoreboard of " << courseCode << " course, " << "semester " << cur->semester
 		<< ", academic year: " << cur->academicYear << endl;
-	cout << setw(10) << "ID" << setw(10) << "Midterm Score" << setw(10) << "Lab Score" << endl;
+	cout << setw(10) << "ID" << setw(20) << "Midterm Score" << setw(20) << "Lab Score" << endl;
 	while (cur->next != NULL) {
 		if (!strcmp(cur->courseCode.c_str(), courseCode.c_str())) {
 			cout << setw(10) << cur->id << setw(20) << cur->midtermScore << setw(20) << cur->labScore << endl;
