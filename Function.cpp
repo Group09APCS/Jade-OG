@@ -328,9 +328,9 @@ void studentMenu(User *&head, User *&cur)
 	case 1:
 	{
 		system("cls");
-		Course * chead =NULL;
+		Course * chead = NULL;
 		importcoursefromfile(chead, "course.csv");
-		checkin(chead,cur);
+		checkin(chead, cur);
 		break;
 	}
 	case 2:
@@ -504,7 +504,7 @@ void lecturerMenu()
 		system("cls");
 		string crse;
 		cout << "which course do you want?: ";
-		cin>>crse;
+		cin >> crse;
 		string coursename = "score_";
 		coursename += crse;
 		coursename += ".csv";
@@ -813,7 +813,6 @@ void acastaffMenu(User *&head, User*&cur)
 		shead = NULL;
 		importschedulefromfile(shead, "course.csv");
 		cout << "Done!";
-		acastaffMenu(head, cur);
 		break;
 	}
 	case 2:
@@ -824,23 +823,25 @@ void acastaffMenu(User *&head, User*&cur)
 	}
 	case 3:
 	{
-		viewcourseschedule(shead,"course.csv");
+		viewcourseschedule(shead, "course.csv");
 		cout << "Done!";
 		break;
 	}
 	case 4:
 	{
 		editcourseschedule(shead, "course.csv");
+		cout << "Done!";
 		break;
 	}
 	case 5:
 	{
 		removeacourseschedule(shead, "course.csv");
+		cout << "Done!";
 		break;
 	}
 	}
 	system("pause");
-			acastaffMenu(head, cur);
+	acastaffMenu(head, cur);
 	}
 	//**************************** PRESENCE ****************************
 	case 4:
@@ -942,7 +943,7 @@ void acastaffMenu(User *&head, User*&cur)
 		break;
 	}
 	}
-	}
+}
 //PRINT OUT STUDENT
 void printout(Student *&head, const string file)
 {
@@ -1127,59 +1128,59 @@ void changeclass(Student  *&head1, Student *&head2)
 	cin.ignore();
 	getline(std::cin, studentID);
 	Student*cur = head1;
-	if (studentID.compare(cur->ID)==0)
+	if (studentID.compare(cur->ID) == 0)
 	{
-		Student *temp =cur;
-		head1=cur->next;
+		Student *temp = cur;
+		head1 = cur->next;
 		delete temp;
 	}
 	else
 	{
-	while (studentID.compare(cur->next->ID) != 0 && cur->next != NULL)
-	{
-		cur = cur->next;
-	}
-	if (cur->next == NULL&&studentID.compare(cur->next->ID) != 0)
-	{
-		cout << "That student is not in this class";
-	}
-	else
-	{
+		while (studentID.compare(cur->next->ID) != 0 && cur->next != NULL)
 		{
-			
-			Student *temp = new Student;
-			temp = cur->next;
-			cur->next = cur->next->next;
-			Student*cur2 = head2;
-			while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
-				cur2 = cur2->next;
-			if (cur2->next == NULL)
-			{
-				cur2->next = new Student;
-				cur2 = cur2->next;
-				cur2->ID = temp->ID;
-				cur2->fullName = temp->fullName;
-				cur2->email = temp->email;
-				cur2->sclass = "17CTT2";
-				cur2->next = NULL;
-				cout << "Added student in the end of the class";
-			}
-			else
-			{
-				Student *temp2 = new Student;
-				temp2->ID = temp->ID;
-				temp2->fullName = temp->fullName;
-				temp2->email = temp->email;
-				temp2->sclass = "17CTT2";
-				temp2->next = cur2->next;
-				cur2->next = temp2;
-				cur2 = cur2->next;
-				cout << "Done!";
-			}
-			delete temp;
+			cur = cur->next;
 		}
+		if (cur->next == NULL&&studentID.compare(cur->next->ID) != 0)
+		{
+			cout << "That student is not in this class";
+		}
+		else
+		{
+			{
 
-	}
+				Student *temp = new Student;
+				temp = cur->next;
+				cur->next = cur->next->next;
+				Student*cur2 = head2;
+				while (studentID.compare(cur2->ID)<0 && cur2->next != NULL)
+					cur2 = cur2->next;
+				if (cur2->next == NULL)
+				{
+					cur2->next = new Student;
+					cur2 = cur2->next;
+					cur2->ID = temp->ID;
+					cur2->fullName = temp->fullName;
+					cur2->email = temp->email;
+					cur2->sclass = "17CTT2";
+					cur2->next = NULL;
+					cout << "Added student in the end of the class";
+				}
+				else
+				{
+					Student *temp2 = new Student;
+					temp2->ID = temp->ID;
+					temp2->fullName = temp->fullName;
+					temp2->email = temp->email;
+					temp2->sclass = "17CTT2";
+					temp2->next = cur2->next;
+					cur2->next = temp2;
+					cur2 = cur2->next;
+					cout << "Done!";
+				}
+				delete temp;
+			}
+
+		}
 	}
 	printout(head1, "1.csv");
 	printout(head2, "2.csv");
@@ -1499,7 +1500,7 @@ void removeCourse(Course *&head, string courseToRemove) {  //use courseCode for 
 		if (cur->next->courseCode == courseToRemove) {
 			cur->next = cur->next->next;
 		}
-		cur=cur->next;
+		cur = cur->next;
 	}
 	if (cur->next->next == NULL
 		&& cur->next->courseCode == courseToRemove) {
@@ -1520,7 +1521,7 @@ void viewcourse(Course*&chead, string f)
 		cout << cur->courseName << endl;
 		cout << "Lecturer Name: ";
 		cout << cur->lecturerName << endl;
-		cur=cur->next;
+		cur = cur->next;
 		i++;
 	}
 }
@@ -1712,20 +1713,20 @@ void viewcourseschedule(Schedule * &head, string filename)
 	Schedule *cur = head;
 	cout << "Hom nay la thu may? \n (Mon for Monday,...)";
 	string  day;
-	getline(cin,day);
-	while (day != "Mon" && day != "Tue" && day != "Wed" && day != "Thu" && day != "Fri" && day!= "Sat" && day!= "Sun")
+	getline(cin, day);
+	while (day != "Mon" && day != "Tue" && day != "Wed" && day != "Thu" && day != "Fri" && day != "Sat" && day != "Sun")
 	{
 		cout << "Again \n";
-		getline(cin,day);
+		getline(cin, day);
 	}
 	while (cur != NULL)
 	{
 		if (cur->dayOfWeek == day)
 		{
-		cout << "Course Code:" << cur ->courseCode << endl;
-		cout << "Day:" << cur->dayOfWeek << endl;
-		cout << "Start Hour:" << cur->startHour << endl;
-		cout << "End Hour:" << cur ->endHour << endl;
+			cout << "Course Code:" << cur->courseCode << endl;
+			cout << "Day:" << cur->dayOfWeek << endl;
+			cout << "Start Hour:" << cur->startHour << endl;
+			cout << "End Hour:" << cur->endHour << endl;
 		}
 		cur = cur->next;
 	}
@@ -2005,78 +2006,78 @@ void viewscore(Score *head)
 		cout << "Course code: " << cur->courseCode << endl;
 		cout << "Year: " << cur->academicYear << endl;
 		cout << "Semester: " << cur->semester << endl;
-		cout << "Midterm score: " << cur->midtermScore << endl;
-		cout << "Lap Score: " << cur->labScore << endl;
+		cout << "Midterm core: " << cur->midtermScore << endl;
+		cout << "Lab Score: " << cur->labScore << endl;
 		cur = cur->next;
 	}
 }
 //31
-void checkin(Course*chead,User *Uhead)
+void checkin(Course*chead, User *Uhead)
 {
-	Course *cur=chead;
+	Course *cur = chead;
 	string Ccode;
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
 	int day = ltm->tm_wday;
 	string wday;
 
-	if (day==0)
-		wday="Sun";
-	else if (day==1)
-		wday="Mon";
-	else if (day==2)
-		wday="Tue";
-	else if (day==3)
-		wday="Wed";
-	else if (day==4)
-		wday="Thu";
-	else if (day==5)
-		wday="Fri";
-	else if (day==6)
-		wday="Sat";
-	string shour = to_string(ltm->tm_hour)+"h";
-	if(ltm->tm_min<10)
-		shour+="0"+to_string(ltm->tm_min);
+	if (day == 0)
+		wday = "Sun";
+	else if (day == 1)
+		wday = "Mon";
+	else if (day == 2)
+		wday = "Tue";
+	else if (day == 3)
+		wday = "Wed";
+	else if (day == 4)
+		wday = "Thu";
+	else if (day == 5)
+		wday = "Fri";
+	else if (day == 6)
+		wday = "Sat";
+	string shour = to_string(ltm->tm_hour) + "h";
+	if (ltm->tm_min<10)
+		shour += "0" + to_string(ltm->tm_min);
 	else
-		shour+=to_string(ltm->tm_min);
-	while(cur!=NULL)
+		shour += to_string(ltm->tm_min);
+	while (cur != NULL)
 	{
-		if(cur->dayOfWeek==wday)
-			if(shour<cur->endHour&&shour>cur->startHour)
+		if (cur->dayOfWeek == wday)
+			if (shour<cur->endHour&&shour>cur->startHour)
 			{
-				 Ccode=cur->courseCode;		
-				 break;
+				Ccode = cur->courseCode;
+				break;
 			}
-		cur=cur->next;
+		cur = cur->next;
 	}
-	if (cur==NULL)
-		cout<<"You don't have class today,CHILL\n";
-	else{
+	if (cur == NULL)
+		cout << "You don't have class today,CHILL\n";
+	else {
 		string coursename = "presence_";
 		coursename += Ccode;
 		coursename += ".csv";
 		Presence *pHead = NULL;
 		string *presenceLabel = new string[5];
-		loadPresence(coursename,pHead,presenceLabel);
-		Presence *pcur=pHead;
-		string ID=Uhead->ID;
-		int i=0;
-		if(pcur!=NULL)
+		loadPresence(coursename, pHead, presenceLabel);
+		Presence *pcur = pHead;
+		string ID = Uhead->ID;
+		int i = 0;
+		if (pcur != NULL)
 		{
-			while (pcur->frame[i][0]!=ID)
+			while (pcur->frame[i][0] != ID)
 				i++;
-			if (pcur->checkIn[i][10]==0)
+			if (pcur->checkIn[i][10] == 0)
 			{
-				pcur->checkIn[i][10]=1;
-				cout<<"Welcome to class "<<Ccode<<endl;
+				pcur->checkIn[i][10] = 1;
+				cout << "Welcome to class " << Ccode << endl;
 			}
 			else
 			{
-				cout<<"Stop checkin this class you idiots!!!\n";
+				cout << "Stop checkin this class you idiots!!!\n";
 			}
 			system("pause");
 		}
-		exportPresence(coursename,pHead);
+		exportPresence(coursename, pHead);
 	}
 }
 //33. View his / her scores of a course
