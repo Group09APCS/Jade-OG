@@ -1415,6 +1415,18 @@ void findcourse(Course *&cur, Course *&chead, string name)
 		while (cur != NULL && cur->courseName != name)
 			cur = cur->next;
 	}
+	if (cur == NULL)
+	{
+		cout << "This course is not exist" << endl;
+		string name2;
+		cout << "Please input exactly the Course Code: " << endl;
+		getline(cin, name2, '\n');
+		findcourse(cur, chead, name2);
+	}
+	else
+	{
+		cout << "Course found!\n";
+	}
 }
 //14. Import courses from a csv file
 void importcoursefromfile(Course * &chead, string filename)
