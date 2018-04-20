@@ -56,8 +56,14 @@ void changepass(User *&head, User *&cur)
 		Login(head);
 	}
 }
-
-
+void slowprint(const string& message, unsigned int millis_per_char)
+{
+	for (const char c : message)
+	{
+		cout << c << flush;
+		sleep_for(milliseconds(millis_per_char));
+	}
+}
 //IMPORT USER
 void Import(User *&head)
 {
@@ -123,7 +129,7 @@ void Login(User *&head)
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "	********************************************************************************************" << endl;
 	cout << "						<<LOGIN>>" << endl;
-	cout << "					Enter UserName: ";
+	slowprint("					Enter UserName: ",30);
 	bool check = false;
 	int t = 0;
 	User * cur = head->next;
@@ -191,7 +197,7 @@ void Login(User *&head)
 		}
 		}
 	}
-	cout << "					Enter Password: ";
+	slowprint("					Enter Password: ",30);
 	check = false;
 	t = 0;
 	for (int i = 0; i <= 3; i++)
@@ -206,11 +212,24 @@ void Login(User *&head)
 	}
 	if (check == false)
 		exit(0);
+	std::cout << "					Loading Please Wait";
+	for (int i=0;i<10;i++)
+	{
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "\b\b\b   \b\b\b" << std::flush;
+	}
 	showMenu(head, cur);
 }
 //SHOW MENU
 void showMenu(User *&head, User *&cur)
 {
+	system("color 0C");
 	bool check = false;
 	int choice;
 	string password;
@@ -317,6 +336,7 @@ void showMenu(User *&head, User *&cur)
 //STUDENT MENU
 void studentMenu(User *&head, User *&cur)
 {
+	system("color 0A");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________STUDENT DATABASE_________________________";
@@ -470,6 +490,7 @@ void studentMenu(User *&head, User *&cur)
 //LECTURER MENU
 void lecturerMenu(User *&head, User *&cur)
 {
+	system("color 0E");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________LECTURER DATABASE_________________________";
@@ -646,6 +667,8 @@ int pass()
 //ACADEMIC STAFF MENU
 void acastaffMenu(User *&head, User*&cur)
 {
+
+	system("color 09");
 	system("cls");
 	int choice;
 	cout << "\n\n  _________________________ACADEMIC STAFF DATABASE_________________________";
@@ -1900,6 +1923,64 @@ void viewcourseschedule(Schedule * &head, string filename)
 //******************************ATTENDANCE LIST*******************************
 //IMPORT
 //24. Search and view attendance list of a course
+//LOADSAVEPRE
+void loadpre(string path, Presence *&pHead)
+{
+	ifstream fin(path);
+	if (!fin.is_open()) {
+		return;
+	}
+	string notuse;
+	string temp1, temp2;
+	int temp3;
+	pHead = new Presence;
+	getline(fin, notuse);
+	getline(fin, temp1, ',');
+	getline(fin, temp2, ',');
+	fin >> temp3;
+	pHead->courseCode = temp1;
+	pHead->academicYear = temp2;
+	pHead->semester = temp3;
+	getline(fin, notuse);
+	getline(fin, notuse);
+	for (int y = 0; y<103; y)
+	{
+		int x = 0;
+		getline(fin, pHead->frame[y][x], ',');
+		for (x = 0; x<9; x)
+		{
+			fin >> pHead->checkIn[y][x];
+			fin.ignore(10, ',');
+		}
+		fin >> pHead->checkIn[y][x];
+		fin.ignore(10, '\n');
+	}
+	fin.close();
+}
+void savepre(string path, Presence *pHead)
+{
+	ofstream fout;
+	fout.open(path);
+	if (!fout.is_open())
+	{
+		return;
+	}
+	Presence *cur = pHead;
+	fout << "Course Code,Academic Year,Semester" << endl;
+	fout << cur->courseCode << "," << cur->academicYear << "," << cur->semester << endl;
+	fout << "Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10" << endl;
+	for (int y = 0; y<103; y)
+	{
+		int x = 0;
+		fout << cur->frame[y][x] << ",";
+		for (x = 0; x<9; x)
+			fout << cur->checkIn[y][x] << ",";
+		fout << cur->checkIn[y][x] << '\n';
+	}
+	cur = cur->next;
+	fout.close();
+}
+
 void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel) {
 	ifstream fin;
 	fin.open(pathToPresenceFile);
@@ -1945,39 +2026,7 @@ void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *pr
 	}
 	fin.close();
 }
-void loadpre(string path,Presence *&pHead)
-{
-	ifstream fin(path);
-	if (!fin.is_open()) {
-		return;
-	}
-	string notuse;
-	string temp1, temp2;
-	int temp3;
-		pHead=new Presence;
-		getline(fin, notuse);
-		getline(fin, temp1, ',');
-		getline(fin, temp2, ',');
-		fin >> temp3;
-		pHead->courseCode=temp1;
-		pHead->academicYear=temp2;
-		pHead->semester=temp3;
-		getline(fin,notuse);
-		getline(fin,notuse);
-		for(int y=0;y<103;y++)
-		{
-			int x=0;
-			getline(fin,pHead->frame[y][x],',');
-			for(x=0;x<9;x++)
-			{
-				fin>>pHead->checkIn[y][x];
-				fin.ignore(10,',');
-			}
-			fin>>pHead->checkIn[y][x];
-			fin.ignore(10,'\n');
-		}
-	fin.close();
-}
+
 void viewAttendance(string courseCode, Presence *presenceHead) { //ask user for courseCode they want to to view attendance list                                                             
 	cout << "This is the Attendance List for the course: "
 		<< courseCode << endl
@@ -2030,27 +2079,7 @@ void exportPresence(string exportFileName, Presence *presenceHead) {
 	}
 	fout.close();
 }
-void savepre(string path,Presence *pHead)
-{
-	ofstream fout;
-	fout.open(path);
-	if(!fout.is_open())
-	{return;}
-	Presence *cur=pHead;
-		fout<<"Course Code,Academic Year,Semester"<<endl;
-		fout<<cur->courseCode<<","<<cur->academicYear<<","<<cur->semester<<endl;
-		fout<<"Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10"<<endl;
-		for(int y=0;y<103;y++)
-		{
-			int x=0;
-			fout<<cur->frame[y][x]<<",";
-			for(x=0;x<9;x++)
-				fout<<cur->checkIn[y][x]<<",";
-			fout<<cur->checkIn[y][x]<<'\n';
-		}
-		cur=cur->next;
-	fout.close();
-}
+
 //26. Search and view scoreboard of a course
 void viewScore(string courseCode, Score *scoreHead) { //ask user to input courseCode they want to view score
 	Score *cur = scoreHead;
@@ -2220,72 +2249,78 @@ void viewscore(Score *head)
 	}
 }
 //31
-void checkin(Course*chead,User *Uhead)
+void checkin(Course*chead, User *Uhead)
 {
-	Course *cur=chead;
+	Course *cur = chead;
 	string Ccode;
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
 	int day = ltm->tm_wday;
 	string wday;
 
-	if (day==0)
-		wday="Sun";
-	else if (day==1)
-		wday="Mon";
-	else if (day==2)
-		wday="Tue";
-	else if (day==3)
-		wday="Wed";
-	else if (day==4)
-		wday="Thu";
-	else if (day==5)
-		wday="Fri";
-	else if (day==6)
-		wday="Sat";
-	string shour = to_string(ltm->tm_hour)+"h";
-	if(ltm->tm_min<10)
-		shour+="0"+to_string(ltm->tm_min);
+	if (day == 0)
+		wday = "Sun";
+	else if (day == 1)
+		wday = "Mon";
+	else if (day == 2)
+		wday = "Tue";
+	else if (day == 3)
+		wday = "Wed";
+	else if (day == 4)
+		wday = "Thu";
+	else if (day == 5)
+		wday = "Fri";
+	else if (day == 6)
+		wday = "Sat";
+	string shour = to_string(ltm->tm_hour) + "h";
+	if (ltm->tm_min<10)
+		shour += "0" + to_string(ltm->tm_min);
 	else
-		shour+=to_string(ltm->tm_min);
-	while(cur!=NULL)
+		shour += to_string(ltm->tm_min);
+	while (cur != NULL)
 	{
-		if(cur->dayOfWeek==wday)
-			if(shour<cur->endHour&&shour>cur->startHour)
+		if (cur->dayOfWeek == wday)
+			if (shour<cur->endHour&&shour>cur->startHour)
 			{
-				 Ccode=cur->courseCode;		
-				 break;
+				Ccode = cur->courseCode;
+				break;
 			}
-		cur=cur->next;
+		cur = cur->next;
 	}
-	if (cur==NULL)
-		cout<<"You don't have class today,CHILL\n";
-	else{
+	if (cur == NULL)
+		cout << "You don't have class today,CHILL\n";
+	else {
 		string coursename = "presence_";
 		coursename += Ccode;
 		coursename += ".csv";
 		Presence *pHead = NULL;
 		string *presenceLabel = new string[5];
-		loadpre(coursename,pHead);
-		Presence *pcur=pHead;
-		string ID=Uhead->ID;
-		int i=0;
-		if(pcur!=NULL)
+		loadPresence(coursename, pHead, presenceLabel);
+		Presence *pcur = pHead;
+		string ID = Uhead->ID;
+		int i = 0;
+		if (pcur != NULL)
 		{
-			while (pcur->frame[i][0]!=ID)
+			loadpre(coursename, pHead);
+			Presence *pcur = pHead;
+			string ID = Uhead->ID;
+			int i = 0;
+			if (pcur != NULL)
+			while (pcur->frame[i][0] != ID)
 				i++;
-			if (pcur->checkIn[i][9]==0)
+			if (pcur->checkIn[i][10] == 0)
 			{
-				pcur->checkIn[i][9]=1;
-				cout<<"Welcome to class "<<Ccode<<endl;
+				pcur->checkIn[i][10] = 1;
+				cout << "Welcome to class " << Ccode << endl;
 			}
 			else
 			{
-				cout<<"Stop checkin this class you idiots!!!\n";
+				cout << "Stop checkin this class you idiots!!!\n";
 			}
-
+			system("pause");
 		}
-		savepre(coursename,pHead);
+		exportPresence(coursename, pHead);
+		savepre(coursename, pHead);
 	}
 }
 //32
