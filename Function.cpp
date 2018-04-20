@@ -64,7 +64,21 @@ void slowprint(const string& message, unsigned int millis_per_char)
 		sleep_for(milliseconds(millis_per_char));
 	}
 }
-
+void loading()
+{
+	std::cout << "					Loading Please Wait";
+	for (int i = 0; i<20; i++)
+	{
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "." << std::flush;
+		Sleep(1);
+		cout << "\b\b\b   \b\b\b" << std::flush;
+	}
+}
 //IMPORT USER
 void Import(User *&head)
 {
@@ -215,18 +229,7 @@ void Login(User *&head)
 	}
 	if (check == false)
 		exit(0);
-	std::cout << "					Loading Please Wait";
-	for (int i=0;i<10;i++)
-	{
-		Sleep(1);
-		cout << "." << std::flush;
-		Sleep(1);
-		cout << "." << std::flush;
-		Sleep(1);
-		cout << "." << std::flush;
-		Sleep(1);
-		cout << "\b\b\b   \b\b\b" << std::flush;
-	}
+	loading();
 	showMenu(head, cur);
 }
 //SHOW MENU
@@ -250,11 +253,20 @@ void showMenu(User *&head, User *&cur)
 	{
 	case 1:
 	{	if (cur->type == "1")
+	{
+		loading();
 		acastaffMenu(head, cur);
+	}
 	if (cur->type == "0")
+	{
+		loading();
 		studentMenu(head, cur);
+	}
 	if (cur->type == "2")
-		lecturerMenu(head,cur);
+	{
+		loading();
+		lecturerMenu(head, cur);
+	}
 	break;
 	}
 	case 2:
