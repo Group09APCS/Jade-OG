@@ -1700,7 +1700,7 @@ void removeacourseschedule(Schedule * shead, string filename)
 //******************************ATTENDANCE LIST*******************************
 //IMPORT
 //24. Search and view attendance list of a course
-void loadPresence(const char pathToPresenceFile[], Presence *&presenceHead, string *presenceLabel) {
+void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel) {
 	ifstream fin;
 	fin.open(pathToPresenceFile);
 	if (!fin.is_open()) {
