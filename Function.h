@@ -132,8 +132,10 @@ void findcourseschedule(Schedule* shead, string filename, string name, Schedule*
 void viewcourseschedule(Schedule * &head, string filename);
 //24. Search and view attendance list of a course
 void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel);
+void loadpre(string path,Presence *&pHead);
 void viewAttendance(string courseCode, Presence *presenceHead);
 //25. Export Attendance list:
+void savepre(string path,Presence *pHead);
 void exportPresence(string exportFileName, Presence *presenceHead);
 //26. Search and view scoreboard of a course
 void viewScore(string courseCode, Score *scoreHead);
