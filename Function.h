@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include<string>
+#include <thread>
+#include <chrono>
 #include <string.h>
 #include <Windows.h>
 #include<math.h>
@@ -11,6 +13,8 @@
 #include<ctime>
 #include<iomanip>
 #include <time.h>
+using std::chrono::milliseconds;
+using std::this_thread::sleep_for;
 using namespace std;
 struct User {         //if user is a student, username is student ID
 	string userName;  //if user is a academic staff or lecturer, username is short name. Eg: htthanh, tploc, ltathao,...
@@ -84,6 +88,7 @@ void changepass(User *&head, User *&cur);
 //SOME STUFF HERER
 void generateid(string&name, string&Username);
 int pass();
+void slowprint(const string& message, unsigned int millis_per_char);
 /*void save(const char pathToSaveFile[], Student *head);*/
 
 
@@ -132,10 +137,10 @@ void findcourseschedule(Schedule* shead, string filename, string name, Schedule*
 void viewcourseschedule(Schedule * &head, string filename);
 //24. Search and view attendance list of a course
 void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel);
-void loadpre(string path,Presence *&pHead);
+void loadpre(string path, Presence *&pHead);
 void viewAttendance(string courseCode, Presence *presenceHead);
 //25. Export Attendance list:
-void savepre(string path,Presence *pHead);
+void savepre(string path, Presence *pHead);
 void exportPresence(string exportFileName, Presence *presenceHead);
 //26. Search and view scoreboard of a course
 void viewScore(string courseCode, Score *scoreHead);
