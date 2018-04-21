@@ -97,7 +97,7 @@ void Import(User *&head)
 	getline(fin, head->mobilePhone, ',');
 	getline(fin, head->type, ',');
 	getline(fin, head->password, ',');
-	getline(fin, head->className, ' ');
+	getline(fin, head->className, '\n');
 	head->next = NULL;
 	cur = head;
 	while (fin.good())
@@ -119,7 +119,6 @@ void Import(User *&head)
 //LOGIN
 void Login(User *&head)
 {
-	zero9();
 	system("pause");
 	system("cls");
 	int choice;
