@@ -97,7 +97,7 @@ void Import(User *&head)
 	getline(fin, head->mobilePhone, ',');
 	getline(fin, head->type, ',');
 	getline(fin, head->password, ',');
-	getline(fin, head->className, '\n');
+	getline(fin, head->className, ' ');
 	head->next = NULL;
 	cur = head;
 	while (fin.good())
@@ -119,6 +119,7 @@ void Import(User *&head)
 //LOGIN
 void Login(User *&head)
 {
+	zero9();
 	system("pause");
 	system("cls");
 	int choice;
@@ -1959,11 +1960,11 @@ void loadpre(string path, Presence *&pHead)
 	pHead->semester = temp3;
 	getline(fin, notuse);
 	getline(fin, notuse);
-	for (int y = 0; y<103; y)
+	for (int y = 0; y<103; y++)
 	{
 		int x = 0;
 		getline(fin, pHead->frame[y][x], ',');
-		for (x = 0; x<9; x)
+		for (x = 0; x<9; x++)
 		{
 			fin >> pHead->checkIn[y][x];
 			fin.ignore(10, ',');
@@ -1982,21 +1983,20 @@ void savepre(string path, Presence *pHead)
 		return;
 	}
 	Presence *cur = pHead;
-	fout << "Course Code,Academic Year,Semester" << endl;
-	fout << cur->courseCode << "," << cur->academicYear << "," << cur->semester << endl;
-	fout << "Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10" << endl;
-	for (int y = 0; y<103; y)
+	fout << "Course Code,Academic Year,Semester,,,,,,,,," << endl;
+	fout << cur->courseCode << "," << cur->academicYear << "," << cur->semester <<",,,,,,,,,"<< endl;
+	fout << "Student ID,Week 01,Week 02,Week 03,Week 04,Week 05,Week 06,Week 07,Week 08,Week 09,Week 10," << endl;
+	for (int y = 0; y<103; y++)
 	{
 		int x = 0;
 		fout << cur->frame[y][x] << ",";
-		for (x = 0; x<9; x)
+		for (x = 0; x<9; x++)
 			fout << cur->checkIn[y][x] << ",";
-		fout << cur->checkIn[y][x] << '\n';
+		fout << cur->checkIn[y][x] <<",\n";
 	}
 	cur = cur->next;
 	fout.close();
 }
-
 void loadPresence(string pathToPresenceFile, Presence *&presenceHead, string *presenceLabel) {
 	ifstream fin;
 	fin.open(pathToPresenceFile);
@@ -2311,22 +2311,17 @@ void checkin(Course*chead, User *Uhead)
 		coursename += ".csv";
 		Presence *pHead = NULL;
 		string *presenceLabel = new string[5];
-		loadPresence(coursename, pHead, presenceLabel);
+		//loadPresence(coursename, pHead, presenceLabel);
+		loadpre(coursename, pHead);
 		Presence *pcur = pHead;
 		string ID = Uhead->ID;
 		int i = 0;
-		if (pcur != NULL)
-		{
-			loadpre(coursename, pHead);
-			Presence *pcur = pHead;
-			string ID = Uhead->ID;
-			int i = 0;
 			if (pcur != NULL)
 			while (pcur->frame[i][0] != ID)
 				i++;
-			if (pcur->checkIn[i][10] == 0)
+			if (pcur->checkIn[i][9] == 0)
 			{
-				pcur->checkIn[i][10] = 1;
+				pcur->checkIn[i][9] = 1;
 				cout << "Welcome to class " << Ccode << endl;
 			}
 			else
@@ -2334,8 +2329,7 @@ void checkin(Course*chead, User *Uhead)
 				cout << "Stop checkin this class you idiots!!!\n";
 			}
 			system("pause");
-		}
-		exportPresence(coursename, pHead);
+		//exportPresence(coursename, pHead);
 		savepre(coursename, pHead);
 	}
 }

@@ -170,7 +170,6 @@ void checkin(Course*chead, User *Uhead);
 void viewcheckin(Presence *phead, User *Uhead);
 void zero9();
 void loading();
-
 #endif // !FUNCTION_H_
 
 
